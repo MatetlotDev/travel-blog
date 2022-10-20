@@ -1,7 +1,16 @@
 {
   "name": "blog-voyage",
+  "author": "Matthias Lechien",
+  "description": "A blog for sharing pictures and experiences while travelling",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "REPO_URL",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
