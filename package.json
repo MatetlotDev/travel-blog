@@ -20,6 +20,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "next": "^13.0.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
