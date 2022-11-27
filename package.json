@@ -23,10 +23,13 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@next/font": "^13.0.3",
+    "@reduxjs/toolkit": "^1.9.0",
+    "axios": "^1.2.0",
     "next": "^13.0.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

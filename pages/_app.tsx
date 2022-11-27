@@ -1,6 +1,8 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { Montserrat } from '@next/font/google';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 import { styles } from '../styles/globals';
 import { defaultTheme } from '../styles/theme/theme';
 
@@ -14,7 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <main className={montserrat.className}>
       <ThemeProvider theme={defaultTheme}>
         <Global styles={styles} />
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </main>
   );
