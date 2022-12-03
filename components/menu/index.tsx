@@ -1,11 +1,20 @@
 import styled from '@emotion/styled';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-// import { useAppSelector } from '../../hooks';
-// import { globalReducer } from '../../store/global';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
+import { globalReducerSelector } from '../../redux/global';
 
 const Menu: NextPage = () => {
-  // const { menuOpen, actualPage } = useAppSelector(globalReducer);
+  const { menuState, actualPage } = useAppSelector(globalReducerSelector);
+
+  useEffect(() => {
+    if (menuState && actualPage === 'homepage') {
+      // Trigger open menu
+    } else {
+      // trigger close menu
+    }
+  }, [menuState, actualPage]);
 
   return (
     <Container>
