@@ -2,21 +2,6 @@ import styled from '@emotion/styled';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-const Title = styled.h1`
-  background: ${({ theme: { colors } }) => colors.primary.main};
-  color: ${({
-    theme: {
-      colors: { secondary },
-    },
-  }) => secondary[80]};
-  font-size: 47px;
-  font-weight: 200;
-`;
-const Paragraph = styled.p`
-  font-style: italic;
-  font-weight: 100;
-`;
-
 const Images: NextPage = () => {
   return (
     <>
@@ -35,3 +20,18 @@ const Images: NextPage = () => {
 };
 
 export default Images;
+
+const Title = styled.h1`
+  background: ${({ theme: { colors } }) => colors.primary.main};
+  color: ${({
+    theme: {
+      colors: { secondary },
+    },
+  }) => secondary[80]};
+  font-size: 47px;
+  font-weight: 200;
+`;
+const Paragraph = styled.p`
+  font-style: italic;
+  font-weight: 100;
+`;

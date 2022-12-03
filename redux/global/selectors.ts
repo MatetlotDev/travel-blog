@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
-export const exampleSelector = (state: RootState) => state.exampleReducer;
+export const globalReducer = (state: RootState) => state.globalReducer;
 
-export const selector = createSelector(exampleSelector, (state) => state);
+export const selector = createSelector(globalReducer, (state) => state);
 
 // use as -> const { value, pending } = useAppSelector(exampleSelector);

@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { exampleReducer } from './admin';
+import { globalReducer } from './global';
 
 export const store = configureStore({
   reducer: {
-    exampleReducer,
+    globalReducer,
   },
 });
 

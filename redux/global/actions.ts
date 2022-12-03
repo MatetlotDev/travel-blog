@@ -2,13 +2,13 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // simple actions
-const ACTION_EXAMPLE = 'ACTION_EXAMPLE';
+const OPEN_CLOSE_MENU = 'OPEN_CLOSE_MENU';
 
 // request actions
 const ASYNC_ACTION = 'ASYNC_ACTION';
 
 // simple actions
-export const actionExample = createAction(ACTION_EXAMPLE);
+export const openCloseMenu = createAction(OPEN_CLOSE_MENU);
 
 // request actions
 export const asyncActionExample = createAsyncThunk(ASYNC_ACTION, async () => {

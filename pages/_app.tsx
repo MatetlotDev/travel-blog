@@ -2,7 +2,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import { Montserrat } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { store } from '../store';
+import { store } from '../redux';
 import { styles } from '../styles/globals';
 import { defaultTheme } from '../styles/theme/theme';
 
