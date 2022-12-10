@@ -3,18 +3,18 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
-import { globalReducerSelector } from '../../redux/global';
+import { globalSelector } from '../../redux/global';
 
 const Menu: NextPage = () => {
-  const { menuState, actualPage } = useAppSelector(globalReducerSelector);
+  const { open, actualPage } = useAppSelector(globalSelector);
 
   useEffect(() => {
-    if (menuState && actualPage === 'homepage') {
+    if (open && actualPage === 'homepage') {
       // Trigger open menu
     } else {
       // trigger close menu
     }
-  }, [menuState, actualPage]);
+  }, [open, actualPage]);
 
   return (
     <Container>

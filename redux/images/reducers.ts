@@ -12,7 +12,7 @@ const initialState: state = {
   pending: false,
 };
 
-const reducer = createReducer(initialState, (builder) => {
+export const imagesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(actionExample, (state) => {
       // do something
@@ -33,5 +33,3 @@ const reducer = createReducer(initialState, (builder) => {
       return state;
     });
 });
-
-export { reducer as exampleReducer };

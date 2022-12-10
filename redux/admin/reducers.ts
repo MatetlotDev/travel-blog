@@ -12,7 +12,7 @@ const initialState: state = {
   pending: false,
 };
 
-const reducer = createReducer(initialState, (builder) => {
+export const adminReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(actionExample, (state) => {
       // do something
@@ -21,12 +21,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(asyncActionExample.pending, (state) => {
       // start request
       state.pending = true;
-      return state;
     })
-    .addCase(asyncActionExample.fulfilled, (state, { payload }) => {
+    .addCase(asyncActionExample.fulfilled, (state) => {
       // request succeed
       state.pending = true;
-      return state + payload;
     })
     .addCase(asyncActionExample.rejected, (state) => {
       // request failed
@@ -34,4 +32,3 @@ const reducer = createReducer(initialState, (builder) => {
     });
 });
 
-export { reducer as exampleReducer };
