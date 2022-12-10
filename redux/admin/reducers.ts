@@ -31,4 +31,3 @@ export const adminReducer = createReducer(initialState, (builder) => {
       return state;
     });
 });
-

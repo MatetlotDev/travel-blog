@@ -17,4 +17,3 @@ export const asyncActionExample = createAsyncThunk(ASYNC_ACTION, async () => {
   const response = await axios.get('http://urlExample');
   return response.data;
 });
-

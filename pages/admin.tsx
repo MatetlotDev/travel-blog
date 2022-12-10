@@ -10,8 +10,8 @@ const Admin: NextPage = () => {
       </Head>
       <Title>Hello world !</Title>
       <Paragraph>
-        Lorem dolor sit amet consectetur adipisicing elit. Recusandae ut
-        laborum commodi? Similique molestiae consequatur, ut ratione eum atque
+        Lorem dolor sit amet consectetur adipisicing elit. Recusandae ut laborum
+        commodi? Similique molestiae consequatur, ut ratione eum atque
         blanditiis obcaecati dolorem. Ab officiis veritatis, ut numquam
         praesentium eos sunt!
       </Paragraph>
