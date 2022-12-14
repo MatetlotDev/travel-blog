@@ -8,7 +8,7 @@ const Diary: NextPage = () => {
       <Head>
         <title>Journal</title>
       </Head>
-      <Title>Hello world !</Title>
+      <Title>Journal</Title>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ut
         laborum commodi? Similique molestiae consequatur, ut ratione eum atque

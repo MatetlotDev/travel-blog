@@ -8,7 +8,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Homepage</title>
       </Head>
-      <Title>Hello world !</Title>
+      <Title>Homepage</Title>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ut
         laborum commodi? Similique molestiae consequatur, ut ratione eum atque

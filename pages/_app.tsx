@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '../redux';
 import { styles } from '../styles/globals';
 import { defaultTheme } from '../styles/theme/theme';
+import Menu from '../components/menu';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={defaultTheme}>
         <Global styles={styles} />
         <Provider store={store}>
+          <Menu />
           <Component {...pageProps} />
         </Provider>
       </ThemeProvider>

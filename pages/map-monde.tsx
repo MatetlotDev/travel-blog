@@ -8,7 +8,7 @@ const WorldMap: NextPage = () => {
       <Head>
         <title>Carte du monde</title>
       </Head>
-      <Title>Hello world !</Title>
+      <Title>Map Monde</Title>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ut
         laborum commodi? Similique molestiae consequatur, ut ratione eum atque
