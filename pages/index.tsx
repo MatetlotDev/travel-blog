@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import type { NextPage } from 'next';
+import Image from 'next/image';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
@@ -8,13 +9,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Homepage</title>
       </Head>
-      <Title>Homepage</Title>
-      <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ut
-        laborum commodi? Similique molestiae consequatur, ut ratione eum atque
-        blanditiis obcaecati dolorem. Ab officiis veritatis, ut numquam
-        praesentium eos sunt!
-      </Paragraph>
+      <Image style={{ width: '100vw', height: '100vh' }} src="/home2.jpg" alt='home' height={100} width={100} />
     </>
   );
 };

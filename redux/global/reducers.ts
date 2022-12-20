@@ -8,7 +8,7 @@ export type state = {
 
 const initialState: state = {
   open: false,
-  actualPage: 'homepage',
+  actualPage: 'accueil',
 };
 
 // ! typer le payload, ne pas mettre any !

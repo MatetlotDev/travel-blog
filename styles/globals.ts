@@ -3,14 +3,14 @@ import { css, Theme } from '@emotion/react';
 export const styles = (theme: Theme) => css`
   html,
   body {
-    padding: 0;
-    margin: 0;
     font-size: 10px;
     color: ${theme.colors.black.main};
     background-color: ${theme.colors.primary.main};
   }
 
   * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
   }
 
