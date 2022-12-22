@@ -1,6 +1,15 @@
-import styled from '@emotion/styled';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
+import { SlArrowDown } from 'react-icons/sl';
+import {
+  About,
+  Circle,
+  DiscoverSpan,
+  HomeWrapper,
+  QuoteImage,
+  Salut,
+} from '../modules/homepage/wrappers';
 
 const Home: NextPage = () => {
   return (
@@ -13,57 +22,29 @@ const Home: NextPage = () => {
           Un blog de <strong>voyages</strong> et d&apos;
           <strong>escalade</strong>.
         </h1>
-        <span>
+        <p>
           Viens découvrir nos <strong>aventures</strong>...
-        </span>
-        <Blur color="#000" height="100px" width="300px" />
+        </p>
+        <DiscoverSpan>
+          <span>Découvrir</span>
+          <SlArrowDown />
+        </DiscoverSpan>
+        <Circle width={200} delay={0} />
+        <Circle width={400} delay={1} />
+        <Circle width={700} delay={2} />
       </HomeWrapper>
+      <About>
+        <Salut>Salut,</Salut>
+        <blockquote>
+          &ldquo;Nous c&apos;est Justine et Matthias, on a créé ce blog pour
+          t&apos;emmener dans nos voyages et te partager nos expériences.&rdquo;
+        </blockquote>
+        <QuoteImage>
+          <Image src="/homepage/group.jpg" fill alt="group of people" />
+        </QuoteImage>
+      </About>
     </>
   );
 };
 
 export default Home;
-
-type BlurProps = {
-  color: string;
-  width: string;
-  height: string;
-};
-
-const HomeWrapper = styled.section`
-  background-image: url('/homepage/boat.jpg');
-  height: 100vh;
-  background-position: center;
-  background-size: cover;
-  color: ${({ theme }) => theme.colors.primary.main};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  h1 {
-    font-weight: 300;
-    font-size: 62px;
-    margin-bottom: 3vh;
-  }
-  strong {
-    font-style: italic;
-    font-weight: 400;
-  }
-  span {
-    font-size: 52px;
-    font-weight: 300;
-  }
-`;
-
-const Blur = styled.div<BlurProps>`
-  background: ${({ color }) => color};
-  filter: blur(90px);
-  position: absolute;
-  height: ${({ height }) => height};
-  width: ${({ width }) => width};
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;

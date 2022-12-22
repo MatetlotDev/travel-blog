@@ -130,6 +130,7 @@ const MenuNavbar = styled.div<MenuNavBarProps>`
   color: ${({ theme }) => theme.colors.secondary.main};
   background: ${({ open, theme }) => (open ? theme.colors.primary.main : '')};
   position: fixed;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,6 +155,7 @@ const MenuNavbar = styled.div<MenuNavBarProps>`
 const MenuContent = styled.div`
   height: 88vh;
   position: absolute;
+  z-index: 998;
   top: -88vh;
   background-color: ${({ theme }) => theme.colors.primary.main};
   width: 100vw;
