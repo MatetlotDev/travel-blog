@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 type CircleProps = {
   width: number;
@@ -89,3 +90,66 @@ export const QuoteImage = styled.div`
     object-fit: cover;
   }
 `;
+
+// --- Discover --- //
+type ImageDivProps = {
+  url: string;
+}
+export const Discover = styled.section`
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+`;
+export const CardsGroup = styled.div`
+  display: flex;
+`;
+export const DiscoverCard = styled(Link)`
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.white.main};
+  font-size: 2.5rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+  }
+`;
+
+export const ImageDiv = styled.div<ImageDivProps>`
+  background: ${({ url }) => `url(${url})`};
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  transition: all .3s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .25);
+    transition: background .3s;
+  }
+
+  &:hover {
+    &::after {
+      background: rgba(0, 0, 0, .5);
+    }
+    transform: scale(1.2)
+  }
+`

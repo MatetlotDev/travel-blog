@@ -4,11 +4,15 @@ import Image from 'next/image';
 import { SlArrowDown } from 'react-icons/sl';
 import {
   About,
+  CardsGroup,
   Circle,
+  Discover,
+  DiscoverCard,
   DiscoverSpan,
   HomeWrapper,
   QuoteImage,
   Salut,
+  ImageDiv,
 } from '../modules/homepage/wrappers';
 
 const Home: NextPage = () => {
@@ -42,11 +46,30 @@ const Home: NextPage = () => {
         <QuoteImage>
           <Image src="/homepage/group.jpg" fill alt="group of people" />
         </QuoteImage>
+        <Discover>
+          <h3>Découvrir</h3>
+          <CardsGroup>
+            <DiscoverCard href="/articles">
+              <ImageDiv url="/menu/menu1.jpg" />
+              <span>Articles</span>
+            </DiscoverCard>
+            <DiscoverCard href="/map-monde">
+              <ImageDiv url="/menu/menu2.jpg" />
+              <span>Carte du monde</span>
+            </DiscoverCard>
+            <DiscoverCard href="/journal">
+              <ImageDiv url="/menu/menu3.jpg" />
+              <span>Journal</span>
+            </DiscoverCard>
+            <DiscoverCard href="/images">
+              <ImageDiv url="/menu/menu4.jpg" />
+              <span>Images</span>
+            </DiscoverCard>
+          </CardsGroup>
+        </Discover>
       </About>
     </>
   );
 };
-
-// test
 
 export default Home;
