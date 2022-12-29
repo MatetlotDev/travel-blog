@@ -7,9 +7,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { SlArrowDown } from 'react-icons/sl';
 import { CiLocationOn } from 'react-icons/ci';
-import { menuImages, routes } from '../../constants/global';
-import { useAppSelector } from '../../hooks';
-import { globalSelector } from '../../redux/global';
+import { menuImages, routes } from 'constants/global';
+import { useAppSelector } from 'hooks';
+import { globalSelector } from 'redux/global';
 
 const Menu: NextPage = () => {
   const { actualPage } = useAppSelector(globalSelector);
