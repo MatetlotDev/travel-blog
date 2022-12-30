@@ -203,3 +203,26 @@ export const ProfilePicWrapper = styled.div`
     object-fit: cover;
   }
 `;
+
+// --- DISCOVER IMAGES --- //
+export const DiscoverImagesContainer = styled.section`
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  padding: 20vh 10vw;
+  display: flex;
+`;
+export const Texts = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 35%;
+  margin-right: 15vh;
+
+  p {
+    margin: 5vh 0;
+    font-size: 3.3rem;
+    font-style: italic;
+    font-weight: 300;
+    width: 90%;
+  }
+`;

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { SlArrowDown } from 'react-icons/sl';
 import { Circle, DiscoverSpan, HomeWrapper } from 'widgets/homepage/wrappers';
 import About from 'widgets/homepage/About';
+import DiscoverImages from 'widgets/homepage/DiscoverImages';
 
 const Home: NextPage = () => {
   return (
@@ -27,6 +28,7 @@ const Home: NextPage = () => {
         <Circle width={700} delay={2} />
       </HomeWrapper>
       <About />
+      <DiscoverImages />
     </>
   );
 };

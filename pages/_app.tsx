@@ -1,11 +1,11 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { Montserrat } from '@next/font/google';
+import { Menu } from 'components';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from 'state';
 import { styles } from 'styles/globals';
 import { defaultTheme } from 'styles/theme/theme';
-import Menu from 'components/menu';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
