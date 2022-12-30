@@ -1,6 +1,6 @@
 import { css, Theme } from '@emotion/react';
 
-export const styles = (theme: Theme) => css`
+export const styles = (theme: Theme) => css`  
   html,
   body {
     font-size: 10px;

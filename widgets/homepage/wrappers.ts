@@ -153,3 +153,53 @@ export const ImageDiv = styled.div<ImageDivProps>`
     transform: scale(1.2);
   }
 `;
+
+// --- WHO WE ARE --- //
+export const WhoWeAre = styled.section`
+  margin-top: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 50px;
+    font-weight: 100;
+    margin: 11vh 0 2vh 0;
+  }
+  p {
+    font-weight: 200;
+    font-size: 2.15rem;
+    width: 60%;
+    text-align: justify;
+    margin: 3vh;
+    position: relative;
+    margin-bottom: 15vh;
+
+    /* content does not accept dynamic props string */
+    &::before {
+      content: '0';
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 15rem;
+      font-family: 'Playfair Display', serif;
+      opacity: 0.4;
+      transform: translate(-50%, -50%);
+    }
+  }
+  p.justine {
+    margin-bottom: 25vh;
+    &::before {
+      content: 'S';
+    }
+  }
+`;
+export const ProfilePicWrapper = styled.div`
+  position: relative;
+  width: 30%;
+  height: 90vh;
+
+  img {
+    object-fit: cover;
+  }
+`;
