@@ -60,7 +60,12 @@ const Menu: NextPage = () => {
     const random3 = Math.round((Math.random() - 0.5) * 4);
     return (
       <Images key={menuImages[actualPic].src} className="actual-pic">
-        <ImageWrapper random1={random1} random2={random2} random3={random3} id="image-wrapper-menu">
+        <ImageWrapper
+          random1={random1}
+          random2={random2}
+          random3={random3}
+          id="image-wrapper-menu"
+        >
           <Image src={menuImages[actualPic].src} alt="menu-img" fill />
         </ImageWrapper>
         <ImageLegend>
@@ -115,7 +120,7 @@ type ImageWrapperProps = {
   random1: number;
   random2: number;
   random3: number;
-}
+};
 
 const imageAppear = keyframes`
   from {
@@ -192,11 +197,8 @@ const ImageWrapper = styled.div<ImageWrapperProps>`
 
   img {
     object-fit: cover;
-    transform: rotate(${({random1}) => random1}deg)
-      translate(
-        ${({random2}) => random2}px,
-        ${({random3}) => random3}px
-      );
+    transform: rotate(${({ random1 }) => random1}deg)
+      translate(${({ random2 }) => random2}px, ${({ random3 }) => random3}px);
   }
 `;
 const ImageLegend = styled.span`

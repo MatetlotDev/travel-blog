@@ -94,7 +94,7 @@ export const QuoteImage = styled.div`
 // --- Discover --- //
 type ImageDivProps = {
   url: string;
-}
+};
 export const Discover = styled.section`
   h3 {
     text-align: center;
@@ -133,7 +133,7 @@ export const ImageDiv = styled.div<ImageDivProps>`
   background-size: cover;
   width: 100%;
   height: 100%;
-  transition: all .3s;
+  transition: all 0.3s;
 
   &::after {
     content: '';
@@ -142,14 +142,14 @@ export const ImageDiv = styled.div<ImageDivProps>`
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, .25);
-    transition: background .3s;
+    background: rgba(0, 0, 0, 0.25);
+    transition: background 0.3s;
   }
 
   &:hover {
     &::after {
-      background: rgba(0, 0, 0, .5);
+      background: rgba(0, 0, 0, 0.5);
     }
-    transform: scale(1.2)
+    transform: scale(1.2);
   }
-`
+`;
