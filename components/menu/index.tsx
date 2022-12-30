@@ -159,7 +159,7 @@ const MenuNavbar = styled.div<MenuNavBarProps>`
 `;
 const MenuContent = styled.div`
   height: 88vh;
-  position: absolute;
+  position: fixed;
   z-index: 998;
   top: -88vh;
   background-color: ${({ theme }) => theme.colors.primary.main};
