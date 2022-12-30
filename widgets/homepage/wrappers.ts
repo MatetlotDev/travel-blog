@@ -60,7 +60,7 @@ export const Circle = styled.div<CircleProps>`
 `;
 
 // --- QUOTE --- //
-export const About = styled.div`
+export const AboutWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary.main};
   color: ${({ theme }) => theme.colors.primary.main};
   display: flex;
