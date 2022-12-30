@@ -13,7 +13,7 @@ import {
   QuoteImage,
   Salut,
   ImageDiv,
-} from 'modules/homepage/wrappers';
+} from 'widgets/homepage/wrappers';
 
 const Home: NextPage = () => {
   return (
