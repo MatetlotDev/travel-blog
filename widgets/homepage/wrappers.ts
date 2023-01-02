@@ -207,8 +207,10 @@ export const ProfilePicWrapper = styled.div`
 // --- DISCOVER IMAGES --- //
 export const DiscoverImagesContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.primary.main};
-  padding: 20vh 10vw;
+  padding: 10vh 10vw;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const Texts = styled.div`
   display: flex;
