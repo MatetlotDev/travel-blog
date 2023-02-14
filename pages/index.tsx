@@ -4,6 +4,7 @@ import { SlArrowDown } from 'react-icons/sl';
 import { Circle, DiscoverSpan, HomeWrapper } from 'widgets/homepage/wrappers';
 import About from 'widgets/homepage/About';
 import DiscoverImages from 'widgets/homepage/DiscoverImages';
+import Questions from 'widgets/homepage/Questions';
 
 const Home: NextPage = () => {
   return (
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
       </HomeWrapper>
       <About />
       <DiscoverImages />
+      <Questions />
     </>
   );
 };

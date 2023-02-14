@@ -6,7 +6,7 @@ import {
   CarouselWrapper,
   ChangeImgButton,
   ImageDescription,
-} from 'widgets/homepage/wrappers';
+} from './wrappers';
 
 interface image {
   path: string;
