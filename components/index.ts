@@ -1,5 +1,6 @@
+import ArticleCarousel from './ArticlesCarousel';
 import Button from './Button';
-import Carousel from './carousel';
+import ImagesCarousel from './ImagesCarousel';
 import Menu from './menu';
 
-export { Menu, Carousel, Button };
+export { Menu, ImagesCarousel, Button, ArticleCarousel };
