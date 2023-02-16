@@ -8,14 +8,14 @@ const Questions = () => {
       <div className="content">
         <QuestionImages>
           <div className="img-wrapper img-1">
-            <Image src="" alt="" fill />
+            <Image src="/menu/menu1.jpg" alt="" fill />
           </div>
           <div className="img-wrapper img-2">
-            <Image src="" alt="" fill />
+            <Image src="/menu/menu2.jpg" alt="" fill />
           </div>
         </QuestionImages>
         <QuestionText>
-          <h3>Pourquoi avoir créer ce blog ?</h3>
+          <h4>Pourquoi avoir créer ce blog ?</h4>
           <p>
             Aucun de nous deux n’est très accroché aux réseaux sociaux, nous n’y
             passons pas beaucoup de temps, voir n’y passons jamais. Mais nous
@@ -25,7 +25,9 @@ const Questions = () => {
             Développeur web c’est naturellement que le blog est venu.
           </p>
           <br />
-          <h3>Alors qu’est ce que je peux trouver dans votre blog ?</h3>
+          <br />
+          <br />
+          <h4>Alors qu’est ce que je peux trouver dans votre blog ?</h4>
           <p>
             Ici, on à décider d’essayer de te partager un maximum de notre
             aventure, tu pourra retrouver des images de nos différents voyage,

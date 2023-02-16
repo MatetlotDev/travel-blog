@@ -27,11 +27,16 @@ export const styles = (theme: Theme) => css`
 
   h3 {
     font-size: clamp(2.1rem, 2.1rem + 1.2vw, 3.3rem);
+    font-weight: 300;
+  }
+
+  h4 {
+    font-size: clamp(1.5rem, 1.5rem + 1.2vw, 2.4rem);
     font-weight: 400;
   }
 
   p {
-    font-size: clamp(1.5rem, 1.5rem + 1.2vw, 2.2rem);
+    font-size: clamp(1.3rem, 1.3rem + 1.2vw, 2rem);
     font-weight: 300;
   }
 `;
