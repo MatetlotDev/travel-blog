@@ -36,6 +36,12 @@ export const styles = (theme: Theme) => css`
     font-weight: 400;
   }
 
+  h6 {
+    font-size: clamp(1.7rem, 1.7rem + 1.2vw, 2.8rem);
+    font-weight: 400;
+    font-style: italic;
+  }
+
   p {
     font-size: clamp(1.3rem, 1.3rem + 1.2vw, 2rem);
     font-weight: 300;
@@ -44,10 +50,10 @@ export const styles = (theme: Theme) => css`
 
 export const Blur = styled.div`
   position: absolute;
-  z-index: 0;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  filter: blur(20px);
+  background-color: inherit;
+  filter: blur(30px);
 `;

@@ -1,6 +1,8 @@
-import ArticleCarousel from './ArticlesCarousel';
+import ArticleCarousel, { articleType } from './ArticlesCarousel';
 import Button from './Button';
-import ImagesCarousel from './ImagesCarousel';
+import ImagesCarousel, { imageType } from './ImagesCarousel';
 import Menu from './menu';
 
 export { Menu, ImagesCarousel, Button, ArticleCarousel };
+
+export type { imageType, articleType };

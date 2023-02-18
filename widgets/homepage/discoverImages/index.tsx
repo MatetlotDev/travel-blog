@@ -1,13 +1,6 @@
 import { Button, ImagesCarousel } from 'components';
 import { DiscoverImagesContainer, Texts } from './wrappers';
-
-export interface imageType {
-  path: string;
-  country: string;
-  region: string;
-  date: Date;
-  [key: string]: any;
-}
+import { imageType } from 'components';
 
 const images: imageType[] = [
   {

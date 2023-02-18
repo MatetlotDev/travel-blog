@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import { imageType } from 'widgets/homepage/discoverImages';
 import {
   BackdropCarousel,
   CarouselWrapper,
@@ -9,6 +8,13 @@ import {
   ImageDescription,
 } from './wrappers';
 
+export interface imageType {
+  path: string;
+  country: string;
+  region: string;
+  date: Date;
+  [key: string]: any;
+}
 interface ImagesCarouselProps {
   images: imageType[];
 }
