@@ -23,6 +23,10 @@ const ArticleCarousel = ({ articles, withBlur }: carouselPropsType) => {
   const prevDisabled = position === 0;
   const nextDisabled = position === articles.length - 2;
 
+  /**
+   * Handle animation with gsap to have a more fluid scroll
+   */
+
   const handlePrev = () => {
     setPosition(position - 1);
   };

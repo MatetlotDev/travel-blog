@@ -1,6 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { Montserrat } from '@next/font/google';
-import { Menu } from 'components';
+import { Footer, Menu } from 'components';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from 'state';
@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={store}>
           <Menu />
           <Component {...pageProps} />
+          <Footer />
         </Provider>
       </ThemeProvider>
     </main>

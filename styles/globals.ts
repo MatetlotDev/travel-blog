@@ -46,6 +46,11 @@ export const styles = (theme: Theme) => css`
     font-size: clamp(1.3rem, 1.3rem + 1.2vw, 2rem);
     font-weight: 300;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export const Blur = styled.div`
