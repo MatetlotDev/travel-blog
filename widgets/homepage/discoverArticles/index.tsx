@@ -1,5 +1,4 @@
 import { ArticleCarousel, articleType, Button } from 'components';
-import { Blur } from 'styles/globals';
 import { MainWrapper, Text } from './wrappers';
 
 const homepageArticles: articleType[] = [
@@ -75,7 +74,6 @@ const DiscoverArticles = () => {
         <h2>Articles</h2>
         <p>Découvre nos articles et apprend en davantages sur divers sujet.</p>
         <Button link="/articles">Voir tout les articles</Button>
-        {/* <Blur /> */}
       </Text>
       <ArticleCarousel withBlur articles={homepageArticles} />
     </MainWrapper>
