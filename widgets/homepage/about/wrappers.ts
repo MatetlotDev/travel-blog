@@ -113,7 +113,6 @@ export const WhoWeAre = styled.section`
     font-size: 2.15rem;
     width: 60%;
     text-align: justify;
-    margin: 3vh;
     position: relative;
     margin-bottom: 15vh;
 
@@ -129,17 +128,12 @@ export const WhoWeAre = styled.section`
       transform: translate(-50%, -50%);
     }
   }
-  p.justine {
-    margin-bottom: 25vh;
-    &::before {
-      content: 'S';
-    }
-  }
 `;
 export const ProfilePicWrapper = styled.div`
   position: relative;
-  width: 30%;
-  height: 90vh;
+  width: 70%;
+  height: 70vh;
+  margin: 3vh 0 6vh 0;
 
   img {
     object-fit: cover;
