@@ -4,7 +4,7 @@ import { QuestionContainer, QuestionImages, QuestionText } from './wrappers';
 const Questions = () => {
   return (
     <QuestionContainer>
-      <h2>Des questions ?</h2>
+      <h2>Envie d&apos;en savoir plus ?</h2>
       <div className="content">
         <QuestionImages>
           <div className="img-wrapper img-1">

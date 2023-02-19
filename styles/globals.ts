@@ -32,7 +32,7 @@ export const styles = (theme: Theme) => css`
   }
 
   h4 {
-    font-size: clamp(1.5rem, 1.5rem + 1.2vw, 2.4rem);
+    font-size: clamp(1.5rem, 1.5rem + 1.2vw, 2.6rem);
     font-weight: 400;
   }
 

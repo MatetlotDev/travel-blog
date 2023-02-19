@@ -45,4 +45,8 @@ export const QuestionImages = styled.div`
 export const QuestionText = styled.div`
   margin-top: 75px;
   margin-left: 60px;
+
+  h4 {
+    margin-bottom: 10px;
+  }
 `;

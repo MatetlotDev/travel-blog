@@ -85,9 +85,25 @@ export const Menu = styled.div`
   a {
     font-size: 2rem;
     line-height: 3rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1px;
+      background-color: white;
+      bottom: 0;
+      left: 0;
+      transition: all 0.3s;
+    }
 
     &:hover {
-      text-decoration: underline;
+      font-style: italic;
+
+      &::after {
+        width: 100%;
+      }
     }
   }
 `;
