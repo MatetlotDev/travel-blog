@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
+import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import {
   BackdropCarousel,
@@ -87,7 +88,10 @@ const ImagesCarousel = ({ images }: ImagesCarouselProps) => {
       <ChangeImgButton onClick={handleNext} className="right-arrow">
         <SlArrowRight />
       </ChangeImgButton>
-      <ImageDescription>{description}</ImageDescription>
+      <ImageDescription>
+        <CiLocationOn className="icon" />
+        {description}
+      </ImageDescription>
     </CarouselWrapper>
   );
 };

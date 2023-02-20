@@ -4,7 +4,7 @@ import { useAppSelector } from 'hooks';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowDown } from 'react-icons/sl';
 import { globalSelector } from 'state/global';
@@ -24,15 +24,6 @@ const Menu: NextPage = () => {
   const [open, setOpen] = useState(false);
   const [actualPic, setActualPic] = useState(0);
   const [actualRoute, setActualRoute] = useState(actualPage);
-  // const [actualPage, setActualPage] = useState('index');npm run
-
-  useEffect(() => {
-    if (open && actualPage === 'index') {
-      // Trigger open menu
-    } else {
-      // trigger close menu
-    }
-  }, [open, actualPage]);
 
   const handleToggleMenu = () => {
     if (open) {

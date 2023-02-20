@@ -94,4 +94,10 @@ export const ImageDescription = styled.p`
   left: 25%;
   z-index: 10;
   font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    margin-right: 5px;
+  }
 `;
