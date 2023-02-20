@@ -37,6 +37,10 @@ export const HomeWrapper = styled.section`
       font-weight: 300;
     }
   }
+
+  ${({ theme }) => theme.breakpoints.extraSmall} {
+    background: red;
+  }
 `;
 
 export const DiscoverSpan = styled.div`

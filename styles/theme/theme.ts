@@ -1,4 +1,12 @@
 import { Theme } from '@emotion/react';
+import {
+  L_SCREEN,
+  M_SCREEN,
+  S_SCREEN,
+  XL_SCREEN,
+  XS_SCREEN,
+  XXL_SCREEN,
+} from 'constants/global';
 
 export const defaultTheme: Theme = {
   colors: {
@@ -50,5 +58,13 @@ export const defaultTheme: Theme = {
       20: 'rgba(250, 250, 250, 0.2)',
       10: 'rgba(250, 250, 250, 0.1)',
     },
+  },
+  breakpoints: {
+    extraSmall: `@media (max-width: ${XS_SCREEN}px)`,
+    small: `@media (max-width: ${S_SCREEN}px)`,
+    medium: `@media (max-width: ${M_SCREEN}px)`,
+    large: `@media (max-width: ${L_SCREEN}px)`,
+    extraLarge: `@media (max-width: ${XL_SCREEN}px)`,
+    extraExtraLarge: `@media (max-width: ${XXL_SCREEN}px)`,
   },
 };

@@ -45,3 +45,11 @@ export const menuImages = [
   { location: 'Bomal, Belgique', src: '/menu/menu10.jpg' },
   { location: 'Gorge du Tarn, France', src: '/menu/menu11.jpg' },
 ];
+
+const XS_SCREEN = 320;
+const S_SCREEN = 480;
+const M_SCREEN = 768;
+const L_SCREEN = 992;
+const XL_SCREEN = 1200;
+const XXL_SCREEN = 2000;
+export { XS_SCREEN, S_SCREEN, M_SCREEN, L_SCREEN, XL_SCREEN, XXL_SCREEN };
