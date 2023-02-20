@@ -1,26 +1,26 @@
 import Image from 'next/image';
 import {
   AboutWrapper,
+  BlockquoteWrapper,
   CardsGroup,
   Discover,
   DiscoverCard,
   ImageDiv,
+  LinearBackground,
   ProfilePicWrapper,
-  QuoteImage,
-  Salut,
   WhoWeAre,
 } from './wrappers';
 
 const About = () => (
   <AboutWrapper>
-    <Salut>Salut,</Salut>
-    <blockquote>
-      &ldquo;Nous c&apos;est Justine et Matthias, on a créé ce blog pour
-      t&apos;emmener dans nos voyages et te partager nos expériences.&rdquo;
-    </blockquote>
-    <QuoteImage>
-      <Image src="/homepage/group.jpg" fill alt="group of people" />
-    </QuoteImage>
+    <BlockquoteWrapper>
+      <span>Salut,</span>
+      <blockquote>
+        &ldquo;Nous c&apos;est Justine et Matthias, on a créé ce blog pour
+        t&apos;emmener dans nos voyages et te partager nos expériences.&rdquo;
+      </blockquote>
+      <LinearBackground />
+    </BlockquoteWrapper>
     <Discover>
       <h3>Découvrir</h3>
       <CardsGroup>

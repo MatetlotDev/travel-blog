@@ -8,29 +8,57 @@ export const AboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+export const Salut = styled.span`
+  font-size: 48px;
+  margin-left: -52vw;
+  margin-top: 315px;
+`;
+export const BlockquoteWrapper = styled.div`
+  width: 70vw;
+  background: url('/homepage/group.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 700px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 380px;
+  margin-bottom: 380px;
+  padding-left: 100px;
 
+  span {
+    z-index: 2;
+    position: relative;
+    display: block;
+    font-size: 55px;
+    margin-bottom: 180px;
+  }
   blockquote {
     font-size: 45px;
     font-weight: 200;
-    width: 60%;
+    width: 57%;
     text-align: center;
     margin-bottom: 8vh;
+    z-index: 2;
+    position: relative;
   }
 `;
-export const Salut = styled.span`
-  font-size: 42px;
-  margin: 191px 0 108px -96vh;
-`;
-export const QuoteImage = styled.div`
-  position: relative;
-  width: 486px;
-  height: 326px;
-  transform: translateX(21vw) rotate(-2deg);
-  margin-bottom: 30vh;
-
-  img {
-    object-fit: cover;
-  }
+export const LinearBackground = styled.div`
+  position: absolute;
+  background: linear-gradient(
+    270deg,
+    rgba(24, 44, 37, 0) 0.14%,
+    rgba(24, 44, 37, 0.784201) 34.3%,
+    rgba(24, 44, 37, 0.898771) 46.41%,
+    rgba(24, 44, 37, 0.935704) 53.18%,
+    #182c25 62.93%
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 `;
 
 // --- Discover --- //
