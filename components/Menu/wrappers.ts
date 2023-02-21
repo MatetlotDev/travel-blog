@@ -21,7 +21,7 @@ const imageAppear = keyframes`
 
 export const MenuNavbar = styled.div<MenuNavBarProps>`
   color: ${({ theme }) => theme.colors.secondary.main};
-  background: ${({ open, theme }) => (open ? theme.colors.primary.main : '')};
+  background: ${({ theme }) => theme.colors.primary.main};
   position: fixed;
   z-index: 999;
   display: flex;
@@ -30,11 +30,11 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
   top: 0;
   left: 0;
   right: 0;
-  min-height: 12vh;
-  transition: background-color 0.2s;
+  min-height: 10vh;
+  transition: all 0.5s;
 
   span {
-    font-size: 4.7rem;
+    font-size: 3.7rem;
     margin-right: 2rem;
     font-weight: 200;
   }
@@ -42,22 +42,28 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
     background-color: ${({ theme }) => theme.colors.primary.main};
   }
   .arrow-icon {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    display: block;
+  }
+  &.small-menu {
+    top: -12vh;
   }
 `;
 export const MenuContent = styled.div`
-  height: 88vh;
+  height: 92vh;
   position: fixed;
   z-index: 998;
-  top: -88vh;
+  top: -92vh;
   background-color: ${({ theme }) => theme.colors.primary.main};
   width: 100vw;
   display: flex;
   padding: 3vh 20vw;
 `;
 export const ToggleMenuWrapper = styled.div`
-  padding: 20px 50px;
+  padding: 15px 50px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 export const LeftContent = styled.div`
   position: relative;

@@ -7,8 +7,6 @@ interface ComponentPropsType {
 }
 
 const ArticlePreview = ({ article }: ComponentPropsType) => {
-  console.log('reload');
-
   return (
     <ArticlePreviewWrapper href={`/articles/${article.id}`}>
       <ImageDiv className="img-div" url={article.img_preview} />

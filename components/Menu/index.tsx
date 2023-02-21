@@ -1,6 +1,7 @@
 import { menuImages, routes } from 'constants/global';
 import gsap from 'gsap';
 import { useAppSelector } from 'hooks';
+import { useScrollDirection } from 'hooks/useScrollDirection';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,9 +22,11 @@ import {
 
 const Menu: NextPage = () => {
   const { actualPage } = useAppSelector(globalSelector);
-  const [open, setOpen] = useState(false);
-  const [actualPic, setActualPic] = useState(0);
-  const [actualRoute, setActualRoute] = useState(actualPage);
+  const [open, setOpen] = useState<boolean>(false);
+  const [actualPic, setActualPic] = useState<number>(0);
+  const [actualRoute, setActualRoute] = useState<string>(actualPage);
+
+  const scrollDirection = useScrollDirection();
 
   const handleToggleMenu = () => {
     if (open) {
@@ -100,7 +103,10 @@ const Menu: NextPage = () => {
           )}
         </ListWrapper>
       </MenuContent>
-      <MenuNavbar open={open}>
+      <MenuNavbar
+        className={scrollDirection === 'down' ? 'small-menu' : ''}
+        open={open}
+      >
         <ToggleMenuWrapper onClick={handleToggleMenu}>
           <span>Menu</span>
           <SlArrowDown className="arrow-icon" />
