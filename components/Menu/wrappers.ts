@@ -57,7 +57,12 @@ export const MenuContent = styled.div`
   background-color: ${({ theme }) => theme.colors.primary.main};
   width: 100vw;
   display: flex;
-  padding: 3vh 20vw;
+  justify-content: space-between;
+  padding: 40px 20vw;
+
+  ${({ theme }) => theme.breakpoints.extraExtraLarge} {
+    padding: 40px 11vw;
+  }
 `;
 export const ToggleMenuWrapper = styled.div`
   padding: 15px 50px;
@@ -67,7 +72,6 @@ export const ToggleMenuWrapper = styled.div`
 `;
 export const LeftContent = styled.div`
   position: relative;
-  width: inherit;
 
   h3 {
     font-size: 2.7rem;
@@ -75,7 +79,7 @@ export const LeftContent = styled.div`
     font-style: italic;
   }
   .actual-pic {
-    animation: ${imageAppear} 0.2s ease-in;
+    animation: ${imageAppear} 0.3s ease-in;
   }
 `;
 export const Images = styled.div`
@@ -84,15 +88,20 @@ export const Images = styled.div`
   left: 0;
 `;
 export const ImageWrapper = styled.div<ImageWrapperProps>`
-  height: 56vh;
-  width: 19vw;
+  height: 450px;
+  width: 320px;
   position: relative;
-  margin: 6vh;
+  margin: 60px 0 40px 60px;
 
   img {
     object-fit: cover;
     transform: rotate(${({ random1 }) => random1}deg)
       translate(${({ random2 }) => random2}px, ${({ random3 }) => random3}px);
+  }
+
+  ${({ theme }) => theme.breakpoints.extraLarge} {
+    height: 400px;
+    width: 280px;
   }
 `;
 export const ImageLegend = styled.span`
@@ -107,10 +116,10 @@ export const ImageLegend = styled.span`
 `;
 export const ListWrapper = styled.ul`
   list-style: none;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  padding-top: 60px;
 
   li {
     margin-bottom: 5vh;
@@ -139,6 +148,12 @@ export const ListWrapper = styled.ul`
       &::after {
         width: 100%;
       }
+    }
+  }
+
+  ${({ theme }) => theme.breakpoints.extraLarge} {
+    li a {
+      font-size: 4rem;
     }
   }
 `;

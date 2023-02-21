@@ -5,7 +5,7 @@ import { useScrollDirection } from 'hooks/useScrollDirection';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowDown } from 'react-icons/sl';
 import { globalSelector } from 'state/global';
@@ -27,6 +27,11 @@ const Menu: NextPage = () => {
   const [actualRoute, setActualRoute] = useState<string>(actualPage);
 
   const scrollDirection = useScrollDirection();
+
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [open]);
 
   const handleToggleMenu = () => {
     if (open) {
