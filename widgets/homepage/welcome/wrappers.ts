@@ -1,9 +1,28 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 type CircleProps = {
   width: number;
   delay: number;
 };
+
+const circleAnim = (width: number) => keyframes`
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(2 * ${width}deg) scale(1.2);
+  }
+  50% {
+    transform: rotate(11 * ${width}deg) scale(.8);
+  }
+  75% {
+    transform: rotate(20deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+`;
 
 // --- HOME --- //
 export const HomeWrapper = styled.section`
@@ -37,27 +56,57 @@ export const HomeWrapper = styled.section`
       font-weight: 300;
     }
   }
+  .circles {
+    position: absolute;
+    transform: translateY(50%);
+    bottom: 0;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: center;
 
-  ${({ theme }) => theme.breakpoints.extraSmall} {
-    background: red;
+    & > * {
+      grid-column: 1 / 1;
+      grid-row: 1 / 1;
+    }
+  }
+
+  ${({ theme }) => theme.breakpoints.extraLarge} {
+    h1 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 35px;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.large} {
+    h1 {
+      font-size: 45px;
+      text-align: center;
+    }
+    p {
+      font-size: 33px;
+      text-align: center;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.medium} {
+    h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+    p {
+      font-size: 23px;
+      text-align: center;
+    }
   }
 `;
 
-export const DiscoverSpan = styled.div`
-  font-size: 17px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 1vh;
-  font-weight: 300;
-`;
-
 export const Circle = styled.div<CircleProps>`
-  width: ${({ width }) => width}px;
-  height: ${({ width }) => width}px;
+  width: ${({ width }) => width}vw;
+  min-width: ${({ width }) => width * 7}px;
+  min-height: ${({ width }) => width * 7}px;
+  height: ${({ width }) => width}vw;
   border: 1px dashed #fff;
   border-radius: 50%;
-  position: absolute;
-  transform: translateY(52vh);
+  animation: ${({ width }) => circleAnim(width)} 10s linear
+    ${({ delay }) => delay}s infinite;
 `;

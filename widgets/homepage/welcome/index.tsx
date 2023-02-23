@@ -1,5 +1,4 @@
-import { SlArrowDown } from 'react-icons/sl';
-import { Circle, DiscoverSpan, HomeWrapper } from './wrappers';
+import { Circle, HomeWrapper } from './wrappers';
 
 const Welcome = () => {
   return (
@@ -11,13 +10,11 @@ const Welcome = () => {
       <p>
         Viens découvrir nos <strong>aventures</strong>...
       </p>
-      <DiscoverSpan>
-        <span>Découvrir</span>
-        <SlArrowDown />
-      </DiscoverSpan>
-      <Circle width={200} delay={0} />
-      <Circle width={400} delay={1} />
-      <Circle width={700} delay={2} />
+      <div className="circles">
+        <Circle width={5} delay={0} />
+        <Circle width={15} delay={1} />
+        <Circle width={30} delay={2} />
+      </div>
     </HomeWrapper>
   );
 };
