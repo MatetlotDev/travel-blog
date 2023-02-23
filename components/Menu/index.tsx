@@ -96,11 +96,12 @@ const Menu: NextPage = () => {
           {routes.map(
             (route) =>
               !route.admin && (
-                <li
-                  onMouseOver={() => handleMouseOver(route.label)}
-                  key={route.name}
-                >
-                  <Link href={route.path} onClick={handleToggleMenu}>
+                <li key={route.name}>
+                  <Link
+                    href={route.path}
+                    onMouseOver={() => handleMouseOver(route.label)}
+                    onClick={handleToggleMenu}
+                  >
                     {route.name}
                   </Link>
                 </li>

@@ -27,7 +27,7 @@ export const routes = [
     name: 'Images',
     label: 'images',
     path: '/images',
-    caption: 'Un gros bol avec toutes nos images.',
+    caption: 'Toutes nos images de voyages.',
   },
   { name: 'Admin', label: 'admin', path: '/admin', admin: true },
 ];

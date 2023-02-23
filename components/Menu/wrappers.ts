@@ -66,6 +66,10 @@ export const MenuContent = styled.div`
   ${({ theme }) => theme.breakpoints.extraExtraLarge} {
     padding: 40px 11vw;
   }
+  ${({ theme }) => theme.breakpoints.medium} {
+    justify-content: center;
+    text-align: center;
+  }
 `;
 export const ToggleMenuWrapper = styled.div`
   padding: 15px 50px;
@@ -80,9 +84,20 @@ export const LeftContent = styled.div`
     font-size: 2.7rem;
     font-weight: 300;
     font-style: italic;
+
+    ${({ theme }) => theme.breakpoints.extraLarge} {
+      font-size: 2.2rem;
+    }
+    ${({ theme }) => theme.breakpoints.large} {
+      font-size: 2rem;
+    }
   }
   .actual-pic {
     animation: ${appearAnimation} 0.3s ease-in;
+  }
+
+  ${({ theme }) => theme.breakpoints.medium} {
+    display: none;
   }
 `;
 export const Images = styled.div`
@@ -105,6 +120,11 @@ export const ImageWrapper = styled.div<ImageWrapperProps>`
   ${({ theme }) => theme.breakpoints.extraLarge} {
     height: 400px;
     width: 280px;
+  }
+  ${({ theme }) => theme.breakpoints.large} {
+    height: 320px;
+    width: 220px;
+    margin: 60px 0 25px 20px;
   }
 `;
 export const ImageLegend = styled.span`
@@ -157,6 +177,21 @@ export const ListWrapper = styled.ul`
   ${({ theme }) => theme.breakpoints.extraLarge} {
     li a {
       font-size: 4rem;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.large} {
+    li a {
+      font-size: 3.4rem;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.medium} {
+    li a {
+      font-size: 4.5rem;
+    }
+  }
+  ${({ theme }) => theme.breakpoints.small} {
+    li a {
+      font-size: 3rem;
     }
   }
 `;
