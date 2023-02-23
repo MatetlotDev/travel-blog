@@ -1,16 +1,13 @@
-import { keyframes } from '@emotion/react';
+import { keyframes, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type MenuNavBarProps = {
-  open: boolean;
-};
 type ImageWrapperProps = {
   random1: number;
   random2: number;
   random3: number;
 };
 
-const imageAppear = keyframes`
+const appearAnimation = keyframes`
   from {
     opacity: 0;
   }
@@ -19,9 +16,17 @@ const imageAppear = keyframes`
   }
 `;
 
-export const MenuNavbar = styled.div<MenuNavBarProps>`
+const backgroundAppear = (theme: Theme) => keyframes`
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: ${theme.colors.primary.main};
+  }
+`;
+
+export const MenuNavbar = styled.div`
   color: ${({ theme }) => theme.colors.secondary.main};
-  background: ${({ theme }) => theme.colors.primary.main};
   position: fixed;
   z-index: 999;
   display: flex;
@@ -32,14 +37,12 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
   right: 0;
   min-height: 10vh;
   transition: all 0.5s;
+  animation: ${({ theme }) => backgroundAppear(theme)} 1s linear 1s forwards;
 
   span {
     font-size: 3.7rem;
     margin-right: 2rem;
     font-weight: 200;
-  }
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary.main};
   }
   .arrow-icon {
     font-size: 1.5rem;
@@ -79,7 +82,7 @@ export const LeftContent = styled.div`
     font-style: italic;
   }
   .actual-pic {
-    animation: ${imageAppear} 0.3s ease-in;
+    animation: ${appearAnimation} 0.3s ease-in;
   }
 `;
 export const Images = styled.div`

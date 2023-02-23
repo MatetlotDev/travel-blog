@@ -108,10 +108,7 @@ const Menu: NextPage = () => {
           )}
         </ListWrapper>
       </MenuContent>
-      <MenuNavbar
-        className={scrollDirection === 'down' ? 'small-menu' : ''}
-        open={open}
-      >
+      <MenuNavbar className={scrollDirection === 'down' ? 'small-menu' : ''}>
         <ToggleMenuWrapper onClick={handleToggleMenu}>
           <span>Menu</span>
           <SlArrowDown className="arrow-icon" />
