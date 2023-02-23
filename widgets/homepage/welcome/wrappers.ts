@@ -104,6 +104,8 @@ export const Circle = styled.div<CircleProps>`
   width: ${({ width }) => width}vw;
   min-width: ${({ width }) => width * 7}px;
   min-height: ${({ width }) => width * 7}px;
+  max-width: ${({ width }) => width * 18}px;
+  max-height: ${({ width }) => width * 18}px;
   height: ${({ width }) => width}vw;
   border: 1px dashed #fff;
   border-radius: 50%;
