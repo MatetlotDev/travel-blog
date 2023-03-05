@@ -44,12 +44,12 @@ const ArticleCarousel = ({ articles, withBlur }: carouselPropsType) => {
   return (
     <OuterWrapper withBlur={withBlur}>
       <InnerWrapper position={position}>{articleCards}</InnerWrapper>
-      <PrevButton display={!prevDisabled}>
+      <PrevButton display={`${!prevDisabled}`}>
         <button onClick={handlePrev}>
           <SlArrowLeft />
         </button>
       </PrevButton>
-      <NextButton display={!nextDisabled}>
+      <NextButton display={`${!nextDisabled}`}>
         <button onClick={handleNext}>
           <SlArrowRight />
         </button>

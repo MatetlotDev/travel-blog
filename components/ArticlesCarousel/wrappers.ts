@@ -13,7 +13,7 @@ interface OuterWrapperProps {
   withBlur: boolean;
 }
 interface CarouselBtnProps {
-  display: boolean;
+  display: string;
 }
 interface InnerWrapperProps {
   position: number;
@@ -105,12 +105,12 @@ export const InnerWrapper = styled.div<InnerWrapperProps>`
 `;
 export const PrevButton = styled.div<CarouselBtnProps>`
   ${carouselButton}
-  display: ${({ display }) => (display ? 'flex' : 'none')};
+  display: ${({ display }) => (display === 'true' ? 'flex' : 'none')};
   left: 100px;
 `;
 export const NextButton = styled.div<CarouselBtnProps>`
   ${carouselButton}
-  display: ${({ display }) => (display ? 'flex' : 'none')};
+  display: ${({ display }) => (display === 'true' ? 'flex' : 'none')};
   right: 30px;
 `;
 
