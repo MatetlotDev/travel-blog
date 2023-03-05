@@ -1,5 +1,5 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import { Montserrat } from '@next/font/google';
+import { Montserrat } from 'next/font/google';
 import { Footer, Menu } from 'components';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';

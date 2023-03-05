@@ -22,7 +22,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@next/font": "^13.0.3",
     "@reduxjs/toolkit": "^1.9.0",
     "axios": "^1.2.0",
     "gsap": "^3.11.3",
