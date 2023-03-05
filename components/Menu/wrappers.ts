@@ -1,10 +1,13 @@
-import { keyframes, Theme } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 type ImageWrapperProps = {
   random1: number;
   random2: number;
   random3: number;
+};
+type MenuNavBarProps = {
+  isAtTop: string;
 };
 
 const appearAnimation = keyframes`
@@ -16,16 +19,7 @@ const appearAnimation = keyframes`
   }
 `;
 
-const backgroundAppear = (theme: Theme) => keyframes`
-  from {
-    background-color: transparent;
-  }
-  to {
-    background-color: ${theme.colors.primary.main};
-  }
-`;
-
-export const MenuNavbar = styled.div`
+export const MenuNavbar = styled.div<MenuNavBarProps>`
   color: ${({ theme }) => theme.colors.secondary.main};
   position: fixed;
   z-index: 999;
@@ -37,7 +31,8 @@ export const MenuNavbar = styled.div`
   right: 0;
   min-height: 10vh;
   transition: all 0.5s;
-  animation: ${({ theme }) => backgroundAppear(theme)} 1s linear 1s forwards;
+  background: ${({ theme, isAtTop }) =>
+    isAtTop === 'true' ? 'transparent' : theme.colors.primary.main};
 
   span {
     font-size: 3.7rem;

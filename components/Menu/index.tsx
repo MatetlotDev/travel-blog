@@ -25,8 +25,22 @@ const Menu: NextPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [actualPic, setActualPic] = useState<number>(0);
   const [actualRoute, setActualRoute] = useState<string>(actualPage);
+  const [isAtTop, setIsAtTop] = useState<boolean>(true);
 
   const scrollDirection = useScrollDirection();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY) setIsAtTop(false);
+      else setIsAtTop(true);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
@@ -109,7 +123,11 @@ const Menu: NextPage = () => {
           )}
         </ListWrapper>
       </MenuContent>
-      <MenuNavbar className={scrollDirection === 'down' ? 'small-menu' : ''}>
+      <MenuNavbar
+        id="menu-navbar"
+        isAtTop={isAtTop.toString()}
+        className={scrollDirection === 'down' ? 'small-menu' : ''}
+      >
         <ToggleMenuWrapper onClick={handleToggleMenu}>
           <span>Menu</span>
           <SlArrowDown className="arrow-icon" />
