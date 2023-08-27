@@ -11,9 +11,7 @@ const Articles: NextPage = () => {
       </Head>
       <HeaderWithSearch />
       <FiltersWrapper>
-        {
-          'this is  les filtreshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh'
-        }
+        <div></div>
       </FiltersWrapper>
     </>
   );

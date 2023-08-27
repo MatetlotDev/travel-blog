@@ -1,8 +1,7 @@
-import { gsap } from 'gsap';
 import { ReactNode, useState } from 'react';
 import { SlArrowDown } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
-import { Blur, FiltersContent } from './wrappers';
+import { Blur, FiltersContent, Wrapper } from './wrappers';
 
 interface Props {
   children: ReactNode;
@@ -15,28 +14,14 @@ export default function FiltersWrapper(props: Props) {
 
   const handleOpen = () => {
     setOpen(true);
-    gsap.fromTo(
-      '.filters-content',
-      {
-        width: '65px',
-      },
-      {
-        width: 'fit-content',
-        duration: 0.5,
-      }
-    );
   };
 
   const handleClose = () => {
     setOpen(false);
-    gsap.to('.filters-content', {
-      width: '65px',
-      duration: 0.5,
-    });
   };
 
   return (
-    <>
+    <Wrapper open={open}>
       <FiltersContent className="filters-content" open={open}>
         {open ? (
           <div className="content">
@@ -57,7 +42,7 @@ export default function FiltersWrapper(props: Props) {
           </div>
         )}
       </FiltersContent>
-      <Blur />
-    </>
+      <Blur open={open} />
+    </Wrapper>
   );
 }
