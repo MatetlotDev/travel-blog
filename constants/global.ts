@@ -53,3 +53,23 @@ const L_SCREEN = 992;
 const XL_SCREEN = 1200;
 const XXL_SCREEN = 1600;
 export { XS_SCREEN, S_SCREEN, M_SCREEN, L_SCREEN, XL_SCREEN, XXL_SCREEN };
+
+export type Category = {
+  id: string;
+  name: string;
+};
+
+export const categories: Category[] = [
+  {
+    id: 'escalade',
+    name: 'Escalade',
+  },
+  {
+    id: 'vie-en-van',
+    name: 'Vie en van',
+  },
+  {
+    id: 'montagne',
+    name: 'Montagne',
+  },
+];

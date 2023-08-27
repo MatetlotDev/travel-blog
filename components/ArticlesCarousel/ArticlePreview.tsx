@@ -1,9 +1,9 @@
 import { SlArrowRight } from 'react-icons/sl';
-import { articleType } from '.';
+import { Article } from '.';
 import { ArticlePreviewWrapper, Flex, ImageDiv, ReadingTime } from './wrappers';
 
 interface ComponentPropsType {
-  article: articleType;
+  article: Article;
 }
 
 const ArticlePreview = ({ article }: ComponentPropsType) => {

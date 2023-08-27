@@ -10,7 +10,8 @@ interface ImageDivProps {
   url: string;
 }
 interface OuterWrapperProps {
-  withBlur: boolean;
+  withBlur?: boolean;
+  size?: 'normal' | 'fullwidth';
 }
 interface CarouselBtnProps {
   display: string;
@@ -76,7 +77,7 @@ const carouselButton = css`
 
 // --- WRAPPER --- //
 export const OuterWrapper = styled.div<OuterWrapperProps>`
-  width: 62vw;
+  width: ${({ size }) => (size === 'normal' ? '62vw' : 'auto')};
   overflow: hidden;
   display: flex;
   position: relative;

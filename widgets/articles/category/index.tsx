@@ -1,20 +1,21 @@
-import { Article, ArticleCarousel, Button } from 'components';
-import { MainWrapper, Text } from './wrappers';
+import { Article, ArticleCarousel } from 'components';
+import { Category as CategoryType } from 'constants/global';
+import { Wrapper } from './wrappers';
 
-const DiscoverArticles = () => {
+interface Props {
+  category: CategoryType;
+}
+
+export default function Category(props: Props) {
+  const { category } = props;
+
   return (
-    <MainWrapper>
-      <Text>
-        <h2>Articles</h2>
-        <p>Découvre nos articles et apprend en davantages sur divers sujet.</p>
-        <Button link="/articles">Voir tout les articles</Button>
-      </Text>
-      <ArticleCarousel withBlur articles={homepageArticles} />
-    </MainWrapper>
+    <Wrapper>
+      <h2>{category.name}</h2>
+      <ArticleCarousel size="fullwidth" articles={homepageArticles} />
+    </Wrapper>
   );
-};
-
-export default DiscoverArticles;
+}
 
 const homepageArticles: Article[] = [
   {

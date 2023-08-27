@@ -3,7 +3,7 @@ import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import ArticlePreview from './ArticlePreview';
 import { InnerWrapper, NextButton, OuterWrapper, PrevButton } from './wrappers';
 
-export interface articleType {
+export interface Article {
   id: number;
   read_time: number;
   title: string;
@@ -12,12 +12,13 @@ export interface articleType {
   date: Date;
 }
 
-interface carouselPropsType {
-  articles: articleType[];
-  withBlur: boolean;
+interface Props {
+  articles: Article[];
+  withBlur?: boolean;
+  size?: 'normal' | 'fullwidth';
 }
 
-const ArticleCarousel = ({ articles, withBlur }: carouselPropsType) => {
+const ArticleCarousel = ({ articles, withBlur, size = 'normal' }: Props) => {
   const [position, setPosition] = useState(0);
 
   const prevDisabled = position === 0;
@@ -36,13 +37,13 @@ const ArticleCarousel = ({ articles, withBlur }: carouselPropsType) => {
   };
 
   const articleCards = useMemo(() => {
-    return articles.map((article: articleType) => (
+    return articles.map((article: Article) => (
       <ArticlePreview key={article.id} article={article} />
     ));
   }, [articles]);
 
   return (
-    <OuterWrapper withBlur={withBlur}>
+    <OuterWrapper size={size} withBlur={withBlur}>
       <InnerWrapper position={position}>{articleCards}</InnerWrapper>
       <PrevButton display={`${!prevDisabled}`}>
         <button onClick={handlePrev}>
