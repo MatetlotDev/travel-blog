@@ -1,8 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const ACTION_EXAMPLE = 'ACTION_EXAMPLE';
-
 const ASYNC_ACTION = 'ASYNC_ACTION';
 
 export const asyncActionExample = createAsyncThunk(ASYNC_ACTION, async () => {
@@ -10,4 +8,6 @@ export const asyncActionExample = createAsyncThunk(ASYNC_ACTION, async () => {
   return response.data;
 });
 
-export const actionExample = createAction(ACTION_EXAMPLE);
+export const setIsSearching = createAction<{ value: boolean }>(
+  'set_is_searching'
+);

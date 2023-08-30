@@ -3,6 +3,9 @@ import { RootState } from '..';
 
 const selector = (state: RootState) => state.articlesReducer;
 
-export const articlesSelector = createSelector(selector, (state) => state);
+export const articlesSelector = createSelector(
+  selector,
+  (articlesSelector) => articlesSelector
+);
 
 // use as -> const { value, pending } = useAppSelector(exampleSelector);

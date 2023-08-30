@@ -1,11 +1,15 @@
 import styled from '@emotion/styled';
 import { FiltersWrapper } from 'components';
 import { categories } from 'constants/global';
+import { useAppSelector } from 'hooks';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { articlesSelector } from 'state/articles';
 import Category from 'widgets/articles/category';
 
 const Articles: NextPage = () => {
+  const { isSearching } = useAppSelector(articlesSelector);
+
   return (
     <>
       <Head>
@@ -14,11 +18,17 @@ const Articles: NextPage = () => {
       <ContentWrapper>
         <HeaderWithSearch />
         <FiltersWrapper>
-          <div></div>
+          <div>{/* just pour attendre de le remplir */}</div>
         </FiltersWrapper>
-        {categories.map((category) => (
-          <Category key={category.id} category={category} />
-        ))}
+        {!isSearching ? (
+          categories.map((category) => (
+            <Category key={category.id} category={category} />
+          ))
+        ) : (
+          <div>
+            {/** display the title "recherche" with the category filtered */}
+          </div>
+        )}
       </ContentWrapper>
     </>
   );
