@@ -1,14 +1,17 @@
 import styled from '@emotion/styled';
-import { FiltersWrapper } from 'components';
-import { categories } from 'constants/global';
-import { useAppSelector } from 'hooks';
+import { ArticleCarousel, FiltersWrapper, Header } from 'components';
+import { categories, mockedArticles } from 'constants/global';
+import { useAutocomplete } from 'hooks/useAutoComplete';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { articlesSelector } from 'state/articles';
+import { useState } from 'react';
 import Category from 'widgets/articles/category';
+import { Wrapper } from 'widgets/articles/category/wrappers';
 
 const Articles: NextPage = () => {
-  const { isSearching } = useAppSelector(articlesSelector);
+  const [searchValue, setSearchValue] = useState('');
+
+  const [filtered] = useAutocomplete(searchValue, mockedArticles);
 
   return (
     <>
@@ -16,18 +19,27 @@ const Articles: NextPage = () => {
         <title>Articles</title>
       </Head>
       <ContentWrapper>
-        <HeaderWithSearch />
+        <Header
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          withSearchbar
+        />
         <FiltersWrapper>
-          <div>{/* just pour attendre de le remplir */}</div>
+          <div>{/* les filtres de la page viennes ici */}</div>
         </FiltersWrapper>
-        {!isSearching ? (
+        {!searchValue ? (
           categories.map((category) => (
             <Category key={category.id} category={category} />
           ))
         ) : (
-          <div>
-            {/** display the title "recherche" with the category filtered */}
-          </div>
+          <Wrapper>
+            <h2>Résultats</h2>
+            {filtered.length ? (
+              <ArticleCarousel size="fullwidth" articles={filtered} />
+            ) : (
+              <h3>Aucun articles trouvé avec &quot;{searchValue}&quot;</h3>
+            )}
+          </Wrapper>
         )}
       </ContentWrapper>
     </>
@@ -36,10 +48,7 @@ const Articles: NextPage = () => {
 
 export default Articles;
 
-const HeaderWithSearch = styled.div`
-  height: 10vh;
-`;
-
 const ContentWrapper = styled.div`
   margin-left: 130px;
+  min-height: 100vh;
 `;

@@ -33,6 +33,8 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
   transition: all 0.5s;
   background: ${({ theme, isAtTop }) =>
     isAtTop === 'true' ? 'transparent' : theme.colors.primary.main};
+  width: fit-content;
+  margin: 0 auto;
 
   span {
     font-size: 3.7rem;

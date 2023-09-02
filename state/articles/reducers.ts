@@ -5,19 +5,19 @@ export type state = {
   // all the state type
   value: number;
   pending: boolean;
-  isSearching: boolean;
+  isSearching: boolean; // not used
 };
 
 const initialState: state = {
   value: 0,
   pending: false,
-  isSearching: false,
+  isSearching: false, // not used
 };
 
 export const articlesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(
-      setIsSearching,
+      setIsSearching, // currently not used
       (state, { payload }: PayloadAction<{ value: boolean }>) => {
         state.isSearching = payload.value;
       }

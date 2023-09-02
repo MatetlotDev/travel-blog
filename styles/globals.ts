@@ -9,6 +9,10 @@ export const styles = (theme: Theme) => css`
     background-color: ${theme.colors.primary.main};
   }
 
+  input {
+    font-family: inherit;
+  }
+
   * {
     padding: 0;
     margin: 0;

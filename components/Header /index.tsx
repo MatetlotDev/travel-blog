@@ -1,23 +1,20 @@
-import Autocomplete from 'components/Autocomplete';
+import { SearchBar } from 'components';
 import { Wrapper } from './wrappers';
 
 interface Props {
-  withSearchbar: boolean;
+  withSearchbar?: boolean;
+  searchValue: string;
+  // eslint-disable-next-line no-unused-vars
+  setSearchValue: (value: string) => void;
 }
 
 export default function Header(props: Props) {
-  const { withSearchbar } = props;
+  const { withSearchbar = false, searchValue, setSearchValue } = props;
   return (
     <Wrapper>
-      {withSearchbar && <Autocomplete options={articlesTitle} />}
+      {withSearchbar && (
+        <SearchBar value={searchValue} setValue={setSearchValue} />
+      )}
     </Wrapper>
   );
 }
-
-const articlesTitle = [
-  'L’électricité en fourgon amménagé',
-  'L’isolation en van',
-  'Comment optimiser l’espace ?',
-  'Aménager son propre van !',
-  'Comment optimiser l’espace ?',
-];

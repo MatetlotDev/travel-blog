@@ -117,7 +117,7 @@ export const NextButton = styled.div<CarouselBtnProps>`
 
 // --- ARTICLE PREVIEW --- //
 export const ArticlePreviewWrapper = styled(Link)`
-  min-width: ${articlePreviewWidth}px;
+  width: ${articlePreviewWidth}px;
   height: 583px;
   display: flex;
   flex-direction: column;

@@ -1,3 +1,4 @@
+import { Article } from 'components';
 export const routes = [
   {
     name: 'Accueil',
@@ -52,7 +53,7 @@ const M_SCREEN = 768;
 const L_SCREEN = 992;
 const XL_SCREEN = 1200;
 const XXL_SCREEN = 1600;
-export { XS_SCREEN, S_SCREEN, M_SCREEN, L_SCREEN, XL_SCREEN, XXL_SCREEN };
+export { L_SCREEN, M_SCREEN, S_SCREEN, XL_SCREEN, XS_SCREEN, XXL_SCREEN };
 
 export type Category = {
   id: string;
@@ -71,5 +72,71 @@ export const categories: Category[] = [
   {
     id: 'montagne',
     name: 'Montagne',
+  },
+];
+
+export const mockedArticles: Article[] = [
+  {
+    id: 1,
+    read_time: 25,
+    title: "L'isolation en van",
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu2.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 2,
+    read_time: 5,
+    title: 'L’électricité en fourgon amménagé',
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu3.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 3,
+    read_time: 15,
+    title: 'Comment optimiser l’espace ?',
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu4.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 4,
+    read_time: 35,
+    title: "L'isolation en van",
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu5.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 5,
+    read_time: 10,
+    title: 'Comment optimiser l’espace en van ?',
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu6.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 6,
+    read_time: 55,
+    title: 'L’électricité en fourgon amménagé',
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu7.jpg',
+    date: new Date('02/22/2021'),
+  },
+  {
+    id: 7,
+    read_time: 75,
+    title: "L'isolation en van",
+    description:
+      'Choisir la bonne isolation pour son van est une décision clé si on veux pouvoir économiser de l’énergie en se réchauffant et e...',
+    img_preview: '/menu/menu8.jpg',
+    date: new Date('02/22/2021'),
   },
 ];

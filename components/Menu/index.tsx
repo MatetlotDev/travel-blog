@@ -11,8 +11,8 @@ import { SlArrowDown } from 'react-icons/sl';
 import { globalSelector } from 'state/global';
 import {
   ImageLegend,
-  Images,
   ImageWrapper,
+  Images,
   LeftContent,
   ListWrapper,
   MenuContent,

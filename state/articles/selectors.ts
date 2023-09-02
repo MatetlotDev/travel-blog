@@ -3,6 +3,7 @@ import { RootState } from '..';
 
 const selector = (state: RootState) => state.articlesReducer;
 
+// currently not used
 export const articlesSelector = createSelector(
   selector,
   (articlesSelector) => articlesSelector
