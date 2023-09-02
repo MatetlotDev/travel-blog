@@ -3,9 +3,9 @@ import { TfiClose } from 'react-icons/tfi';
 import { Wrapper } from './wrappers';
 
 interface Props {
-  value: string;
+  value?: string;
   // eslint-disable-next-line no-unused-vars
-  setValue: (value: string) => void;
+  setValue?: (value: string) => void;
 }
 
 const SearchBar = (props: Props) => {
@@ -16,7 +16,7 @@ const SearchBar = (props: Props) => {
       <input
         value={value}
         type="text"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue && setValue(e.target.value)}
         placeholder="Recherche..."
       />
       {!value ? (
@@ -24,7 +24,7 @@ const SearchBar = (props: Props) => {
       ) : (
         <TfiClose
           className="close-icon"
-          onClick={() => setValue('')}
+          onClick={() => setValue && setValue('')}
           size={17}
         />
       )}

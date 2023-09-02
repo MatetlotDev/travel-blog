@@ -2,7 +2,7 @@ import ArticleCarousel, { Article } from './ArticlesCarousel';
 import Button from './Button';
 import FiltersWrapper from './FiltersWrapper';
 import Footer from './Footer';
-import Header from './Header ';
+import Header from './Header';
 import HistoryNavigation from './HistoryNavigation';
 import ImagesCarousel, { imageType } from './ImagesCarousel';
 import Menu from './Menu';

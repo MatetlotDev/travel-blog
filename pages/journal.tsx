@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { HistoryNavigation } from 'components';
+import { Header, HistoryNavigation } from 'components';
 import { diaryDays } from 'constants/global';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import DiaryDay from 'widgets/journal/DiaryDay';
 
 const Diary: NextPage = () => {
   return (
@@ -11,11 +12,14 @@ const Diary: NextPage = () => {
         <title>Journal</title>
       </Head>
       <ContentWrapper>
+        <Header withSearchbar={false} />
         <HistoryNavigation
           firstDate={new Date('22/05/2022')}
           lastDate={new Date('12/08/2023')}
         />
-        {/* {diaryDays.map(day => )} */}
+        {diaryDays.map((day) => (
+          <DiaryDay key={day.id} day={day} />
+        ))}
       </ContentWrapper>
     </>
   );
@@ -24,6 +28,6 @@ const Diary: NextPage = () => {
 export default Diary;
 
 const ContentWrapper = styled.div`
-  margin-left: 130px;
+  margin-left: 30px;
   min-height: 100vh;
 `;
