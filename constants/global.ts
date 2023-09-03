@@ -171,7 +171,7 @@ export const diaryDays: DiaryDay[] = [
   },
   {
     id: 2,
-    date: new Date('20/08/2023'),
+    date: new Date('08/12/2023'),
     title: 'Grande voie dans le verdon.',
     text: 'On sait depage elle-même. L"avantage du Lorem Ipsum sur un texte générique comme "Du texte. Du texte. Du texte." est qu"il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour "Lorem Ipsum" vous conduira vers de nombreux sites qui n"en sont encore qu"à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement.',
     pictures: [
@@ -188,7 +188,7 @@ export const diaryDays: DiaryDay[] = [
   },
   {
     id: 3,
-    date: new Date('30/08/2023'),
+    date: new Date('08/30/2023'),
     title: 'Grimpe dans le Pfalz',
     text: 'Du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L"avantage du Lorem Ipsum sur un texte générique comme "Du texte. Du texte. Du texte." est qu"il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour "Lorem Ipsum" vous conduira vers de nombreux sites qui n"en sont encore qu"à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement.',
     pictures: [
