@@ -32,7 +32,7 @@ export const Wrapper = styled.section`
       grid-gap: 10px;
       margin-right: 70px;
 
-      .image-wrapper {
+      .image-wrapper__last {
       }
     }
 
@@ -41,12 +41,28 @@ export const Wrapper = styled.section`
       line-height: 1.4;
 
       .dots {
+        display: flex;
+        margin-top: 50px;
+        margin-right: 50px;
+        justify-content: flex-end;
+
+        span {
+          display: block;
+          width: 13px;
+          height: 13px;
+          background-color: #182c2580;
+          margin-right: 13px;
+        }
       }
     }
   }
 `;
 
-export const ImageDiv = styled.div<{ url: string }>`
+export const ImageDiv = styled.div<{
+  url: string;
+  isLast: boolean;
+  rest: number;
+}>`
   background: ${({ url }) => `url(${url})`};
   background-position: center;
   background-size: cover;
@@ -54,11 +70,50 @@ export const ImageDiv = styled.div<{ url: string }>`
   height: 100%;
   transition: all 0.3s;
   cursor: pointer;
+  position: relative;
 
-  &:hover {
-    &::after {
-      background: rgba(0, 0, 0, 0.5);
+  ${({ isLast }) =>
+    !isLast &&
+    `
+    &:hover {
+      transform: scale(1.2);
     }
-    transform: scale(1.2);
-  }
+  `}
+
+  ${({ isLast, rest }) =>
+    isLast &&
+    `
+    &::after {
+        position: absolute;
+        content: '';
+        z-index: 10;
+        background: #00000099;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    &::before {
+        position: absolute;
+        content: '+${rest}';
+        z-index: 11;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        transition: transform .3s
+    }
+
+    &:hover {
+        &::before {
+            transform: scale(1.6);
+        }
+    }
+  `}
 `;

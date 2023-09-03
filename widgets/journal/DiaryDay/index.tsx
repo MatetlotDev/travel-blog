@@ -16,10 +16,13 @@ const DiaryDay = (props: Props) => {
       <h4>{day.title}</h4>
       <div className="content">
         <div className="pictures">
-          {day.pictures.map((pic) => (
-            <div key={pic} className="image-wrapper">
-              <ImageDiv url={pic} />
-            </div>
+          {day.pictures.map((pic, idx) => (
+            <ImageDiv
+              key={pic}
+              url={pic}
+              isLast={idx === 8}
+              rest={day.pictures.length - 8}
+            />
           ))}
         </div>
         <div className="text">
