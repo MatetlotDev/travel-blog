@@ -241,3 +241,16 @@ export const diaryDays: DiaryDay[] = [
     pictures: ['/menu/menu1.jpg', '/menu/menu2.jpg', '/menu/menu3.jpg'],
   },
 ];
+
+export const pictures = [
+  {
+    id: 1,
+    url: '/menu/menu1.jpg',
+    create_date: new Date('08/08/2023'),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+  },
+];

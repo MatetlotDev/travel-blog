@@ -1,37 +1,26 @@
 import styled from '@emotion/styled';
+import exifr from 'exifr';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
 const Images: NextPage = () => {
+  exifr
+    .parse('/IMG_20230902_183414.jpg')
+    .then((output) => console.log('Camera:', output));
+
   return (
     <>
       <Head>
         <title>Images</title>
       </Head>
-      <Title>Images</Title>
-      <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ut
-        laborum commodi? Similique molestiae consequatur, ut ratione eum atque
-        blanditiis obcaecati dolorem. Ab officiis veritatis, ut numquam
-        praesentium eos sunt!
-      </Paragraph>
+      <ContentWrapper></ContentWrapper>
     </>
   );
 };
 
 export default Images;
 
-const Title = styled.h1`
-  background: ${({ theme: { colors } }) => colors.primary.main};
-  color: ${({
-    theme: {
-      colors: { secondary },
-    },
-  }) => secondary[80]};
-  font-size: 47px;
-  font-weight: 200;
-`;
-const Paragraph = styled.p`
-  font-style: italic;
-  font-weight: 100;
+const ContentWrapper = styled.div`
+  margin-left: 30px;
+  min-height: 100vh;
 `;
