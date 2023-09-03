@@ -5,7 +5,7 @@ import Head from 'next/head';
 
 const Images: NextPage = () => {
   exifr
-    .parse('/IMG_20230902_183414.jpg')
+    .parse('/menu/menu1.jpg')
     .then((output) => console.log('Camera:', output));
 
   return (
