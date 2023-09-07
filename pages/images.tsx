@@ -68,6 +68,7 @@ const PicturesGroup = styled.div`
 
   .pictures {
     display: flex;
+    flex-wrap: wrap;
   }
 `;
 
@@ -79,6 +80,7 @@ const ImageWrapper = styled.div<{ url: string }>`
   width: 300px;
   height: 300px;
   margin-right: 20px;
+  margin-bottom: 20px;
   transition: all 0.5s;
   cursor: pointer;
 `;

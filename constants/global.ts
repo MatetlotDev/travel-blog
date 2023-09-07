@@ -384,6 +384,104 @@ export const pictures: Picture[] = [
   },
   {
     id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
+    url: '/menu/menu11.jpg',
+    create_date: new Date(
+      'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
+    ),
+    location: {
+      latitude: 46.548265,
+      longitude: 11.824304999999999,
+    },
+    altitude: 1970.5,
+    height: 4000,
+    width: 3000,
+  },
+  {
+    id: 1,
     url: '/menu/menu9.jpg',
     create_date: new Date(
       'Tue Sep 10 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
