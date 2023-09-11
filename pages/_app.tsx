@@ -1,5 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import { Footer, Menu } from 'components';
+import CarouselFullScreen from 'components/CarouselFullScreen';
 import type { AppProps } from 'next/app';
 import { Montserrat } from 'next/font/google';
 import { Provider } from 'react-redux';
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Global styles={styles} />
         <Provider store={store}>
           <Menu />
+          <CarouselFullScreen />
           <Component {...pageProps} />
           <Footer />
         </Provider>

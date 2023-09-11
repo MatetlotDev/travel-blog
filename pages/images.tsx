@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
 import { FiltersWrapper, Header } from 'components';
 import { pictures } from 'constants/global';
+import { useAppDispatch } from 'hooks';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
+import {
+  openCarouselFullScreen,
+  setImageCarouselFullScreen,
+} from 'state/global';
 import { sortPicturesByCreateDate } from 'utils/sortPictures';
 
 const Images: NextPage = () => {
   const [searchValue, setSearchValue] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const picturesFiltered = sortPicturesByCreateDate(pictures);
 
@@ -42,7 +49,14 @@ const Images: NextPage = () => {
             </p>
             <div className="pictures">
               {group.map((picture) => (
-                <ImageWrapper key={picture.id} url={picture.url} />
+                <ImageWrapper
+                  onClick={() => {
+                    dispatch(setImageCarouselFullScreen({ image: picture }));
+                    dispatch(openCarouselFullScreen());
+                  }}
+                  key={picture.id}
+                  url={picture.url}
+                />
               ))}
             </div>
           </PicturesGroup>
