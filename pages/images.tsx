@@ -9,6 +9,7 @@ import {
   openCarouselFullScreen,
   setImageCarouselFullScreen,
 } from 'state/global';
+import { dateToSentence } from 'utils/dateToSentence';
 import { sortPicturesByCreateDate } from 'utils/sortPictures';
 
 const Images: NextPage = () => {
@@ -32,21 +33,7 @@ const Images: NextPage = () => {
         />
         {picturesFiltered.map((group) => (
           <PicturesGroup key={group[0].create_date.getTime()}>
-            <p>
-              {group[0].create_date
-                .toLocaleDateString('fr-FR', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
-                .split(' ')
-                .map(
-                  (e) =>
-                    `${e.slice(0, 1).toUpperCase()}${e.slice(1).toLowerCase()}`
-                )
-                .join(' ')}
-            </p>
+            <p>{dateToSentence(group[0].create_date)}</p>
             <div className="pictures">
               {group.map((picture) => (
                 <ImageWrapper

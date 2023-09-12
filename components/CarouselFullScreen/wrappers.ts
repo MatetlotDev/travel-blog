@@ -22,7 +22,12 @@ export const Wrapper = styled.div<{ open: boolean }>`
       display: flex;
       justify-content: space-between;
       width: 100%;
+      margin-bottom: 5px;
 
+      p {
+        font-size: 1.7rem;
+        font-weight: 200;
+      }
       .date {
       }
       .location {
@@ -35,6 +40,11 @@ export const Wrapper = styled.div<{ open: boolean }>`
       }
     }
     .image {
+      position: unset !important;
+      max-width: 70vw;
+      max-height: 80vh;
+      width: unset !important;
+      height: unset !important;
     }
 
     .description {
@@ -51,8 +61,10 @@ export const Wrapper = styled.div<{ open: boolean }>`
     justify-content: center;
     padding: 5px;
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
   }
 
   .more {
@@ -65,7 +77,43 @@ export const Wrapper = styled.div<{ open: boolean }>`
     justify-content: center;
     padding: 5px;
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+
+  .button {
+    border-radius: 50%;
+    border: 1px dashed #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    button {
+      cursor: pointer;
+      background: #b4b4b4;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+
+      &:hover {
+        background: white;
+      }
+    }
+  }
+
+  .prev {
+    left: 50px;
+  }
+
+  .next {
+    right: 50px;
   }
 `;

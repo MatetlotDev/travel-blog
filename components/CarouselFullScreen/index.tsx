@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { FaLocationDot } from 'react-icons/fa6';
+import { TiLocation } from 'react-icons/ti';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
 import {
@@ -9,6 +9,7 @@ import {
   globalSelector,
   setImageCarouselFullScreen,
 } from 'state/global';
+import { dateToSentence } from 'utils/dateToSentence';
 import { Wrapper } from './wrappers';
 
 const CarouselFullScreen = () => {
@@ -18,45 +19,50 @@ const CarouselFullScreen = () => {
     carouselFullScreen: { open, image },
   } = useAppSelector(globalSelector);
 
-  return (
-    <Wrapper open={open}>
-      <div className="content">
-        <div className="header">
-          <p className="date">Vendredi 20 Septembre 2021</p>
-          <div className="location">
-            <FaLocationDot />
-            <p>Gorges du Verdon</p>
+  if (open && image)
+    return (
+      <Wrapper open={open}>
+        <div className="content">
+          <div className="header">
+            <p className="date">{dateToSentence(image?.create_date)}</p>
+            <div className="location">
+              <TiLocation size={15} />
+              <p>Gorges du Verdon</p>
+            </div>
           </div>
+          <Image
+            src={image.url}
+            alt={image.description || 'Same image but bigger'}
+            className="image"
+            fill
+          />
+          <p className="description">{image.description}</p>
         </div>
-        <Image src="/menu/menu5.jpg" alt="nope" className="image" fill />
-        <p className="description">
-          Matthias sur le toit du van, devant les gorges du verdon.
-        </p>
-      </div>
-      <div
-        className="close"
-        onClick={() => {
-          dispatch(closeCarouselFullScreen());
-          dispatch(setImageCarouselFullScreen({ image: null }));
-        }}
-      >
-        <TfiClose />
-      </div>
-      <div className="more">
-        <BiDotsHorizontalRounded />
-      </div>
-      <div className="prev-button">
-        <button>
-          <SlArrowLeft />
-        </button>
-      </div>
-      <div className="next-button">
-        <button>
-          <SlArrowRight />
-        </button>
-      </div>
-    </Wrapper>
-  );
+        <div
+          className="close"
+          onClick={() => {
+            dispatch(closeCarouselFullScreen());
+            dispatch(setImageCarouselFullScreen({ image: null }));
+          }}
+        >
+          <TfiClose />
+        </div>
+        <div className="more">
+          <BiDotsHorizontalRounded />
+        </div>
+        <div className="prev button">
+          <button>
+            <SlArrowLeft />
+          </button>
+        </div>
+        <div className="next button">
+          <button>
+            <SlArrowRight />
+          </button>
+        </div>
+      </Wrapper>
+    );
+  return null;
 };
 
 export default CarouselFullScreen;
