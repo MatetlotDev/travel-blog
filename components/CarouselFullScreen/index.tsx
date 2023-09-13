@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { TiLocation } from 'react-icons/ti';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
+import { TiLocation } from 'react-icons/ti';
 import {
   closeCarouselFullScreen,
   globalSelector,
@@ -25,10 +25,12 @@ const CarouselFullScreen = () => {
         <div className="content">
           <div className="header">
             <p className="date">{dateToSentence(image?.create_date)}</p>
-            <div className="location">
-              <TiLocation size={15} />
-              <p>Gorges du Verdon</p>
-            </div>
+            {image.location.adress && (
+              <div className="location">
+                <TiLocation size={15} />
+                <p>{image.location.adress}</p>
+              </div>
+            )}
           </div>
           <Image
             src={image.url}

@@ -249,6 +249,7 @@ export type Picture = {
   location: {
     longitude: number;
     latitude: number;
+    adress: string;
   };
   altitude: number;
   width: number;
@@ -259,13 +260,14 @@ export type Picture = {
 export const pictures: Picture[] = [
   {
     id: 1,
-    url: '/menu/menu7.jpg',
+    url: 'https://res.cloudinary.com/matetlot/image/upload/v1694636196/Travel_blog/lagodiledro_ycgh1d.jpg',
     create_date: new Date(
       'Tue Sep 09 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
     ),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -281,6 +283,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -295,6 +298,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -309,6 +313,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -323,6 +328,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -337,6 +343,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -351,6 +358,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -365,6 +373,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -379,6 +388,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: '',
     },
     altitude: 1970.5,
     height: 4000,
@@ -393,6 +403,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
@@ -407,6 +418,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
+      adress: 'Dolomites',
     },
     altitude: 1970.5,
     height: 4000,
