@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { FiltersWrapper, Header } from 'components';
 import { pictures } from 'constants/global';
 import { useAppDispatch } from 'hooks';
+import addData from '../firebase/storage/addData';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -19,12 +20,37 @@ const Images: NextPage = () => {
 
   const picturesFiltered = sortPicturesByCreateDate(pictures);
 
+  const handle = async () => {
+    console.log('click');
+
+    const data = {
+      name: 'John snow',
+      house: 'Stark',
+    };
+
+    const { result, error } = await addData('users', 'user-id', data);
+
+    console.log('result : ', result);
+
+    if (error) {
+      return console.log(error);
+    }
+  };
+
+  const Test = styled.div`
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    cursor: pointer;
+  `;
+
   return (
     <>
       <Head>
         <title>Images</title>
       </Head>
       <ContentWrapper>
+        <Test onClick={handle} />
         <FiltersWrapper>{/* filters come here */}</FiltersWrapper>
         <Header
           withSearchbar
