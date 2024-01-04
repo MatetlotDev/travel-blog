@@ -1,14 +1,15 @@
+'use client';
+
 import styled from '@emotion/styled';
+import { Wrapper } from 'app/articles/components/category/wrappers';
 import { ArticleCarousel, FiltersWrapper, Header } from 'components';
 import { categories, mockedArticles } from 'constants/global';
 import { useAutocomplete } from 'hooks/useAutoComplete';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-import Category from 'widgets/articles/category';
-import { Wrapper } from 'widgets/articles/category/wrappers';
+import Category from './components/category';
 
-const Articles: NextPage = () => {
+export default function Articles() {
   const [searchValue, setSearchValue] = useState('');
 
   const [filtered] = useAutocomplete(searchValue, mockedArticles);
@@ -44,9 +45,7 @@ const Articles: NextPage = () => {
       </ContentWrapper>
     </>
   );
-};
-
-export default Articles;
+}
 
 const ContentWrapper = styled.div`
   margin-left: 130px;

@@ -1,8 +1,9 @@
+'use client';
+
 import styled from '@emotion/styled';
 import { FiltersWrapper, Header } from 'components';
 import { pictures } from 'constants/global';
 import { useAppDispatch } from 'hooks';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
 import {
@@ -12,7 +13,7 @@ import {
 import { dateToSentence } from 'utils/dateToSentence';
 import { sortPicturesByCreateDate } from 'utils/sortPictures';
 
-const Images: NextPage = () => {
+export default function Images() {
   const [searchValue, setSearchValue] = useState('');
 
   const dispatch = useAppDispatch();
@@ -53,9 +54,7 @@ const Images: NextPage = () => {
       </ContentWrapper>
     </>
   );
-};
-
-export default Images;
+}
 
 const ContentWrapper = styled.div`
   margin-left: 130px;

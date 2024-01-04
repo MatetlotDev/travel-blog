@@ -1,11 +1,12 @@
+'use client';
+
 import styled from '@emotion/styled';
 import { Header, HistoryNavigation } from 'components';
 import { diaryDays } from 'constants/global';
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import DiaryDay from 'widgets/journal/DiaryDay';
+import DiaryDay from './components/DiaryDay';
 
-const Diary: NextPage = () => {
+export default function Diary() {
   return (
     <>
       <Head>
@@ -23,9 +24,7 @@ const Diary: NextPage = () => {
       </ContentWrapper>
     </>
   );
-};
-
-export default Diary;
+}
 
 const ContentWrapper = styled.div`
   margin-left: 30px;

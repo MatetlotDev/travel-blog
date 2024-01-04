@@ -15,13 +15,13 @@ export const routes = [
   {
     name: 'Carte du Monde',
     label: 'map-monde',
-    path: '/map-monde',
+    path: '/world-map',
     caption: 'Tout les endroits visités.',
   },
   {
     name: 'Journal',
     label: 'journal',
-    path: '/journal',
+    path: '/diary',
     caption: 'Notre journal quotidien.',
   },
   {

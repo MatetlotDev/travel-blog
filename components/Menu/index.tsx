@@ -1,3 +1,5 @@
+'use client';
+
 import { menuImages, routes } from 'constants/global';
 import gsap from 'gsap';
 import { useAppSelector } from 'hooks';

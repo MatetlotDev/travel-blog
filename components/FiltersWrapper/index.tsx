@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode, useState } from 'react';
 import { SlArrowDown } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';

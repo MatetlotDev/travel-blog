@@ -1,3 +1,5 @@
+'use client';
+
 import { SlArrowRight } from 'react-icons/sl';
 import { Article } from '.';
 import { ArticlePreviewWrapper, Flex, ImageDiv, ReadingTime } from './wrappers';

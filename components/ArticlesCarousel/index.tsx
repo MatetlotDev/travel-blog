@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import ArticlePreview from './ArticlePreview';
