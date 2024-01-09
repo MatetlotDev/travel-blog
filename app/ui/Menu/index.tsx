@@ -1,6 +1,6 @@
 'use client';
 
-import { menuImages, routes } from 'constants/global';
+import { menuImages, routes } from 'app/constants/global';
 import gsap from 'gsap';
 import { useAppSelector } from 'hooks';
 import { useScrollDirection } from 'hooks/useScrollDirection';

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, imageType, ImagesCarousel } from 'components';
+import { Button, ImagesCarousel, imageType } from 'app/ui';
 import { DiscoverImagesContainer, Texts } from './wrappers';
 
 const images: imageType[] = [

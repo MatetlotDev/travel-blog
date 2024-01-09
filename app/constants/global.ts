@@ -1,4 +1,4 @@
-import { Article } from 'components';
+import { Article } from 'app/ui';
 export const routes = [
   {
     name: 'Accueil',

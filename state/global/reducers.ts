@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Picture } from 'constants/global';
+import { Picture } from 'app/constants/global';
 import {
   closeCarouselFullScreen,
   closeMenu,

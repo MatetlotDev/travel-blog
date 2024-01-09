@@ -1,4 +1,4 @@
-import { Picture } from 'constants/global';
+import { Picture } from 'app/constants/global';
 
 export const sortPicturesByCreateDate = (pictures: Picture[]) => {
   const picturesFiltered = pictures.sort(

@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { Picture } from 'app/constants/global';
 import axios from 'axios';
-import { Picture } from 'constants/global';
 
 // simple actions
 const OPEN_MENU = 'OPEN_MENU';

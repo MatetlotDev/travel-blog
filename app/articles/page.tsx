@@ -2,8 +2,8 @@
 
 import styled from '@emotion/styled';
 import { Wrapper } from 'app/articles/components/category/wrappers';
-import { ArticleCarousel, FiltersWrapper, Header } from 'components';
-import { categories, mockedArticles } from 'constants/global';
+import { categories, mockedArticles } from 'app/constants/global';
+import { ArticleCarousel, FiltersWrapper, Header } from 'app/ui';
 import { useAutocomplete } from 'hooks/useAutoComplete';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -20,11 +20,7 @@ export default function Articles() {
         <title>Articles</title>
       </Head>
       <ContentWrapper>
-        <Header
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          withSearchbar
-        />
+        <Header withSearchbar />
         <FiltersWrapper>
           <div>{/* les filtres de la page viennes ici */}</div>
         </FiltersWrapper>

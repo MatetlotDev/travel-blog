@@ -1,10 +1,8 @@
-'use client';
-
-import styled from '@emotion/styled';
-import { Header, HistoryNavigation } from 'components';
-import { diaryDays } from 'constants/global';
+import { diaryDays } from 'app/constants/global';
+import { Header, HistoryNavigation } from 'app/ui';
 import Head from 'next/head';
 import DiaryDay from './components/DiaryDay';
+import styles from './style.module.scss';
 
 export default function Diary() {
   return (
@@ -12,7 +10,7 @@ export default function Diary() {
       <Head>
         <title>Journal</title>
       </Head>
-      <ContentWrapper>
+      <div className={styles.wrapper}>
         <Header withSearchbar={false} />
         <HistoryNavigation
           firstDate={new Date('22/05/2022')}
@@ -21,12 +19,7 @@ export default function Diary() {
         {diaryDays.map((day) => (
           <DiaryDay key={day.id} day={day} />
         ))}
-      </ContentWrapper>
+      </div>
     </>
   );
 }
-
-const ContentWrapper = styled.div`
-  margin-left: 30px;
-  min-height: 100vh;
-`;

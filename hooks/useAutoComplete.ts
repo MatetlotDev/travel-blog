@@ -1,4 +1,4 @@
-import { Article } from 'components';
+import { Article } from 'app/ui';
 
 export const useAutocomplete = (value: string, options: Article[]) => {
   const filtered: Article[] = options.filter((option) => {

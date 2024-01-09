@@ -1,8 +1,8 @@
 'use client';
 
 import { Global, ThemeProvider } from '@emotion/react';
-import { Footer, Menu } from 'components';
-import CarouselFullScreen from 'components/CarouselFullScreen';
+import { Footer, Menu } from 'app/ui';
+import CarouselFullScreen from 'app/ui/CarouselFullScreen';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';

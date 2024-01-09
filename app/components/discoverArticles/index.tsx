@@ -1,7 +1,7 @@
 'use client';
 
-import { ArticleCarousel, Button } from 'components';
-import { mockedArticles } from 'constants/global';
+import { mockedArticles } from 'app/constants/global';
+import { ArticleCarousel, Button } from 'app/ui';
 import { MainWrapper, Text } from './wrappers';
 
 const DiscoverArticles = () => {

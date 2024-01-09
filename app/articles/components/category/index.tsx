@@ -1,5 +1,5 @@
-import { ArticleCarousel } from 'components';
-import { Category as CategoryType, mockedArticles } from 'constants/global';
+import { Category as CategoryType, mockedArticles } from 'app/constants/global';
+import { ArticleCarousel } from 'app/ui';
 import { Wrapper } from './wrappers';
 
 interface Props {

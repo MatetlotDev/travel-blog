@@ -1,8 +1,8 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { FiltersWrapper, Header } from 'components';
-import { pictures } from 'constants/global';
+import { pictures } from 'app/constants/global';
+import { FiltersWrapper, Header } from 'app/ui';
 import { useAppDispatch } from 'hooks';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -29,11 +29,7 @@ export default function Images() {
         <FiltersWrapper>
           <div>{/* les filtres de la page viennes ici */}</div>
         </FiltersWrapper>
-        <Header
-          withSearchbar
-          setSearchValue={setSearchValue}
-          searchValue={searchValue}
-        />
+        <Header withSearchbar />
         {picturesFiltered.map((group) => (
           <PicturesGroup key={group[0].create_date.getTime()}>
             <p>{dateToSentence(group[0].create_date)}</p>

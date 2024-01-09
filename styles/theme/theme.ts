@@ -6,7 +6,7 @@ import {
   XL_SCREEN,
   XS_SCREEN,
   XXL_SCREEN,
-} from 'constants/global';
+} from 'app/constants/global';
 
 export const defaultTheme: Theme = {
   colors: {
