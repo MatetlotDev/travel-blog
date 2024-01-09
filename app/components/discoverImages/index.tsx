@@ -1,6 +1,7 @@
-import { Button, ImagesCarousel } from 'components';
+'use client';
+
+import { Button, imageType, ImagesCarousel } from 'components';
 import { DiscoverImagesContainer, Texts } from './wrappers';
-import { imageType } from 'components';
 
 const images: imageType[] = [
   {

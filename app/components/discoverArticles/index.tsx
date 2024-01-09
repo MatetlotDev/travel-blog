@@ -1,3 +1,5 @@
+'use client';
+
 import { ArticleCarousel, Button } from 'components';
 import { mockedArticles } from 'constants/global';
 import { MainWrapper, Text } from './wrappers';

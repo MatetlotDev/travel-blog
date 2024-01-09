@@ -1,5 +1,3 @@
-'use client';
-
 import Head from 'next/head';
 import About from './components/about';
 import DiscoverArticles from './components/discoverArticles';
