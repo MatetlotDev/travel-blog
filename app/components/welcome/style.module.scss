@@ -1,0 +1,110 @@
+@import '/app/theme.scss';
+
+.wrapper {
+  background-image: url('/homepage/boat.jpg');
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  color: map-get($theme, 'colors', 'primary', 'main');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  h1 {
+    font-weight: 300;
+    font-size: 62px;
+    margin-bottom: 3vh;
+    text-shadow: 0px 0px 30px #000;
+  }
+  strong {
+    font-style: italic;
+    font-weight: 400;
+  }
+  p {
+    font-size: 45px;
+    font-weight: 200;
+    text-shadow: 0px 0px 24px #000;
+
+    strong {
+      font-weight: 300;
+    }
+  }
+  .circles {
+    position: absolute;
+    transform: translateY(50%);
+    bottom: 0;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: center;
+
+    & > * {
+      grid-column: 1 / 1;
+      grid-row: 1 / 1;
+    }
+  }
+
+  .circle-base {
+    border: 1px dashed #fff;
+    border-radius: 50%;
+  }
+
+  .circle-1 {
+    width: 5vw;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 90px;
+    max-height: 90px;
+    height: 5vw;
+  }
+
+  .circle-2 {
+    width: 15vw;
+    min-width: 105px;
+    min-height: 105px;
+    max-width: 270px;
+    max-height: 270px;
+    height: 15vw;
+  }
+
+  .circle-3 {
+    width: 30vw;
+    min-width: 210px;
+    min-height: 210px;
+    max-width: 540px;
+    max-height: 540px;
+    height: 30vw;
+  }
+
+  @media (max-width: map-get($theme, 'breakpoints', 'extraLarge')) {
+    h1 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 35px;
+    }
+  }
+
+  @media (max-width: map-get($theme, 'breakpoints', 'large')) {
+    h1 {
+      font-size: 45px;
+      text-align: center;
+    }
+    p {
+      font-size: 33px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
+    h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+    p {
+      font-size: 23px;
+      text-align: center;
+    }
+  }
+}
