@@ -1,7 +1,5 @@
-'use client';
-
 import { Button, ImagesCarousel, imageType } from 'app/ui';
-import { DiscoverImagesContainer, Texts } from './wrappers';
+import styles from './style.module.scss';
 
 const images: imageType[] = [
   {
@@ -61,17 +59,17 @@ const images: imageType[] = [
 ];
 
 const DiscoverImages = () => (
-  <DiscoverImagesContainer>
-    <Texts>
+  <section className={styles.wrapper}>
+    <div className={styles.text}>
       <h2>Découvre nos images de voyages</h2>
       <p>
         Parcours notre galerie d’image et inspire toi pour tes prochaines
         aventures.
       </p>
       <Button link="/images">Parcourir les images</Button>
-    </Texts>
+    </div>
     <ImagesCarousel images={images} />
-  </DiscoverImagesContainer>
+  </section>
 );
 
 export default DiscoverImages;

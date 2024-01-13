@@ -1,20 +1,20 @@
 import Image from 'next/image';
-import { QuestionContainer, QuestionImages, QuestionText } from './wrappers';
+import styles from './style.module.scss';
 
 const Questions = () => {
   return (
-    <QuestionContainer>
+    <section className={styles.wrapper}>
       <h2>Envie d&apos;en savoir plus ?</h2>
-      <div className="content">
-        <QuestionImages>
-          <div className="img-wrapper img-1">
+      <div className={styles.content}>
+        <div className={styles.images}>
+          <div className={`${styles['img-wrapper']} ${styles['img-1']}`}>
             <Image src="/menu/menu1.jpg" alt="" fill />
           </div>
-          <div className="img-wrapper img-2">
+          <div className={`${styles['img-wrapper']} ${styles['img-2']}`}>
             <Image src="/menu/menu2.jpg" alt="" fill />
           </div>
-        </QuestionImages>
-        <QuestionText>
+        </div>
+        <div className={styles.text}>
           <h4>Pourquoi avoir créer ce blog ?</h4>
           <p>
             Aucun de nous deux n’est très accroché aux réseaux sociaux, nous n’y
@@ -38,9 +38,9 @@ const Questions = () => {
             trouves pas ce que tu cherches, n’hésite pas à{' '}
             <a href="#">nous contacter</a>.
           </p>
-        </QuestionText>
+        </div>
       </div>
-    </QuestionContainer>
+    </section>
   );
 };
 

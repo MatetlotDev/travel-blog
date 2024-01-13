@@ -1,14 +1,11 @@
-'use client';
-
-import styled from '@emotion/styled';
-
-export const MainWrapper = styled.section`
+.wrapper {
   margin: 400px 0;
   background: inherit;
   display: flex;
   align-items: center;
-`;
-export const Text = styled.div`
+}
+
+.text {
   width: 38vw;
   position: relative;
   display: flex;
@@ -32,4 +29,4 @@ export const Text = styled.div`
     font-weight: 300;
     width: 90%;
   }
-`;
+}

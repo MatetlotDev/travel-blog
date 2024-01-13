@@ -1,19 +1,17 @@
-'use client';
-
 import { mockedArticles } from 'app/constants/global';
 import { ArticleCarousel, Button } from 'app/ui';
-import { MainWrapper, Text } from './wrappers';
+import styles from './styles.module.scss';
 
 const DiscoverArticles = () => {
   return (
-    <MainWrapper>
-      <Text>
+    <section className={styles.wrapper}>
+      <div className={styles.text}>
         <h2>Articles</h2>
         <p>Découvre nos articles et apprend en davantages sur divers sujet.</p>
         <Button link="/articles">Voir tout les articles</Button>
-      </Text>
+      </div>
       <ArticleCarousel withBlur articles={mockedArticles} />
-    </MainWrapper>
+    </section>
   );
 };
 

@@ -1,7 +1,4 @@
-'use client';
-import styled from '@emotion/styled';
-
-export const QuestionContainer = styled.section`
+.wrapper {
   width: 100%;
   padding: 40px;
   margin-top: 200px;
@@ -38,16 +35,18 @@ export const QuestionContainer = styled.section`
       object-fit: cover;
     }
   }
-`;
-export const QuestionImages = styled.div`
+}
+
+.images {
   position: relative;
   padding: 40px;
-`;
-export const QuestionText = styled.div`
+}
+
+.text {
   margin-top: 75px;
   margin-left: 60px;
 
   h4 {
     margin-bottom: 10px;
   }
-`;
+}
