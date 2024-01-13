@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import ArticlePreview from './ArticlePreview';
-import { InnerWrapper, NextButton, OuterWrapper, PrevButton } from './wrappers';
+import styles from './style.module.scss';
 
 export interface Article {
   id: number;
@@ -45,19 +45,36 @@ const ArticleCarousel = ({ articles, withBlur, size = 'normal' }: Props) => {
   }, [articles]);
 
   return (
-    <OuterWrapper size={size} withBlur={withBlur}>
-      <InnerWrapper position={position}>{articleCards}</InnerWrapper>
-      <PrevButton display={`${!prevDisabled}`}>
+    <div
+      className={`${styles['outer-wrapper']} ${
+        withBlur && styles['outer-wrapper_withBlur']
+      } ${styles[`outer-wrapper_${size}`]}`}
+    >
+      <div
+        className={styles['inner-wrapper']}
+        style={{
+          transform: `translateX(-${Math.round(position * 327 + 40)}px)`,
+        }}
+      >
+        {articleCards}
+      </div>
+      <div
+        className={styles['prev-button']}
+        style={{ display: !prevDisabled ? 'flex' : 'none' }}
+      >
         <button onClick={handlePrev}>
           <SlArrowLeft />
         </button>
-      </PrevButton>
-      <NextButton display={`${!nextDisabled}`}>
+      </div>
+      <div
+        className={styles['next-button']}
+        style={{ display: !nextDisabled ? 'flex' : 'none' }}
+      >
         <button onClick={handleNext}>
           <SlArrowRight />
         </button>
-      </NextButton>
-    </OuterWrapper>
+      </div>
+    </div>
   );
 };
 

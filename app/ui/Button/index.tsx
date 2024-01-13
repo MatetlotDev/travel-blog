@@ -1,7 +1,5 @@
-'use client';
-
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import styles from './style.module.scss';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -10,24 +8,8 @@ interface ButtonProps {
 
 const Button = ({ children, link }: ButtonProps) => (
   <Link href={link && link}>
-    <StyledButton>{children}</StyledButton>
+    <button className={styles.button}>{children}</button>
   </Link>
 );
 
 export default Button;
-
-const StyledButton = styled.button`
-  padding: 16px 23px;
-  border: 1px solid ${({ theme }) => theme.colors.secondary.main};
-  border-radius: 50px;
-  font-size: 2rem;
-  background: none;
-  color: ${({ theme }) => theme.colors.secondary.main};
-  cursor: pointer;
-  transition: all 0.4s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary.main};
-    color: ${({ theme }) => theme.colors.primary.main};
-  }
-`;

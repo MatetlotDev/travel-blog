@@ -1,3 +1,5 @@
+'use client';
+
 import ArticleCarousel, { Article } from './ArticlesCarousel';
 import Button from './Button';
 import FiltersWrapper from './FiltersWrapper';

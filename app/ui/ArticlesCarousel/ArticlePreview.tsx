@@ -1,8 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { SlArrowRight } from 'react-icons/sl';
 import { Article } from '.';
-import { ArticlePreviewWrapper, Flex, ImageDiv, ReadingTime } from './wrappers';
+import styles from './style.module.scss';
 
 interface ComponentPropsType {
   article: Article;
@@ -10,25 +11,33 @@ interface ComponentPropsType {
 
 const ArticlePreview = ({ article }: ComponentPropsType) => {
   return (
-    <ArticlePreviewWrapper href={`/articles/${article.id}`}>
-      <ImageDiv className="img-div" url={article.img_preview} />
-      <div className="content">
-        <ReadingTime>
-          <div className="center">
+    <Link
+      className={styles['article-preview']}
+      href={`/articles/${article.id}`}
+    >
+      <div
+        className={styles['image-div']}
+        style={{ backgroundImage: `url(${article.img_preview})` }}
+      />
+      <div className={styles.content}>
+        <div className={styles['reading-time']}>
+          <div className={styles.center}>
             {article.read_time}
             <span>min</span>
           </div>
-        </ReadingTime>
+        </div>
         <h6>{article.title}</h6>
-        <span className="date">{article.date.toLocaleDateString('fr-BE')}</span>
+        <span className={styles.date}>
+          {article.date.toLocaleDateString('fr-BE')}
+        </span>
         <p>{article.description}</p>
-        <Flex>
-          <div className="line" />
-          <span className="read">Lire</span>
+        <div className={styles.flex}>
+          <div className={styles.line} />
+          <span className={styles.read}>Lire</span>
           <SlArrowRight />
-        </Flex>
+        </div>
       </div>
-    </ArticlePreviewWrapper>
+    </Link>
   );
 };
 
