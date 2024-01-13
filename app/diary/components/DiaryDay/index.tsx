@@ -1,3 +1,5 @@
+'use client';
+
 import { DiaryDay as DiaryDayType } from 'app/constants/global';
 import { ImageDiv, Wrapper } from './wrappers';
 
