@@ -1,21 +1,14 @@
-'use client';
-import styled from '@emotion/styled';
-import Link from 'next/link';
+@import '/app/styles/theme.scss';
 
-// --- QUOTE --- //
-export const AboutWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary.main};
-  color: ${({ theme }) => theme.colors.primary.main};
+.wrapper {
+  background-color: map-get($theme, 'colors', 'secondary', 'main');
+  color: map-get($theme, 'colors', 'primary', 'main');
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-export const Salut = styled.span`
-  font-size: 48px;
-  margin-left: -52vw;
-  margin-top: 315px;
-`;
-export const BlockquoteWrapper = styled.div`
+}
+
+.blockquote-wrapper {
   width: 70vw;
   background: url('/homepage/group.jpg');
   background-position: center;
@@ -44,8 +37,9 @@ export const BlockquoteWrapper = styled.div`
     z-index: 2;
     position: relative;
   }
-`;
-export const LinearBackground = styled.div`
+}
+
+.linear-background {
   position: absolute;
   background: linear-gradient(
     270deg,
@@ -60,29 +54,27 @@ export const LinearBackground = styled.div`
   left: 0;
   right: 0;
   z-index: 1;
-`;
+}
 
-// --- Discover --- //
-type ImageDivProps = {
-  url: string;
-};
-export const Discover = styled.section`
+.discover-wrapper {
   h3 {
     text-align: center;
     margin-bottom: 20px;
   }
-`;
-export const CardsGroup = styled.div`
+}
+
+.cards-group {
   display: flex;
-`;
-export const DiscoverCard = styled(Link)`
+}
+
+.discover-card {
   width: 250px;
   height: 250px;
   margin: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.white.main};
+  color: map-get($theme, 'colors', 'white', 'main');
   font-size: 2.5rem;
   text-decoration: none;
   position: relative;
@@ -96,10 +88,9 @@ export const DiscoverCard = styled(Link)`
     text-align: center;
     pointer-events: none;
   }
-`;
+}
 
-export const ImageDiv = styled.div<ImageDivProps>`
-  background: ${({ url }) => `url(${url})`};
+.image-wrapper_base {
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -123,10 +114,25 @@ export const ImageDiv = styled.div<ImageDivProps>`
     }
     transform: scale(1.2);
   }
-`;
+}
 
-// --- WHO WE ARE --- //
-export const WhoWeAre = styled.section`
+.image-wrapper_1 {
+  background-image: url('/menu/menu1.jpg');
+}
+
+.image-wrapper_2 {
+  background-image: url('/menu/menu2.jpg');
+}
+
+.image-wrapper_3 {
+  background-image: url('/menu/menu3.jpg');
+}
+
+.image-wrapper_4 {
+  background-image: url('/menu/menu4.jpg');
+}
+
+.who-we-are {
   margin-top: 50vh;
   display: flex;
   flex-direction: column;
@@ -157,8 +163,9 @@ export const WhoWeAre = styled.section`
       transform: translate(-50%, -50%);
     }
   }
-`;
-export const ProfilePicWrapper = styled.div`
+}
+
+.profile-pic-wrapper {
   position: relative;
   width: 70%;
   height: 70vh;
@@ -167,4 +174,4 @@ export const ProfilePicWrapper = styled.div`
   img {
     object-fit: cover;
   }
-`;
+}

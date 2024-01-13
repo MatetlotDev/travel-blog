@@ -1,57 +1,56 @@
 import Image from 'next/image';
-import {
-  AboutWrapper,
-  BlockquoteWrapper,
-  CardsGroup,
-  Discover,
-  DiscoverCard,
-  ImageDiv,
-  LinearBackground,
-  ProfilePicWrapper,
-  WhoWeAre,
-} from './wrappers';
+import Link from 'next/link';
+import styles from './style.module.scss';
 
 const About = () => (
-  <AboutWrapper>
-    <BlockquoteWrapper>
+  <div className={styles.wrapper}>
+    <div className={styles['blockquote-wrapper']}>
       <span>Salut,</span>
       <blockquote>
         &ldquo;Nous c&apos;est Justine et Matthias, on a créé ce blog pour
         t&apos;emmener dans nos voyages et te partager nos expériences.&rdquo;
       </blockquote>
-      <LinearBackground />
-    </BlockquoteWrapper>
-    <Discover>
+      <div className={styles['linear-background']} />
+    </div>
+    <section className={styles['discover-wrapper']}>
       <h3>Découvrir</h3>
-      <CardsGroup>
-        <DiscoverCard href="/articles">
-          <ImageDiv url="/menu/menu1.jpg" />
+      <div className={styles['cards-group']}>
+        <Link className={styles['discover-card']} href="/articles">
+          <div
+            className={`${styles['image-wrapper_base']} ${styles['image-wrapper_1']}`}
+          />
           <span>Articles</span>
-        </DiscoverCard>
-        <DiscoverCard href="/map-monde">
-          <ImageDiv url="/menu/menu2.jpg" />
+        </Link>
+        <Link className={styles['discover-card']} href="/map-monde">
+          <div
+            className={`${styles['image-wrapper_base']} ${styles['image-wrapper_2']}`}
+          />
           <span>Carte du monde</span>
-        </DiscoverCard>
-        <DiscoverCard href="/journal">
-          <ImageDiv url="/menu/menu3.jpg" />
+        </Link>
+        <Link className={styles['discover-card']} href="/journal">
+          <div
+            className={`${styles['image-wrapper_base']} ${styles['image-wrapper_3']}`}
+          />
           <span>Journal</span>
-        </DiscoverCard>
-        <DiscoverCard href="/images">
-          <ImageDiv url="/menu/menu4.jpg" />
+        </Link>
+        <Link className={styles['discover-card']} href="/images">
+          <div
+            className={`${styles['image-wrapper_base']} ${styles['image-wrapper_4']}`}
+          />
           <span>Images</span>
-        </DiscoverCard>
-      </CardsGroup>
-    </Discover>
-    <WhoWeAre>
+        </Link>
+      </div>
+    </section>
+    <section className={styles['who-we-are']}>
       <h2>Qui sommes nous ?</h2>
       <span>Justine & Matthias</span>
-      <ProfilePicWrapper>
+      <div className={styles['profile-pic-wrapper']}>
         <Image
           src="/homepage/2people.jpg"
           alt="matthias profile picture"
           fill
         />
-      </ProfilePicWrapper>
+      </div>
       <p>
         n sait depuis longtemps que travailler avec du texte lisible et
         contenant du sens est source de distractions, et empêche de se
@@ -76,8 +75,8 @@ const About = () => (
         versions sont apparues avec le temps, parfois par accident, souvent
         intentionnellement.
       </p>
-    </WhoWeAre>
-  </AboutWrapper>
+    </section>
+  </div>
 );
 
 export default About;

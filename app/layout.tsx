@@ -8,7 +8,7 @@ import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'state';
 import { defaultTheme } from 'styles/theme/theme';
-import './global.scss';
+import './styles/global.scss';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
