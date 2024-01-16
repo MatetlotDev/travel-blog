@@ -1,14 +1,11 @@
-import { getAuthenticatedAppForUser } from '@/firebase/config';
-import GoogleLogin from './components/GoogleLogin';
+import Link from 'next/link';
 import styles from './style.module.scss';
 
-export default async function AdminPage() {
-  const { currentUser } = await getAuthenticatedAppForUser();
-
+export default function AdminPage() {
   return (
     <div className={styles.wrapper}>
-      <h1>Admin Page</h1>
-      <GoogleLogin initialUser={currentUser?.toJSON()} />
+      <Link href="/admin/diary">Journal de bord</Link>
+      <Link href="/admin/articles">Article</Link>
     </div>
   );
 }

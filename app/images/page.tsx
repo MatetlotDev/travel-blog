@@ -6,7 +6,7 @@ import { sortPicturesByCreateDate } from 'utils/sortPictures';
 import ImageWrapper from './components/image';
 import styles from './style.module.scss';
 
-export default function Images() {
+export default async function Images() {
   const picturesFiltered = sortPicturesByCreateDate(pictures);
 
   return (

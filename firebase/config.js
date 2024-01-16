@@ -46,9 +46,6 @@ function initializeAuthenticatedApp(uid) {
 
 export async function getAuthenticatedAppForUser(session = null) {
   if (typeof window !== 'undefined') {
-    // client
-    console.log('client: ', firebase_app);
-
     return { app: firebase_app, user: auth.currentUser.toJSON() };
   }
 
@@ -101,6 +98,5 @@ export async function getAuthenticatedAppForUser(session = null) {
 
     await signInWithCustomToken(auth, customToken);
   }
-  console.log('server: ', app);
   return { app, currentUser: auth.currentUser };
 }
