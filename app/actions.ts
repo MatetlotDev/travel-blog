@@ -1,7 +1,5 @@
 'use server';
 
-import { db } from '@/firebase/config';
-import { doc, setDoc } from 'firebase/firestore';
 import { RedirectType, redirect } from 'next/navigation';
 import { v4 as uuid } from 'uuid';
 
@@ -28,7 +26,14 @@ export async function handleSubmitDiaryForm(formData: FormData) {
 
   const docId = uuid();
 
-  // const imagesUrl = await uploadImage(docId, formData.get('pictures'));
+  // const imageUrl = await uploadImages(formData.get('pictures') as File)
+
+  // console.log('URL : ', imageUrl);
+
+  // formData.getAll('pictures').forEach(async (image) => {
+  //   const imageUrl = await uploadImage(image as File);
+  //   console.log('URL : ', imageUrl);
+  // });
 
   const docContent = {
     id: docId,
@@ -38,14 +43,14 @@ export async function handleSubmitDiaryForm(formData: FormData) {
     pictures: [],
   };
 
-  try {
-    // create a document and add it to firestore collection 'diary'
-    const diaryRef = doc(db, 'diary', docContent.id);
-    await setDoc(diaryRef, docContent);
-  } catch (error) {
-    console.error('Error while saving Diary form : ', error);
-    throw error;
-  }
+  // try {
+  //   // create a document and add it to firestore collection 'diary'
+  //   const diaryRef = doc(db, 'diary', docContent.id);
+  //   await setDoc(diaryRef, docContent);
+  // } catch (error) {
+  //   console.error('Error while saving Diary form : ', error);
+  //   throw error;
+  // }
 
-  redirect('/admin');
+  // redirect('/admin');
 }

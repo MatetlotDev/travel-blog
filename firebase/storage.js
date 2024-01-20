@@ -1,6 +1,5 @@
-'use server';
-
-import { getDownloadURL, ref } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { v4 as uuid } from 'uuid';
 import { storage } from './config';
 
 export const getImages = async () => {
@@ -29,3 +28,11 @@ export const getImages = async () => {
   const url = await getDownloadURL(storageRef);
   return url;
 };
+
+export async function uploadImage(image) {
+  const filePath = `images/${uuid()}_${image.name}`;
+  const newImageRef = ref(storage, filePath);
+  await uploadBytesResumable(newImageRef, image);
+
+  return await getDownloadURL(newImageRef);
+}
