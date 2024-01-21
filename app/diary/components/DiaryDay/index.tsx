@@ -10,18 +10,20 @@ interface Props {
 const DiaryDay = (props: Props) => {
   const { day } = props;
 
+  const date = new Date(day.date);
+
   return (
     <Wrapper>
       <div className="date">
-        <p>{day.date.toLocaleDateString()}</p>
+        <p>{date.toLocaleDateString()}</p>
       </div>
       <h4>{day.title}</h4>
       <div className="content">
         <div className="pictures">
           {day.pictures.map((pic, idx) => (
             <ImageDiv
-              key={pic}
-              url={pic}
+              key={pic.id}
+              url={pic.url}
               isLast={idx === 8}
               rest={day.pictures.length - 8}
             />
