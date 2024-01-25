@@ -2,7 +2,7 @@
 
 import { navigate } from '@/app/actions';
 import { db } from '@/firebase/config';
-import { uploadImage } from '@/firebase/storage';
+import { getExifData, uploadImage } from '@/firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
@@ -22,9 +22,24 @@ export default function DiaryAdminPage() {
     try {
       setUploadingStatus('Starting to uploading images.');
 
+      const docId = uuid();
+
       // urls of the uploaded images
       const pictureUrls = await Promise.all(
-        formData.getAll('pictures').map((file) => uploadImage(file))
+        formData.getAll('pictures').map(async (file) => {
+          const imageId = uuid();
+
+          return {
+            id: imageId,
+            url: await uploadImage(file),
+            create_date: new Date().toISOString(),
+            diary_id: docId,
+            location: {
+              longitude: await getExifData(file, 'longitude'),
+              latitude: await getExifData(file, 'latitude'),
+            },
+          };
+        })
       );
 
       setUploadingStatus(
@@ -33,14 +48,13 @@ export default function DiaryAdminPage() {
 
       // create a doc in images collection for each image and returns the Ids of the documents
       const imageIds = await Promise.all(
-        pictureUrls.map(async (url) => {
-          const imageId = uuid();
+        pictureUrls.map(async (image) => {
+          const imageId = image.id;
           const imageRef = doc(db, 'images', imageId);
-          await setDoc(imageRef, { url });
+          await setDoc(imageRef, image);
           return imageId;
         })
       );
-      const docId = uuid();
 
       // create a doc in diary collection with the images Ids
       const docContent = {
