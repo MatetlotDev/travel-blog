@@ -2,6 +2,7 @@ import {
   collection,
   documentId,
   getDocs,
+  orderBy,
   query,
   where,
 } from 'firebase/firestore';
@@ -9,8 +10,12 @@ import { db } from './config';
 
 export const getDiaries = async () => {
   // get all diaries documents from firestore
-  const querySnapshot = await getDocs(collection(db, 'diary'));
+  const diaryCollection = collection(db, 'diary');
+  const querySnapshot = await getDocs(
+    query(diaryCollection, orderBy('date', 'desc'))
+  );
 
+  // then get all images documents that match pictures field in diary document
   return Promise.all(
     querySnapshot.docs.map(async (document) => {
       // get images documents that match pictures field in diary document
