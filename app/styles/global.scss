@@ -3,7 +3,7 @@
 html,
 body {
   font-size: 10px;
-  color: map-get($theme, 'colors', 'black', 'main');
+  color: map-get($theme, 'colors', 'dark', 'main');
   background-color: map-get($theme, 'colors', 'primary', 'main');
 }
 

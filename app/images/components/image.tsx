@@ -1,11 +1,6 @@
 'use client';
 
-import { Picture } from 'app/constants/global';
-import { useAppDispatch } from 'hooks';
-import {
-  openCarouselFullScreen,
-  setImageCarouselFullScreen,
-} from 'state/global';
+import { Picture } from '@/app/types';
 import styles from '../style.module.scss';
 
 interface Props {
@@ -15,15 +10,12 @@ interface Props {
 export default function ImageWrapper(props: Props) {
   const { picture } = props;
 
-  const dispatch = useAppDispatch();
-
   return (
     <div
       className={styles['image-wrapper']}
       style={{ backgroundImage: `url(${picture.url})` }}
       onClick={() => {
-        dispatch(setImageCarouselFullScreen({ image: picture }));
-        dispatch(openCarouselFullScreen());
+        // handle open modal
       }}
       key={picture.id}
     />

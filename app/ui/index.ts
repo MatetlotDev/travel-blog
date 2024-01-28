@@ -1,6 +1,6 @@
 'use client';
 
-import ArticleCarousel, { Article } from './ArticlesCarousel';
+import ArticleCarousel from './ArticlesCarousel';
 import Button from './Button';
 import FiltersWrapper from './FiltersWrapper';
 import Footer from './Footer';
@@ -21,4 +21,4 @@ export {
   Menu,
   SearchBar,
 };
-export type { Article, imageType };
+export type { imageType };

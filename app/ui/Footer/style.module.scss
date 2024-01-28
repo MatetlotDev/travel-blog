@@ -1,9 +1,9 @@
-import styled from '@emotion/styled';
+@import '/app/styles/theme.scss';
 
-export const FooterWrapper = styled.footer`
+.wrapper {
   width: 100%;
-  background: ${({ theme }) => theme.colors.secondary.main};
-  color: ${({ theme }) => theme.colors.primary.main};
+  background: map-get($theme, 'colors', 'secondary', 'main');
+  color: map-get($theme, 'colors', 'primary', 'main');
   padding: 40px 0 15px 0;
 
   .flex {
@@ -25,8 +25,9 @@ export const FooterWrapper = styled.footer`
       text-decoration: underline;
     }
   }
-`;
-export const Socials = styled.div`
+}
+
+.socials {
   text-align: center;
 
   .icons {
@@ -35,7 +36,7 @@ export const Socials = styled.div`
   }
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.primary.main};
+    color: map-get($theme, 'colors', 'primary', 'main');
     font-size: 2.5rem;
     border-radius: 50%;
     margin: 20px;
@@ -46,14 +47,15 @@ export const Socials = styled.div`
     height: 50px;
 
     &:hover {
-      border: 1px dashed ${({ theme }) => theme.colors.primary.main};
+      border: 1px dashed map-get($theme, 'colors', 'primary', 'main');
     }
     &:active {
       background: rgba(255, 255, 255, 0.3);
     }
   }
-`;
-export const Contact = styled.div`
+}
+
+.contact {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +66,7 @@ export const Contact = styled.div`
     border-radius: 50%;
     background: none;
     border: none;
-    color: ${({ theme }) => theme.colors.primary.main};
+    color: map-get($theme, 'colors', 'primary', 'main');
     font-size: 4.5rem;
     cursor: pointer;
     width: 80px;
@@ -74,14 +76,15 @@ export const Contact = styled.div`
     justify-content: center;
 
     &:hover {
-      border: 1px dashed ${({ theme }) => theme.colors.primary.main};
+      border: 1px dashed map-get($theme, 'colors', 'primary', 'main');
     }
     &:active {
       background: rgba(255, 255, 255, 0.3);
     }
   }
-`;
-export const Menu = styled.div`
+}
+
+.menu {
   a {
     font-size: 2rem;
     line-height: 3rem;
@@ -106,4 +109,4 @@ export const Menu = styled.div`
       }
     }
   }
-`;
+}

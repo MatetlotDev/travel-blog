@@ -1,18 +1,10 @@
 'use client';
 
+import { Article } from '@/app/types';
 import { useMemo, useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import ArticlePreview from './ArticlePreview';
 import styles from './style.module.scss';
-
-export interface Article {
-  id: number;
-  read_time: number;
-  title: string;
-  description: string;
-  img_preview: string;
-  date: Date;
-}
 
 interface Props {
   articles: Article[];

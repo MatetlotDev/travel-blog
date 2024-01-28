@@ -2,7 +2,6 @@
 
 import { menuImages, routes } from 'app/constants/global';
 import gsap from 'gsap';
-import { useAppSelector } from 'hooks';
 import { useScrollDirection } from 'hooks/useScrollDirection';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -10,23 +9,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowDown } from 'react-icons/sl';
-import { globalSelector } from 'state/global';
-import {
-  ImageLegend,
-  ImageWrapper,
-  Images,
-  LeftContent,
-  ListWrapper,
-  MenuContent,
-  MenuNavbar,
-  ToggleMenuWrapper,
-} from './wrappers';
+import styles from './style.module.scss';
 
 const Menu: NextPage = () => {
-  const { actualPage } = useAppSelector(globalSelector);
   const [open, setOpen] = useState<boolean>(false);
   const [actualPic, setActualPic] = useState<number>(0);
-  const [actualRoute, setActualRoute] = useState<string>(actualPage);
+  const [actualRoute, setActualRoute] = useState<string>('');
   const [isAtTop, setIsAtTop] = useState<boolean>(true);
 
   const scrollDirection = useScrollDirection();
@@ -82,33 +70,37 @@ const Menu: NextPage = () => {
     const random2 = Math.round((Math.random() - 0.5) * 4);
     const random3 = Math.round((Math.random() - 0.5) * 4);
     return (
-      <Images key={menuImages[actualPic].src} className="actual-pic">
-        <ImageWrapper
-          random1={random1}
-          random2={random2}
-          random3={random3}
+      <div
+        key={menuImages[actualPic].src}
+        className={`${styles['actual-pic']} ${styles.images}`}
+      >
+        <div
+          className={styles['image-wrapper']}
+          style={{
+            transform: `rotate(${random1}deg) translate(${random2}px, ${random3}px`,
+          }}
           id="image-wrapper-menu"
         >
           <Image src={menuImages[actualPic].src} alt="menu-img" fill />
-        </ImageWrapper>
-        <ImageLegend>
-          <CiLocationOn className="location-icon" />
+        </div>
+        <span className={styles['image-legend']}>
+          <CiLocationOn className={styles['location-icon']} />
           {menuImages[actualPic].location}
-        </ImageLegend>
-      </Images>
+        </span>
+      </div>
     );
   };
 
   return (
     <>
-      <MenuContent id="menu-content">
-        <LeftContent>
+      <div className={styles['menu-content']} id="menu-content">
+        <div className={styles['left-content']}>
           <h3>
-            {routes.filter((route) => route.label === actualRoute)[0].caption}
+            {routes.filter((route) => route.label === actualRoute)[0]?.caption}
           </h3>
           {imageRender()}
-        </LeftContent>
-        <ListWrapper>
+        </div>
+        <ul className={styles['list-wrapper']}>
           {routes.map(
             (route) =>
               !route.admin && (
@@ -123,18 +115,20 @@ const Menu: NextPage = () => {
                 </li>
               )
           )}
-        </ListWrapper>
-      </MenuContent>
-      <MenuNavbar
+        </ul>
+      </div>
+      <div
         id="menu-navbar"
-        isAtTop={isAtTop.toString()}
-        className={scrollDirection === 'down' ? 'small-menu' : ''}
+        className={`${styles['nav-bar']} ${
+          scrollDirection === 'down' ? styles['small-menu'] : ''
+        }`}
+        style={{ backgroundColor: isAtTop ? 'transparent' : '' }}
       >
-        <ToggleMenuWrapper onClick={handleToggleMenu}>
+        <div className={styles['toggle-wrapper']} onClick={handleToggleMenu}>
           <span>Menu</span>
-          <SlArrowDown className="arrow-icon" />
-        </ToggleMenuWrapper>
-      </MenuNavbar>
+          <SlArrowDown className={styles['arrow-icon']} />
+        </div>
+      </div>
     </>
   );
 };

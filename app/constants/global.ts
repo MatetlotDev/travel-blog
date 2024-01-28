@@ -1,4 +1,5 @@
-import { Article } from 'app/ui';
+import { Article, Category, Picture } from '@/app/types';
+
 export const routes = [
   {
     name: 'Accueil',
@@ -54,11 +55,6 @@ const L_SCREEN = 992;
 const XL_SCREEN = 1200;
 const XXL_SCREEN = 1600;
 export { L_SCREEN, M_SCREEN, S_SCREEN, XL_SCREEN, XS_SCREEN, XXL_SCREEN };
-
-export type Category = {
-  id: string;
-  name: string;
-};
 
 export const categories: Category[] = [
   {
@@ -141,29 +137,6 @@ export const mockedArticles: Article[] = [
   },
 ];
 
-export type DiaryDay = {
-  id: number;
-  date: Date;
-  title: string;
-  text: string;
-  pictures: Picture[];
-};
-
-export type Picture = {
-  id: number;
-  url: string;
-  create_date: Date;
-  location: {
-    longitude: number;
-    latitude: number;
-    adress: string;
-  };
-  altitude: number;
-  width: number;
-  height: number;
-  description?: string;
-};
-
 export const pictures: Picture[] = [
   {
     id: 1,
@@ -174,12 +147,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
-    description: 'Un super test de description.',
   },
   {
     id: 1,
@@ -190,11 +158,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -205,11 +169,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -220,11 +180,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -235,11 +191,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -250,11 +202,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -265,11 +213,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -280,11 +224,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -295,11 +235,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: '',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -310,11 +246,7 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
   {
     id: 1,
@@ -325,10 +257,6 @@ export const pictures: Picture[] = [
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
-      adress: 'Dolomites',
     },
-    altitude: 1970.5,
-    height: 4000,
-    width: 3000,
   },
 ];

@@ -1,7 +1,4 @@
-import styled from '@emotion/styled';
-
-export const Wrapper = styled.div<{ open: boolean }>`
-  display: ${({ open }) => (open ? 'flex' : 'none')};
+.wrapper {
   align-items: center;
   justify-content: center;
   width: 100vw;
@@ -28,8 +25,7 @@ export const Wrapper = styled.div<{ open: boolean }>`
         font-size: 1.7rem;
         font-weight: 200;
       }
-      .date {
-      }
+
       .location {
         display: flex;
         align-items: center;
@@ -45,9 +41,6 @@ export const Wrapper = styled.div<{ open: boolean }>`
       max-height: 80vh;
       width: unset !important;
       height: unset !important;
-    }
-
-    .description {
     }
   }
 
@@ -116,4 +109,4 @@ export const Wrapper = styled.div<{ open: boolean }>`
   .next {
     right: 50px;
   }
-`;
+}

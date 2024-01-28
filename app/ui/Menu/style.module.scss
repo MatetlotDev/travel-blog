@@ -1,26 +1,16 @@
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
+@import '/app/styles/theme.scss';
 
-type ImageWrapperProps = {
-  random1: number;
-  random2: number;
-  random3: number;
-};
-type MenuNavBarProps = {
-  isAtTop: string;
-};
-
-const appearAnimation = keyframes`
+@keyframes appear {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-`;
+}
 
-export const MenuNavbar = styled.div<MenuNavBarProps>`
-  color: ${({ theme }) => theme.colors.secondary.main};
+.nav-bar {
+  color: map-get($theme, 'colors', 'secondary', 'main');
   position: fixed;
   z-index: 999;
   display: flex;
@@ -31,8 +21,7 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
   right: 0;
   min-height: 10vh;
   transition: all 0.5s;
-  background: ${({ theme, isAtTop }) =>
-    isAtTop === 'true' ? 'transparent' : theme.colors.primary.main};
+  background-color: map-get($theme, 'colors', 'primary', 'main');
   width: fit-content;
   margin: 0 auto;
 
@@ -48,33 +37,36 @@ export const MenuNavbar = styled.div<MenuNavBarProps>`
   &.small-menu {
     top: -12vh;
   }
-`;
-export const MenuContent = styled.div`
+}
+
+.menu-content {
   height: 92vh;
   position: fixed;
   z-index: 998;
   top: -92vh;
-  background-color: ${({ theme }) => theme.colors.primary.main};
+  background-color: map-get($theme, 'colors', 'primary', 'main');
   width: 100vw;
   display: flex;
   justify-content: space-between;
   padding: 40px 20vw;
 
-  ${({ theme }) => theme.breakpoints.extraExtraLarge} {
+  @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
     padding: 40px 11vw;
   }
-  ${({ theme }) => theme.breakpoints.medium} {
+  @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
     justify-content: center;
     text-align: center;
   }
-`;
-export const ToggleMenuWrapper = styled.div`
+}
+
+.toggle-wrapper {
   padding: 15px 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
-`;
-export const LeftContent = styled.div`
+}
+
+.left-content {
   position: relative;
 
   h3 {
@@ -82,27 +74,29 @@ export const LeftContent = styled.div`
     font-weight: 300;
     font-style: italic;
 
-    ${({ theme }) => theme.breakpoints.extraLarge} {
+    @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
       font-size: 2.2rem;
     }
-    ${({ theme }) => theme.breakpoints.large} {
+    @media (max-width: map-get($theme, 'breakpoints', 'large')) {
       font-size: 2rem;
     }
   }
   .actual-pic {
-    animation: ${appearAnimation} 0.3s ease-in;
+    animation: appear 0.3s ease-in;
   }
 
-  ${({ theme }) => theme.breakpoints.medium} {
+  @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
     display: none;
   }
-`;
-export const Images = styled.div`
+}
+
+.images {
   position: absolute;
   top: 0;
   left: 0;
-`;
-export const ImageWrapper = styled.div<ImageWrapperProps>`
+}
+
+.image-wrapper {
   height: 450px;
   width: 320px;
   position: relative;
@@ -110,21 +104,20 @@ export const ImageWrapper = styled.div<ImageWrapperProps>`
 
   img {
     object-fit: cover;
-    transform: rotate(${({ random1 }) => random1}deg)
-      translate(${({ random2 }) => random2}px, ${({ random3 }) => random3}px);
   }
 
-  ${({ theme }) => theme.breakpoints.extraLarge} {
+  @media (max-width: map-get($theme, 'breakpoints', 'extraLarge')) {
     height: 400px;
     width: 280px;
   }
-  ${({ theme }) => theme.breakpoints.large} {
+  @media (max-width: map-get($theme, 'breakpoints', 'large')) {
     height: 320px;
     width: 220px;
     margin: 60px 0 25px 20px;
   }
-`;
-export const ImageLegend = styled.span`
+}
+
+.image-legend {
   font-size: 1.7rem;
   font-weight: 100;
   display: flex;
@@ -133,8 +126,9 @@ export const ImageLegend = styled.span`
   .location-icon {
     margin-right: 0.5vh;
   }
-`;
-export const ListWrapper = styled.ul`
+}
+
+.list-wrapper {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -146,7 +140,7 @@ export const ListWrapper = styled.ul`
   }
   li a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.black.main};
+    color: map-get($theme, 'colors', 'dark', 'main');
     font-size: 5rem;
     font-weight: 300;
     position: relative;
@@ -154,7 +148,7 @@ export const ListWrapper = styled.ul`
     &::after {
       position: absolute;
       content: '';
-      background-color: ${({ theme }) => theme.colors.black.main};
+      background-color: map-get($theme, 'colors', 'dark', 'main');
       height: 2px;
       bottom: 0;
       left: 0;
@@ -171,24 +165,24 @@ export const ListWrapper = styled.ul`
     }
   }
 
-  ${({ theme }) => theme.breakpoints.extraLarge} {
+  @media (max-width: map-get($theme, 'breakpoints', 'extraLarge')) {
     li a {
       font-size: 4rem;
     }
   }
-  ${({ theme }) => theme.breakpoints.large} {
+  @media (max-width: map-get($theme, 'breakpoints', 'large')) {
     li a {
       font-size: 3.4rem;
     }
   }
-  ${({ theme }) => theme.breakpoints.medium} {
+  @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
     li a {
       font-size: 4.5rem;
     }
   }
-  ${({ theme }) => theme.breakpoints.small} {
+  @media (max-width: map-get($theme, 'breakpoints', 'small')) {
     li a {
       font-size: 3rem;
     }
   }
-`;
+}

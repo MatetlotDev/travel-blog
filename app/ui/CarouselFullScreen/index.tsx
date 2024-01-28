@@ -1,68 +1,62 @@
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { Picture } from '@/app/types';
 import Image from 'next/image';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
-import { TiLocation } from 'react-icons/ti';
-import {
-  closeCarouselFullScreen,
-  globalSelector,
-  setImageCarouselFullScreen,
-} from 'state/global';
 import { dateToSentence } from 'utils/dateToSentence';
-import { Wrapper } from './wrappers';
+import styles from './style.module.scss';
 
 const CarouselFullScreen = () => {
-  const dispatch = useAppDispatch();
-
-  const {
-    carouselFullScreen: { open, image },
-  } = useAppSelector(globalSelector);
+  const open = false;
+  const image: Picture = {
+    id: 1,
+    url: '',
+    create_date: new Date(),
+    location: {
+      longitude: 20,
+      latitude: 20,
+    },
+  };
 
   if (open && image)
     return (
-      <Wrapper open={open}>
-        <div className="content">
-          <div className="header">
-            <p className="date">{dateToSentence(image?.create_date)}</p>
-            {image.location.adress && (
-              <div className="location">
-                <TiLocation size={15} />
-                <p>{image.location.adress}</p>
-              </div>
-            )}
+      <div
+        className={styles.wrapper}
+        style={{ display: open ? 'flex' : 'none' }}
+      >
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <p>{dateToSentence(image?.create_date)}</p>
           </div>
           <Image
             src={image.url}
-            alt={image.description || 'Same image but bigger'}
-            className="image"
+            alt="Same image but bigger"
+            className={styles.image}
             fill
           />
-          <p className="description">{image.description}</p>
         </div>
         <div
-          className="close"
+          className={styles.close}
           onClick={() => {
-            dispatch(closeCarouselFullScreen());
-            dispatch(setImageCarouselFullScreen({ image: null }));
+            // handle close
           }}
         >
           <TfiClose />
         </div>
-        <div className="more">
+        <div className={styles.more}>
           <BiDotsHorizontalRounded />
         </div>
-        <div className="prev button">
+        <div className={`${styles.prev} ${styles.button}`}>
           <button>
             <SlArrowLeft />
           </button>
         </div>
-        <div className="next button">
+        <div className={`${styles.next} ${styles.button}`}>
           <button>
             <SlArrowRight />
           </button>
         </div>
-      </Wrapper>
+      </div>
     );
   return null;
 };

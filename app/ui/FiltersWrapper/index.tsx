@@ -3,7 +3,7 @@
 import { ReactNode, useState } from 'react';
 import { SlArrowDown } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
-import { Blur, FiltersContent, Wrapper } from './wrappers';
+import styles from './style.module.scss';
 
 interface Props {
   children: ReactNode;
@@ -23,11 +23,17 @@ export default function FiltersWrapper(props: Props) {
   };
 
   return (
-    <Wrapper open={open}>
-      <FiltersContent className="filters-content" open={open}>
+    <div
+      className={styles.wrapper}
+      style={{ display: open ? '100%' : 'fit-content' }}
+    >
+      <div
+        className={styles['filters-content']}
+        style={open ? { padding: '30px', width: 'fit-content' } : {}}
+      >
         {open ? (
-          <div className="content">
-            <div className="flex">
+          <div className={styles.content}>
+            <div className={styles.flex}>
               <h2>Filtres actuels</h2>
               <button onClick={handleClose}>
                 <TfiClose size={12} />
@@ -36,15 +42,15 @@ export default function FiltersWrapper(props: Props) {
             {children}
           </div>
         ) : (
-          <div className="open-button_wrapper" onClick={handleOpen}>
-            <div className="open-button">
+          <div className={styles['open-button_wrapper']} onClick={handleOpen}>
+            <div className={styles['open-button']}>
               <p>Filtres</p>
               <SlArrowDown size={11} />
             </div>
           </div>
         )}
-      </FiltersContent>
-      <Blur open={open} />
-    </Wrapper>
+      </div>
+      <div className={styles.blur} />
+    </div>
   );
 }

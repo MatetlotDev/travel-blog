@@ -4,12 +4,7 @@ import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import {
-  BackdropCarousel,
-  CarouselWrapper,
-  ChangeImgButton,
-  ImageDescription,
-} from './wrappers';
+import styles from './style.module.scss';
 
 export interface imageType {
   path: string;
@@ -70,10 +65,13 @@ const ImagesCarousel = ({ images }: ImagesCarouselProps) => {
   }, [actual, images]);
 
   return (
-    <CarouselWrapper>
+    <div className={styles.wrapper}>
       {mockedImages.map((img: imageType) => {
         return (
-          <div key={img.path} className={`image-wrapper ${img.className}`}>
+          <div
+            key={img.path}
+            className={`${styles['image-wrapper']} ${styles[img.className]}`}
+          >
             <Image
               src={img.path}
               width={350}
@@ -83,18 +81,24 @@ const ImagesCarousel = ({ images }: ImagesCarouselProps) => {
           </div>
         );
       })}
-      <BackdropCarousel id="backdrop-carousel" />
-      <ChangeImgButton onClick={handlePrev} className="left-arrow">
+      <div className={styles['backdrop-carousel']} id="backdrop-carousel" />
+      <button
+        onClick={handlePrev}
+        className={`${styles['left-arrow']} ${styles['change-img_button']}`}
+      >
         <SlArrowLeft />
-      </ChangeImgButton>
-      <ChangeImgButton onClick={handleNext} className="right-arrow">
+      </button>
+      <button
+        onClick={handleNext}
+        className={`${styles['right-arrow']} ${styles['change-img_button']}`}
+      >
         <SlArrowRight />
-      </ChangeImgButton>
-      <ImageDescription>
-        <CiLocationOn className="icon" />
+      </button>
+      <p className={styles['image-description']}>
+        <CiLocationOn className={styles['icon']} />
         {description}
-      </ImageDescription>
-    </CarouselWrapper>
+      </p>
+    </div>
   );
 };
 

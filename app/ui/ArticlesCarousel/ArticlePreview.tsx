@@ -1,8 +1,8 @@
 'use client';
 
+import { Article } from '@/app/types';
 import Link from 'next/link';
 import { SlArrowRight } from 'react-icons/sl';
-import { Article } from '.';
 import styles from './style.module.scss';
 
 interface ComponentPropsType {

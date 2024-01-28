@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+@import '/app/styles/theme.scss';
 
-export const Wrapper = styled.div`
+.wrapper {
   height: 90vh;
   display: flex;
   padding: 50px 0 100px 0;
@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   }
 
   .slider--bar {
-    border: 1px solid ${({ theme }) => theme.colors.secondary.main};
+    border: 1px solid map-get($theme, 'colors', 'secondary', 'main');
     padding: 4px;
     margin-left: 15px;
     border-radius: 15px;
@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
       cursor: pointer;
 
       .slider-circle__inner {
-        background-color: ${({ theme }) => theme.colors.secondary.main};
+        background-color: map-get($theme, 'colors', 'secondary', 'main');
         border-radius: 50%;
         height: 5px;
         width: 5px;
@@ -37,4 +37,4 @@ export const Wrapper = styled.div`
       }
     }
   }
-`;
+}

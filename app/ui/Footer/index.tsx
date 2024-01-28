@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { GoMail } from 'react-icons/go';
-import { Contact, FooterWrapper, Menu, Socials } from './wrappers';
+import styles from './style.module.scss';
 
 const Footer = () => {
   return (
-    <FooterWrapper>
-      <div className="flex">
-        <Socials>
+    <footer className={styles.wrapper}>
+      <div className={styles.flex}>
+        <div className={styles.socials}>
           <p>Retrouvez nous sur les réseaux</p>
-          <div className="icons">
+          <div className={styles.icons}>
             <Link href="">
               <FaInstagram />
             </Link>
@@ -20,14 +20,14 @@ const Footer = () => {
               <FaFacebookF />
             </Link>
           </div>
-        </Socials>
-        <Contact>
+        </div>
+        <div className={styles.contact}>
           <p>Une question ?</p>
           <button>
             <GoMail />
           </button>
-        </Contact>
-        <Menu>
+        </div>
+        <div className={styles.menu}>
           <ul>
             <li>
               <Link href="/">Acceuil</Link>
@@ -45,13 +45,13 @@ const Footer = () => {
               <Link href="/images">Images</Link>
             </li>
           </ul>
-        </Menu>
+        </div>
       </div>
-      <p className="credential">
+      <p className={styles.credential}>
         Created by Matthias - visit me on{' '}
         <a href="https://github.com/MatetlotDev/travel-blog">github</a>
       </p>
-    </FooterWrapper>
+    </footer>
   );
 };
 

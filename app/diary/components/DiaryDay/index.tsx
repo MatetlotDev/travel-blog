@@ -1,5 +1,5 @@
-import { DiaryDay as DiaryDayType } from 'app/constants/global';
-import Image from 'next/image';
+import { DiaryDay as DiaryDayType } from '@/app/types';
+import ImageWrapper from './ImageWrapper';
 import styles from './style.module.scss';
 
 interface Props {
@@ -20,20 +20,12 @@ const DiaryDay = (props: Props) => {
       <div className={styles.content}>
         <div className={styles.pictures}>
           {day.pictures.map((pic, idx) => (
-            <div key={pic.id} className={styles.image}>
-              <Image
-                src={pic.url}
-                alt="picture of the day"
-                fill
-                style={{ objectFit: 'cover' }}
-                // sizes='' TODO with responsive
-              />
-              {day.pictures.length >= 9 && idx === day.pictures.length - 1 && (
-                <div className={styles.last}>
-                  <p>+ {day.pictures.length - 8}</p>
-                </div>
-              )}
-            </div>
+            <ImageWrapper
+              key={pic.id}
+              pic={pic}
+              idx={idx}
+              picturesLength={day.pictures.length}
+            />
           ))}
         </div>
         <div className={styles.text}>
