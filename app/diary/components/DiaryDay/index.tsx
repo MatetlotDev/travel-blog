@@ -25,8 +25,8 @@ const DiaryDay = (props: Props) => {
                 src={pic.url}
                 alt="picture of the day"
                 fill
-                objectFit="cover"
-                // sizes='' TODO
+                style={{ objectFit: 'cover' }}
+                // sizes='' TODO with responsive
               />
               {day.pictures.length >= 9 && idx === day.pictures.length - 1 && (
                 <div className={styles.last}>
