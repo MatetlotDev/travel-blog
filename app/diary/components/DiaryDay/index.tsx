@@ -25,6 +25,7 @@ const DiaryDay = (props: Props) => {
               pic={pic}
               idx={idx}
               picturesLength={day.pictures.length}
+              dayId={day.id}
             />
           ))}
         </div>

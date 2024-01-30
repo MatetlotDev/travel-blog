@@ -13,7 +13,7 @@ export type Category = {
 };
 
 export type DiaryDay = {
-  id: number;
+  id: string;
   date: Date;
   title: string;
   text: string;
@@ -21,7 +21,7 @@ export type DiaryDay = {
 };
 
 export type Picture = {
-  id: number;
+  id: string;
   url: string;
   create_date: Date;
   location: {

@@ -1,63 +1,84 @@
+'use client';
+
+import { getDiaryImages } from '@/app/actions';
 import { Picture } from '@/app/types';
 import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
-import { dateToSentence } from 'utils/dateToSentence';
 import styles from './style.module.scss';
 
 const CarouselFullScreen = () => {
-  const open = false;
-  const image: Picture = {
-    id: 1,
-    url: '',
-    create_date: new Date(),
-    location: {
-      longitude: 20,
-      latitude: 20,
-    },
+  const searchParams = useSearchParams();
+
+  const dayId = searchParams.get('id');
+  const idx = Number(searchParams.get('idx')) || 0;
+
+  const [images, setImages] = useState<Picture[] | null>(null);
+  const [currentIdx, setCurrentIdx] = useState<number>(idx);
+
+  const { replace } = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const getImages = async () => {
+      const images: Picture[] = await getDiaryImages(dayId || '');
+
+      setImages(images);
+    };
+
+    getImages();
+  }, [dayId]);
+
+  const handleCloseCarousel = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('id');
+    params.delete('idx');
+
+    replace(`${pathname}`);
   };
 
-  if (open && image)
+  const handlePrevImage = () => {};
+
+  const handleNextImage = () => {};
+
+  const currentImage = images?.[currentIdx];
+
+  if (currentImage)
     return (
-      <div
-        className={styles.wrapper}
-        style={{ display: open ? 'flex' : 'none' }}
-      >
+      <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.header}>
-            <p>{dateToSentence(image?.create_date)}</p>
+            {/* <p>{dateToSentence(currentImage?.create_date)}</p> */}
           </div>
           <Image
-            src={image.url}
+            src={currentImage.url}
             alt="Same image but bigger"
             className={styles.image}
             fill
           />
         </div>
-        <div
-          className={styles.close}
-          onClick={() => {
-            // handle close
-          }}
-        >
+        <div className={styles.close} onClick={handleCloseCarousel}>
           <TfiClose />
         </div>
         <div className={styles.more}>
           <BiDotsHorizontalRounded />
         </div>
         <div className={`${styles.prev} ${styles.button}`}>
-          <button>
+          <button onClick={handlePrevImage}>
             <SlArrowLeft />
           </button>
         </div>
         <div className={`${styles.next} ${styles.button}`}>
-          <button>
+          <button onClick={handleNextImage}>
             <SlArrowRight />
           </button>
         </div>
       </div>
     );
+
   return null;
 };
 
