@@ -1,5 +1,4 @@
 import { Footer, Menu } from 'app/ui';
-import CarouselFullScreen from 'app/ui/CarouselFullScreen';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import './styles/global.scss';
@@ -20,7 +19,6 @@ export default function RootLayout(props: Props) {
     <html lang="en">
       <body className={montserrat.className}>
         <Menu />
-        <CarouselFullScreen />
         {children}
         <Footer />
       </body>

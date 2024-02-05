@@ -3,28 +3,20 @@
 import { Picture } from '@/app/types';
 import { shimmer, toBase64 } from '@/utils/imagePlaceholder';
 import Image from 'next/image';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import styles from './style.module.scss';
 
 interface Props {
   pic: Picture;
   idx: number;
   picturesLength: number;
-  dayId: string;
+  onClick: (idx: number) => void;
 }
 
 export default function ImageWrapper(props: Props) {
-  const { pic, idx, picturesLength, dayId } = props;
-
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-  const pathname = usePathname();
+  const { pic, idx, picturesLength, onClick } = props;
 
   const handleOpenCarousel = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('id', dayId);
-    params.set('idx', idx.toString());
-    replace(`${pathname}?${params}`);
+    onClick(idx);
   };
 
   return (

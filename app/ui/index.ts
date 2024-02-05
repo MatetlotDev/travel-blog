@@ -9,6 +9,7 @@ import HistoryNavigation from './HistoryNavigation';
 import ImagesCarousel, { imageType } from './ImagesCarousel';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
+import CarouselFullScreen from './CarouselFullScreen';
 
 export {
   ArticleCarousel,
@@ -20,5 +21,6 @@ export {
   ImagesCarousel,
   Menu,
   SearchBar,
+  CarouselFullScreen,
 };
 export type { imageType };

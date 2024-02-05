@@ -1,5 +1,5 @@
 import { DiaryDay as DiaryDayType } from '@/app/types';
-import ImageWrapper from './ImageWrapper';
+import Images from './Images';
 import styles from './style.module.scss';
 
 interface Props {
@@ -18,17 +18,7 @@ const DiaryDay = (props: Props) => {
       </div>
       <h4>{day.title}</h4>
       <div className={styles.content}>
-        <div className={styles.pictures}>
-          {day.pictures.map((pic, idx) => (
-            <ImageWrapper
-              key={pic.id}
-              pic={pic}
-              idx={idx}
-              picturesLength={day.pictures.length}
-              dayId={day.id}
-            />
-          ))}
-        </div>
+        <Images pictures={day.pictures} />
         <div className={styles.text}>
           <p>{day.text}</p>
           <div className={styles.dots}>

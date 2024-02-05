@@ -32,7 +32,7 @@ export default function DiaryAdminPage() {
           return {
             id: imageId,
             url: await uploadImage(file),
-            create_date: new Date().toISOString(),
+            create_date: new Date().toISOString(), // TODO : get the date from the exif data
             diary_id: docId,
             location: {
               longitude: await getExifData(file, 'longitude'),
@@ -75,6 +75,7 @@ export default function DiaryAdminPage() {
       setUploading(false);
       console.error(err);
       setError('Error has occured while uploading images');
+      // TODO : delete the uploaded images
     }
   };
 
