@@ -23,7 +23,9 @@ export type DiaryDay = {
 export type Picture = {
   id: string;
   url: string;
-  create_date: Date;
+  create_date: string;
+  diary_id: string;
+  name: string;
   location: {
     longitude: number;
     latitude: number;

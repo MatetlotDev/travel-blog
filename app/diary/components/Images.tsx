@@ -38,15 +38,18 @@ export default function Images(props: Props) {
 
   return (
     <div className={styles.pictures}>
-      {pictures.map((pic, idx) => (
-        <ImageWrapper
-          key={pic.id}
-          pic={pic}
-          idx={idx}
-          picturesLength={pictures.length}
-          onClick={handleOpen}
-        />
-      ))}
+      {pictures.map(
+        (pic, idx) =>
+          idx <= 8 && (
+            <ImageWrapper
+              key={pic.id}
+              pic={pic}
+              idx={idx}
+              picturesLength={pictures.length}
+              onClick={handleOpen}
+            />
+          )
+      )}
       <CarouselFullScreen
         currentImage={currentIdx !== null ? pictures[currentIdx] : null}
         onClose={handleClose}

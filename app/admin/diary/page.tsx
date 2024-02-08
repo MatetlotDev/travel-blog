@@ -1,16 +1,20 @@
 'use client';
 
-import { navigate } from '@/app/actions';
-import { db } from '@/firebase/config';
+import { Picture } from '@/app/types';
+import { db, storage } from '@/firebase/config';
 import { getExifData, uploadImage } from '@/firebase/storage';
-import { doc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { deleteObject, ref } from 'firebase/storage';
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import styles from './style.module.scss';
 
+const IMAGES_DOC = 'images';
+const DIARY_DOC = 'diary';
+
 export default function DiaryAdminPage() {
   const [uploading, setUploading] = useState(false);
-  const [uploadingStatus, setUploadingStatus] = useState<null | string>(null);
+  const [uploadingStatus, setUploadingStatus] = useState<string[]>([]);
   const [error, setError] = useState<null | string>(null);
 
   const handleSubmitDiaryForm = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,43 +23,91 @@ export default function DiaryAdminPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
+    const files = formData.getAll('pictures');
+
+    const docId = uuid();
+    const picturesPending: Picture[] = [];
+    const imageIds: string[] = [];
+
+    // 1. upload images an get the urls
     try {
-      setUploadingStatus('Starting to uploading images.');
+      setUploadingStatus((prev) => [...prev, 'Starting to upload images.']);
 
-      const docId = uuid();
-
-      // urls of the uploaded images
-      const pictureUrls = await Promise.all(
-        formData.getAll('pictures').map(async (file) => {
+      await Promise.all(
+        files.map(async (file) => {
           const imageId = uuid();
 
-          return {
+          const image = await uploadImage(file);
+
+          picturesPending.push({
             id: imageId,
-            url: await uploadImage(file),
+            url: image.url,
+            name: image.name,
             create_date: new Date().toISOString(), // TODO : get the date from the exif data
             diary_id: docId,
             location: {
               longitude: await getExifData(file, 'longitude'),
               latitude: await getExifData(file, 'latitude'),
             },
-          };
+          });
+
+          setUploadingStatus((prev) => [
+            ...prev,
+            `Image uploaded : ${picturesPending.length} / ${files.length}`,
+          ]);
+        })
+      );
+    } catch (err) {
+      setError(
+        `Error has occured while creating the images documents. 
+         Deleting ${picturesPending.length} images from storage.`
+      );
+      console.error(err);
+
+      // delete the uploaded images in the storage
+      await Promise.all(
+        picturesPending.map(async (image) => {
+          const imageRef = ref(storage, `images/${image.name}`);
+          await deleteObject(imageRef);
         })
       );
 
-      setUploadingStatus(
-        'Uploading images finished. Creating images documents.'
-      );
+      setUploading(false);
+    }
 
-      // create a doc in images collection for each image and returns the Ids of the documents
-      const imageIds = await Promise.all(
-        pictureUrls.map(async (image) => {
+    // 2. create a doc in images collection for each image
+    try {
+      setUploadingStatus((prev) => [
+        ...prev,
+        'Uploading images finished. Creating images documents.',
+      ]);
+
+      await Promise.all(
+        picturesPending.map(async (image) => {
           const imageId = image.id;
-          const imageRef = doc(db, 'images', imageId);
+          const imageRef = doc(db, IMAGES_DOC, imageId);
           await setDoc(imageRef, image);
-          return imageId;
+          imageIds.push(imageId);
+        })
+      );
+    } catch (err) {
+      setError(
+        `Error has occured while creating the images documents.
+        Deleting ${imageIds.length} images document and ${picturesPending.length} images in storage.`
+      );
+      console.error(err);
+
+      // delete the doc images in the images collection
+      await Promise.all(
+        imageIds.map(async (imageId) => {
+          await deleteDoc(doc(db, IMAGES_DOC, imageId));
         })
       );
 
+      setUploading(false);
+    }
+
+    try {
       // create a doc in diary collection with the images Ids
       const docContent = {
         id: docId,
@@ -65,17 +117,23 @@ export default function DiaryAdminPage() {
         pictures: imageIds,
       };
 
-      setUploadingStatus('Images documents uploaded. Creating diary document.');
+      setUploadingStatus((prev) => [
+        ...prev,
+        'Images documents uploaded. Creating diary document.',
+      ]);
 
-      const diaryRef = doc(db, 'diary', docContent.id);
+      const diaryRef = doc(db, DIARY_DOC, docContent.id);
       await setDoc(diaryRef, docContent);
       setUploading(false);
-      navigate('/admin');
+      // navigate('/admin');
+      setUploadingStatus((prev) => [
+        ...prev,
+        'Diary document created. Everything is done.',
+      ]);
     } catch (err) {
       setUploading(false);
+      setError('Error has occured while creating the document.');
       console.error(err);
-      setError('Error has occured while uploading images');
-      // TODO : delete the uploaded images
     }
   };
 
@@ -84,7 +142,12 @@ export default function DiaryAdminPage() {
       {uploading ? (
         <>
           <div className={styles.loader} />
-          <p>{uploadingStatus}</p>
+          {uploadingStatus.map((status) => (
+            <>
+              <p key={status}>{status}</p>
+              <br />
+            </>
+          ))}
         </>
       ) : (
         <>

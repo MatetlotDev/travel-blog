@@ -29,7 +29,7 @@ export default function ImageWrapper(props: Props) {
         placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
         // sizes='' TODO with responsive
       />
-      {picturesLength > 9 && idx === picturesLength - 1 && (
+      {picturesLength > 9 && idx === 8 && (
         <div className={styles.last}>
           <p>+ {picturesLength - 8}</p>
         </div>

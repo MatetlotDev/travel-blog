@@ -1,5 +1,10 @@
 import exifr from 'exifr';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import {
+  getDownloadURL,
+  getMetadata,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
 import { v4 as uuid } from 'uuid';
 import { storage } from './config';
 
@@ -8,7 +13,10 @@ export async function uploadImage(image) {
   const newImageRef = ref(storage, filePath);
   await uploadBytesResumable(newImageRef, image);
 
-  return await getDownloadURL(newImageRef);
+  const metadata = await getMetadata(newImageRef);
+  const url = await getDownloadURL(newImageRef);
+
+  return { url, name: metadata.name };
 }
 
 export async function getExifData(image, path) {
