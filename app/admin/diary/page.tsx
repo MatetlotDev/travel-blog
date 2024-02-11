@@ -39,11 +39,13 @@ export default function DiaryAdminPage() {
 
           const image = await uploadImage(file);
 
+          const createDate = await getExifData(file, 'CreateDate');
+
           picturesPending.push({
             id: imageId,
             url: image.url,
             name: image.name,
-            create_date: new Date().toISOString(), // TODO : get the date from the exif data
+            create_date: new Date(createDate).toISOString(),
             diary_id: docId,
             location: {
               longitude: await getExifData(file, 'longitude'),
@@ -125,7 +127,6 @@ export default function DiaryAdminPage() {
       const diaryRef = doc(db, DIARY_DOC, docContent.id);
       await setDoc(diaryRef, docContent);
       setUploading(false);
-      // navigate('/admin');
       setUploadingStatus((prev) => [
         ...prev,
         'Diary document created. Everything is done.',
@@ -135,6 +136,8 @@ export default function DiaryAdminPage() {
       setError('Error has occured while creating the document.');
       console.error(err);
     }
+
+    setUploadingStatus([]);
   };
 
   return (
