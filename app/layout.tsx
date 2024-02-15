@@ -1,4 +1,4 @@
-import { Footer, Menu } from 'app/ui';
+// import { Footer, Menu } from 'app/ui';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import './styles/global.scss';
@@ -18,9 +18,9 @@ export default function RootLayout(props: Props) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Menu />
+        {/* <Menu /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

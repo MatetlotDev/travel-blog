@@ -10,16 +10,21 @@ const DiaryDay = (props: Props) => {
   const { day } = props;
 
   const date = new Date(day.date);
+  const dateAsString = date.toLocaleDateString('fr-FR', { dateStyle: 'full' });
+  const dateWithUppercase = `${dateAsString[0].toUpperCase()}${dateAsString.slice(
+    1,
+    dateAsString.length
+  )}`;
 
   return (
-    <section className={styles.wrapper}>
-      <div className={styles.date}>
-        <p>{date.toLocaleDateString()}</p>
-      </div>
-      <h4>{day.title}</h4>
+    <article className={styles.wrapper}>
       <div className={styles.content}>
-        <Images pictures={day.pictures} />
+        <div className={styles.flexGroup}>
+          <p className={styles.date}>{dateWithUppercase}</p>
+          <Images pictures={day.pictures} />
+        </div>
         <div className={styles.text}>
+          <h4>{day.title}</h4>
           <p>{day.text}</p>
           <div className={styles.dots}>
             <span></span>
@@ -28,7 +33,7 @@ const DiaryDay = (props: Props) => {
           </div>
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 
