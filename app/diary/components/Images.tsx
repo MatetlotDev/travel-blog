@@ -37,27 +37,51 @@ export default function Images(props: Props) {
   };
 
   return (
-    <div className={styles.pictures}>
-      {pictures.map(
-        (pic, idx) =>
-          idx <= 8 && (
-            <ImageWrapper
-              key={pic.id}
-              pic={pic}
-              idx={idx}
-              picturesLength={pictures.length}
-              onClick={handleOpen}
-            />
-          )
-      )}
-      <CarouselFullScreen
-        currentImage={currentIdx !== null ? pictures[currentIdx] : null}
-        onClose={handleClose}
-        onNext={handleNext}
-        onPrev={handlePrev}
-        prevDisabled={currentIdx === 0}
-        nextDisabled={currentIdx === pictures.length - 1}
-      />
-    </div>
+    <>
+      <div className={styles['pictures-sm']}>
+        <div className={styles.chip}>1 / 4</div>
+        <div className={styles.bubbles}>
+          {pictures.map((pic) => (
+            <span key={pic.id} />
+          ))}
+        </div>
+        <div className={styles.carousel}>
+          {pictures.map(
+            (pic, idx) =>
+              idx <= 8 && (
+                <ImageWrapper
+                  key={pic.id}
+                  pic={pic}
+                  idx={idx}
+                  picturesLength={pictures.length}
+                  onClick={handleOpen}
+                />
+              )
+          )}
+        </div>
+      </div>
+      <div className={styles.pictures}>
+        {pictures.map(
+          (pic, idx) =>
+            idx <= 8 && (
+              <ImageWrapper
+                key={pic.id}
+                pic={pic}
+                idx={idx}
+                picturesLength={pictures.length}
+                onClick={handleOpen}
+              />
+            )
+        )}
+        <CarouselFullScreen
+          currentImage={currentIdx !== null ? pictures[currentIdx] : null}
+          onClose={handleClose}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          prevDisabled={currentIdx === 0}
+          nextDisabled={currentIdx === pictures.length - 1}
+        />
+      </div>
+    </>
   );
 }
