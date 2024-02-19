@@ -2,7 +2,7 @@
 
 import { Picture } from '@/app/types';
 import { CarouselFullScreen } from '@/app/ui';
-import { useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import ImageWrapper from './ImageWrapper';
 import styles from './style.module.scss';
 
@@ -14,6 +14,12 @@ export default function Images(props: Props) {
   const { pictures } = props;
 
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
+  const [currentImgSm, setCurrentImageSm] = useState(0);
+  const [pressed, setPressed] = useState(false);
+  const [startX, setStartX] = useState<number>(0);
+
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleNext = () => {
     if (currentIdx !== null && currentIdx < pictures.length - 1)
@@ -36,16 +42,74 @@ export default function Images(props: Props) {
     setCurrentIdx(null);
   };
 
+  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
+    setPressed(true);
+    setStartX(e.clientX - (carouselRef.current?.offsetLeft || 0));
+  };
+
+  const handleMouseUp = () => {
+    setPressed(false);
+
+    const containerWidth =
+      containerRef.current?.getBoundingClientRect().width || 0;
+    const carouselX = parseInt(carouselRef.current?.style.left || '') || 0;
+    const closestPosition =
+      Math.round(carouselX / containerWidth) * containerWidth;
+
+    if (carouselRef.current) {
+      setCurrentImageSm(Math.round(Math.abs(carouselX) / containerWidth));
+      carouselRef.current.style.transition = 'all 0.3s';
+      carouselRef.current.style.left = `${closestPosition}px`;
+
+      setTimeout(() => {
+        if (carouselRef.current) carouselRef.current.style.transition = 'unset';
+      }, 300);
+    }
+  };
+
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (!pressed) return;
+
+    e.preventDefault();
+
+    if (carouselRef.current && containerRef.current) {
+      carouselRef.current.style.left = `${e.clientX - startX}px`;
+
+      let outer = containerRef.current.getBoundingClientRect();
+      let inner = carouselRef.current.getBoundingClientRect();
+
+      // make sure it doesn't go too far on the left
+      if (parseInt(carouselRef.current.style.left) > 0) {
+        carouselRef.current.style.left = '0px';
+      }
+      // make sure it doesn't go too far on the right
+      if (inner.right < outer.right) {
+        carouselRef.current.style.left = `-${inner.width - outer.width}px`;
+      }
+    }
+  };
+
   return (
     <>
-      <div className={styles['pictures-sm']}>
-        <div className={styles.chip}>1 / 4</div>
+      <div
+        className={styles['pictures-sm']}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        ref={containerRef}
+      >
+        <div className={styles.chip}>
+          {currentImgSm + 1} / {pictures.length}
+        </div>
         <div className={styles.bubbles}>
-          {pictures.map((pic) => (
-            <span key={pic.id} />
+          {pictures.map((pic, idx) => (
+            <span
+              className={idx === currentImgSm ? styles.active : ''}
+              key={pic.id}
+            />
           ))}
         </div>
-        <div className={styles.carousel}>
+        <div className={styles.carousel} ref={carouselRef}>
           {pictures.map(
             (pic, idx) =>
               idx <= 8 && (
