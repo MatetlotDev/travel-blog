@@ -1,21 +1,28 @@
+import { DiaryDay as DiaryType } from '@/app/types';
+import { getDiaries } from '@/firebase/firestore';
+// import { Header, HistoryNavigation } from 'app/ui';
+import DiaryDay from '@/app/diary/components/DiaryDay';
+import styles from '@/app/diary/style.module.scss';
 import Head from 'next/head';
-import About from './components/about';
-import DiscoverArticles from './components/discoverArticles';
-import DiscoverImages from './components/discoverImages';
-import Questions from './components/questions';
-import Welcome from './components/welcome';
 
-export default function NextPage() {
+export default async function Diary() {
+  const diaries = (await getDiaries()) as DiaryType[];
+
   return (
     <>
       <Head>
-        <title>Homepage</title>
+        <title>Journal</title>
       </Head>
-      <Welcome />
-      <About />
-      <DiscoverImages />
-      <Questions />
-      <DiscoverArticles />
+      <div className={styles.wrapper}>
+        {/* <Header withSearchbar={false} /> */}
+        {/* <HistoryNavigation
+        // firstDate={new Date('22/05/2022')}
+        // lastDate={new Date('12/08/2023')}
+        /> */}
+        {diaries.map((day) => (
+          <DiaryDay key={day.id} day={day} />
+        ))}
+      </div>
     </>
   );
 }
