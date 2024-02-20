@@ -139,124 +139,146 @@ export const mockedArticles: Article[] = [
 
 export const pictures: Picture[] = [
   {
-    id: 1,
+    id: '1',
     url: 'https://res.cloudinary.com/matetlot/image/upload/v1694636196/Travel_blog/lagodiledro_ycgh1d.jpg',
     create_date: new Date(
       'Tue Sep 09 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu4.jpg',
     create_date: new Date(
       'Tue Sep 07 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu3.jpg',
     create_date: new Date(
       'Tue Sep 06 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu5.jpg',
     create_date: new Date(
       'Tue Sep 07 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu1.jpg',
     create_date: new Date(
       'Tue Sep 05 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu2.jpg',
     create_date: new Date(
       'Tue Sep 06 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu6.jpg',
     create_date: new Date(
       'Tue Sep 07 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu8.jpg',
     create_date: new Date(
       'Tue Sep 09 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu11.jpg',
     create_date: new Date(
       'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu9.jpg',
     create_date: new Date(
       'Tue Sep 10 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
   {
-    id: 1,
+    id: '1',
     url: '/menu/menu10.jpg',
     create_date: new Date(
       'Tue Sep 13 2023 07:56:15 GMT+0200 (heure d’été d’Europe centrale)'
-    ),
+    ).toISOString(),
     location: {
       latitude: 46.548265,
       longitude: 11.824304999999999,
     },
+    diary_id: 'UGYU',
+    name: 'IMG.jpg',
   },
 ];

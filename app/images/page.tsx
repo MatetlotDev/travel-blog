@@ -22,9 +22,9 @@ export default async function Images() {
         {picturesFiltered.map((group) => (
           <div
             className={styles['pictures-group']}
-            key={group[0].create_date.getTime()}
+            key={new Date(group[0].create_date).getTime()}
           >
-            <p>{dateToSentence(group[0].create_date)}</p>
+            <p>{dateToSentence(new Date(group[0].create_date))}</p>
             <div className={styles.pictures}>
               {group.map((picture) => (
                 <ImageWrapper key={picture.id} picture={picture} />

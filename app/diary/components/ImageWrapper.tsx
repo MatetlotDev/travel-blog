@@ -9,6 +9,7 @@ interface Props {
   pic: Picture;
   idx: number;
   picturesLength: number;
+  // eslint-disable-next-line no-unused-vars
   onClick: (idx: number) => void;
 }
 
