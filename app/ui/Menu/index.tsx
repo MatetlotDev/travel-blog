@@ -3,7 +3,6 @@
 import { menuImages, routes } from 'app/constants/global';
 import gsap from 'gsap';
 import { useScrollDirection } from 'hooks/useScrollDirection';
-import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import { CiLocationOn } from 'react-icons/ci';
 import { SlArrowDown } from 'react-icons/sl';
 import styles from './style.module.scss';
 
-const Menu: NextPage = () => {
+export default function Menu() {
   const [open, setOpen] = useState<boolean>(false);
   const [actualPic, setActualPic] = useState<number>(0);
   const [actualRoute, setActualRoute] = useState<string>('');
@@ -131,6 +130,4 @@ const Menu: NextPage = () => {
       </div>
     </>
   );
-};
-
-export default Menu;
+}
