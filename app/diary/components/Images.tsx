@@ -2,7 +2,7 @@
 
 import { Picture } from '@/app/types';
 import { CarouselFullScreen } from '@/app/ui';
-import { MouseEvent, useRef, useState } from 'react';
+import { MouseEvent, TouchEvent, useRef, useState } from 'react';
 import ImageWrapper from './ImageWrapper';
 import styles from './style.module.scss';
 
@@ -47,6 +47,11 @@ export default function Images(props: Props) {
     setStartX(e.clientX - (carouselRef.current?.offsetLeft || 0));
   };
 
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setPressed(true);
+    setStartX(e.touches[0].clientX - (carouselRef.current?.offsetLeft || 0));
+  };
+
   const handleMouseUp = () => {
     setPressed(false);
 
@@ -67,14 +72,8 @@ export default function Images(props: Props) {
     }
   };
 
-  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
-    if (!pressed) return;
-
-    e.preventDefault();
-
-    if (carouselRef.current && containerRef.current) {
-      carouselRef.current.style.left = `${e.clientX - startX}px`;
-
+  const boundElements = () => {
+    if (containerRef.current && carouselRef.current) {
       let outer = containerRef.current.getBoundingClientRect();
       let inner = carouselRef.current.getBoundingClientRect();
 
@@ -89,6 +88,28 @@ export default function Images(props: Props) {
     }
   };
 
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (!pressed) return;
+
+    e.preventDefault();
+
+    if (carouselRef.current && containerRef.current) {
+      carouselRef.current.style.left = `${e.clientX - startX}px`;
+      boundElements();
+    }
+  };
+
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    if (!pressed) return;
+
+    e.preventDefault();
+
+    if (carouselRef.current && containerRef.current) {
+      carouselRef.current.style.left = `${e.touches[0].clientX - startX}px`;
+      boundElements();
+    }
+  };
+
   return (
     <>
       <div
@@ -96,6 +117,9 @@ export default function Images(props: Props) {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleMouseUp}
+        onTouchMove={handleTouchMove}
         ref={containerRef}
       >
         <div className={styles.chip}>
