@@ -25,6 +25,8 @@ export default function DiaryAdminPage() {
 
     const files = formData.getAll('pictures');
 
+    const diaryDate = new Date(String(formData.get('date'))).toISOString();
+
     const docId = uuid();
     const picturesPending: Picture[] = [];
     const imageIds: string[] = [];
@@ -45,7 +47,9 @@ export default function DiaryAdminPage() {
             id: imageId,
             url: image.url,
             name: image.name,
-            create_date: new Date(createDate).toISOString(),
+            create_date: createDate
+              ? new Date(createDate).toISOString()
+              : new Date(diaryDate).toISOString(),
             diary_id: docId,
             location: {
               longitude: await getExifData(file, 'longitude'),
@@ -115,7 +119,7 @@ export default function DiaryAdminPage() {
         id: docId,
         title: formData.get('title'),
         text: formData.get('text'),
-        date: formData.get('date'),
+        date: diaryDate,
         pictures: imageIds,
       };
 
