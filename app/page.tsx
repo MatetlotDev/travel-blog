@@ -1,12 +1,12 @@
 import { DiaryDay as DiaryType } from '@/app/types';
-import { getDiaries } from '@/firebase/firestore';
 // import { Header, HistoryNavigation } from 'app/ui';
-import DiaryDay from '@/app/diary/components/DiaryDay';
 import styles from '@/app/diary/style.module.scss';
 import Head from 'next/head';
+import Main from './diary/components/Main';
+import { getPaginatedDiaries } from './actions';
 
 export default async function Diary() {
-  const diaries = (await getDiaries()) as DiaryType[];
+  const diaries = (await getPaginatedDiaries('init')) as DiaryType[];
 
   return (
     <>
@@ -19,9 +19,7 @@ export default async function Diary() {
         // firstDate={new Date('22/05/2022')}
         // lastDate={new Date('12/08/2023')}
         /> */}
-        {diaries.map((day) => (
-          <DiaryDay key={day.id} day={day} />
-        ))}
+        <Main diaries={diaries} />
       </div>
     </>
   );

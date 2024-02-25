@@ -25,9 +25,7 @@ export default function CarouselFullScreen(props: Props) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <div className={styles.header}>
-            <p>{dateToSentence(new Date(currentImage?.create_date))}</p>
-          </div>
+          <p>{dateToSentence(new Date(currentImage?.create_date))}</p>
           <Image
             src={currentImage.url}
             alt="Same image but bigger"
