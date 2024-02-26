@@ -3,7 +3,7 @@
 import { Picture } from '@/app/types';
 import { dateToSentence } from '@/utils/dateToSentence';
 import Image from 'next/image';
-import { BiDotsHorizontalRounded } from 'react-icons/bi';
+// import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
 import styles from './style.module.scss';
@@ -36,9 +36,9 @@ export default function CarouselFullScreen(props: Props) {
         <div className={styles.close} onClick={onClose}>
           <TfiClose />
         </div>
-        <div className={styles.more}>
+        {/* <div className={styles.more}>
           <BiDotsHorizontalRounded />
-        </div>
+        </div> */}
         <div
           className={`${styles.prev} ${styles.button} ${
             prevDisabled && styles.disabled

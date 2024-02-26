@@ -102,8 +102,6 @@ export default function Images(props: Props) {
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     if (!pressed) return;
 
-    e.preventDefault();
-
     if (carouselRef.current && containerRef.current) {
       carouselRef.current.style.left = `${e.touches[0].clientX - startX}px`;
       boundElements();
