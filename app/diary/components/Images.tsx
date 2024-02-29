@@ -16,7 +16,8 @@ export default function Images(props: Props) {
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const [currentImgSm, setCurrentImageSm] = useState(0);
   const [pressed, setPressed] = useState(false);
-  const [startX, setStartX] = useState<number>(0);
+  const [carouselXStart, setCarouselXStart] = useState<number>(0);
+  const [clientXStart, setClientXStart] = useState<number>(0);
 
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -42,36 +43,6 @@ export default function Images(props: Props) {
     setCurrentIdx(null);
   };
 
-  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
-    setPressed(true);
-    setStartX(e.clientX - (carouselRef.current?.offsetLeft || 0));
-  };
-
-  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-    setPressed(true);
-    setStartX(e.touches[0].clientX - (carouselRef.current?.offsetLeft || 0));
-  };
-
-  const handleMouseUp = () => {
-    setPressed(false);
-
-    const containerWidth =
-      containerRef.current?.getBoundingClientRect().width || 0;
-    const carouselX = parseInt(carouselRef.current?.style.left || '') || 0;
-    const closestPosition =
-      Math.round(carouselX / containerWidth) * containerWidth;
-
-    if (carouselRef.current) {
-      setCurrentImageSm(Math.round(Math.abs(carouselX) / containerWidth));
-      carouselRef.current.style.transition = 'all 0.3s';
-      carouselRef.current.style.left = `${closestPosition}px`;
-
-      setTimeout(() => {
-        if (carouselRef.current) carouselRef.current.style.transition = 'unset';
-      }, 300);
-    }
-  };
-
   const boundElements = () => {
     if (containerRef.current && carouselRef.current) {
       let outer = containerRef.current.getBoundingClientRect();
@@ -88,13 +59,64 @@ export default function Images(props: Props) {
     }
   };
 
+  const setCarouselPos = (val: number) => {
+    const containerWidth =
+      containerRef.current?.getBoundingClientRect().width || 0;
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'all 0.3s';
+      carouselRef.current.style.left = `-${containerWidth * val}px`;
+
+      setTimeout(() => {
+        if (carouselRef.current) carouselRef.current.style.transition = 'unset';
+      }, 300);
+    }
+  };
+
+  const moveCarousel = (clientXend: number) => {
+    // next image
+    if (clientXend < clientXStart && currentImgSm < pictures.length - 1) {
+      setCurrentImageSm(currentImgSm + 1);
+      setCarouselPos(currentImgSm + 1);
+    }
+    // prev image
+    if (clientXend > clientXStart && currentImgSm > 0) {
+      setCurrentImageSm(currentImgSm - 1);
+      setCarouselPos(currentImgSm - 1);
+    }
+  };
+
+  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
+    setPressed(true);
+    setCarouselXStart(e.clientX - (carouselRef.current?.offsetLeft || 0));
+    setClientXStart(e.clientX);
+  };
+
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setPressed(true);
+    setCarouselXStart(
+      e.changedTouches[0].clientX - (carouselRef.current?.offsetLeft || 0)
+    );
+    setClientXStart(e.changedTouches[0].clientX);
+  };
+
+  const handleMouseUp = (e: MouseEvent<HTMLElement>) => {
+    setPressed(false);
+    moveCarousel(e.clientX);
+  };
+
+  const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    setPressed(false);
+    moveCarousel(e.changedTouches[0].clientX);
+  };
+
   const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
     if (!pressed) return;
 
     e.preventDefault();
 
     if (carouselRef.current && containerRef.current) {
-      carouselRef.current.style.left = `${e.clientX - startX}px`;
+      carouselRef.current.style.left = `${e.clientX - carouselXStart}px`;
       boundElements();
     }
   };
@@ -103,7 +125,9 @@ export default function Images(props: Props) {
     if (!pressed) return;
 
     if (carouselRef.current && containerRef.current) {
-      carouselRef.current.style.left = `${e.touches[0].clientX - startX}px`;
+      carouselRef.current.style.left = `${
+        e.changedTouches[0].clientX - carouselXStart
+      }px`;
       boundElements();
     }
   };
@@ -116,7 +140,7 @@ export default function Images(props: Props) {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         onTouchStart={handleTouchStart}
-        onTouchEnd={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
         ref={containerRef}
       >
