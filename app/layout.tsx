@@ -1,4 +1,5 @@
 // import { Footer, Menu } from 'app/ui';
+import { Analytics } from '@vercel/analytics/react';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import './styles/global.scss';
@@ -21,6 +22,7 @@ export default function RootLayout(props: Props) {
         {/* <Menu /> */}
         {children}
         {/* <Footer /> */}
+        <Analytics />
       </body>
     </html>
   );
