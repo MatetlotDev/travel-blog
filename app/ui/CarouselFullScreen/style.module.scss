@@ -87,6 +87,10 @@
       &:hover {
         background: #b4b4b4;
       }
+
+      &:not(:active) {
+        background: white;
+      }
     }
   }
 
@@ -94,7 +98,7 @@
     border: 1px dashed #b4b4b4;
 
     button {
-      background: #b4b4b4;
+      background: #b4b4b4 !important;
       cursor: not-allowed;
     }
   }

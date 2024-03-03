@@ -156,18 +156,15 @@ export default function Images(props: Props) {
           ))}
         </div>
         <div className={styles.carousel} ref={carouselRef}>
-          {pictures.map(
-            (pic, idx) =>
-              idx <= 8 && (
-                <ImageWrapper
-                  key={pic.id}
-                  pic={pic}
-                  idx={idx}
-                  picturesLength={pictures.length}
-                  onClick={handleOpen}
-                />
-              )
-          )}
+          {pictures.map((pic, idx) => (
+            <ImageWrapper
+              key={pic.id}
+              pic={pic}
+              idx={idx}
+              picturesLength={pictures.length}
+              onClick={handleOpen}
+            />
+          ))}
         </div>
       </div>
       <div className={styles.pictures}>

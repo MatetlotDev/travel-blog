@@ -28,7 +28,7 @@ export default function ImageWrapper(props: Props) {
         fill
         style={{ objectFit: 'cover' }}
         placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-        sizes="(min-width: 768px) 200px, 100vw"
+        sizes="200px"
       />
       {picturesLength > 9 && idx === 8 && (
         <div className={styles.last}>

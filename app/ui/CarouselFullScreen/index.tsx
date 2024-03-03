@@ -31,6 +31,7 @@ export default function CarouselFullScreen(props: Props) {
             alt="Same image but bigger"
             className={styles.image}
             fill
+            sizes="100vw"
           />
         </div>
         <div className={styles.close} onClick={onClose}>
