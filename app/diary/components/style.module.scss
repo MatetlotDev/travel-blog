@@ -35,6 +35,27 @@
         padding: 20px;
         margin-right: 10px;
         margin-bottom: 10px;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+        }
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          width: 100px;
+          height: 100px;
+          border: 3px solid map-get($theme, 'colors', 'secondary', 'main');
+          border-bottom-color: transparent;
+          border-radius: 50%;
+          display: inline-block;
+          box-sizing: border-box;
+          animation: rotation 1.6s linear infinite;
+        }
 
         .last {
           position: absolute;
@@ -142,6 +163,15 @@
         }
       }
     }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 

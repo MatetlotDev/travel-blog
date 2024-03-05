@@ -1,8 +1,8 @@
 'use client';
 
 import { Picture } from '@/app/types';
-import { shimmer, toBase64 } from '@/utils/imagePlaceholder';
 import Image from 'next/image';
+import { useState } from 'react';
 import styles from './style.module.scss';
 
 interface Props {
@@ -16,19 +16,22 @@ interface Props {
 export default function ImageWrapper(props: Props) {
   const { pic, idx, picturesLength, onClick } = props;
 
+  const [loading, setLoading] = useState(true);
+
   const handleOpenCarousel = () => {
     onClick(idx);
   };
 
   return (
     <div className={styles.image} onClick={handleOpenCarousel}>
+      {loading && <span />}
       <Image
         src={pic.url}
         alt="picture of the day"
         fill
-        style={{ objectFit: 'cover' }}
-        placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-        sizes="200px"
+        sizes="100vw"
+        style={{ filter: loading ? 'blur(10px)' : 'none' }}
+        onLoad={() => setLoading(false)}
       />
       {picturesLength > 9 && idx === 8 && (
         <div className={styles.last}>
