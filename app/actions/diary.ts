@@ -13,12 +13,7 @@ import {
   startAfter,
   where,
 } from 'firebase/firestore';
-import { RedirectType, redirect } from 'next/navigation';
-import { DiaryDay, Picture } from './types';
-
-export async function navigate(path: string, type?: RedirectType) {
-  redirect(path, type);
-}
+import { DiaryDay, Picture } from '../types';
 
 export async function getDiaryImages(id: string) {
   // get diary doc from firestore querying with it's id

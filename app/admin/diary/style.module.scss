@@ -1,0 +1,69 @@
+@import '/app/styles/theme.scss';
+
+.wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  form {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 2rem;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #000;
+      margin-bottom: 10px;
+      background: none;
+    }
+
+    textarea {
+      height: 300px;
+    }
+
+    button {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      color: map-get($theme, 'colors', 'primary', 'main');
+      background-color: map-get($theme, 'colors', 'secondary', 'main');
+      font-size: 2rem;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: map-get($theme, 'colors', 'secondary', 50);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid map-get($theme, 'colors', 'secondary', 'main');
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

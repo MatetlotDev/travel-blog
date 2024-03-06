@@ -1,6 +1,6 @@
 'use client';
 
-import { getPaginatedDiaries } from '@/app/actions';
+import { getPaginatedDiaries } from '@/app/actions/diary';
 import { DiaryDay as DiaryDayType } from '@/app/types';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
