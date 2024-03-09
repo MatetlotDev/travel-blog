@@ -1,11 +1,13 @@
 @import '/app/styles/theme.scss';
 
 .wrapper {
-  margin: 60px 0;
+  position: relative;
 
   .content {
     display: flex;
     margin-bottom: 100px;
+    z-index: 1;
+    position: relative;
 
     .flexGroup {
       display: flex;
@@ -17,6 +19,7 @@
         border: 1px solid map-get($theme, 'colors', 'secondary', 'main');
         border-radius: 40px;
         margin-bottom: 110px;
+        background: map-get($theme, 'colors', 'primary', 'main');
       }
     }
 
@@ -25,6 +28,20 @@
       flex-wrap: wrap;
       margin-right: 70px;
       width: 630px;
+      position: relative;
+      z-index: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        bottom: -20px;
+        left: -20px;
+        right: -20px;
+        z-index: -1;
+        background: map-get($theme, 'colors', 'primary', 'main');
+        filter: blur(15px);
+      }
 
       .image {
         width: 200px;
@@ -168,6 +185,23 @@
         margin-bottom: 30px;
       }
 
+      p {
+        position: relative;
+        z-index: 0;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: -20px;
+          bottom: -20px;
+          left: -20px;
+          right: -20px;
+          z-index: -1;
+          background: map-get($theme, 'colors', 'primary', 'main');
+          filter: blur(15px);
+        }
+      }
+
       .dots {
         display: flex;
         margin-top: 50px;
@@ -182,6 +216,19 @@
           margin-right: 13px;
         }
       }
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 48vw;
+    height: 100%;
+    z-index: 0;
+
+    @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
+      display: none;
     }
   }
 }

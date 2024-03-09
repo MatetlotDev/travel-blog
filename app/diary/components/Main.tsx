@@ -30,8 +30,8 @@ export default function Main(props: Props) {
 
   return (
     <>
-      {diariesList.map((day) => (
-        <DiaryDay key={day.id} day={day} />
+      {diariesList.map((day, idx) => (
+        <DiaryDay key={day.id} day={day} idx={idx} />
       ))}
       {loading ? (
         <span className={buttonStyles.loader} />

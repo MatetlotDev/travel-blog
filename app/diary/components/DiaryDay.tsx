@@ -4,10 +4,11 @@ import styles from './style.module.scss';
 
 interface Props {
   day: DiaryDayType;
+  idx: number;
 }
 
 const DiaryDay = (props: Props) => {
-  const { day } = props;
+  const { day, idx } = props;
 
   const date = new Date(day.date);
   const dateAsString = date.toLocaleDateString('fr-FR', { dateStyle: 'full' });
@@ -18,7 +19,10 @@ const DiaryDay = (props: Props) => {
 
   return (
     <article className={styles.wrapper}>
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        style={{ flexDirection: idx % 2 ? 'row-reverse' : 'row' }}
+      >
         <div className={styles.flexGroup}>
           <p className={styles.date}>{dateWithUppercase}</p>
           <Images pictures={day.pictures} />
@@ -33,6 +37,24 @@ const DiaryDay = (props: Props) => {
           </div>
         </div>
       </div>
+      <svg
+        style={{
+          transform:
+            idx % 2 ? 'translateX(-50%) rotateX(180deg)' : 'translateX(-50%)',
+        }}
+        width="1153"
+        height="1055"
+        viewBox="0 0 1153 1055"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
+          stroke="#182C25"
+          stroke-width="2"
+          stroke-dasharray="8 8"
+        />
+      </svg>
     </article>
   );
 };
