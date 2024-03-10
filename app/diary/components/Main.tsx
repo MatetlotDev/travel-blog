@@ -31,12 +31,21 @@ export default function Main(props: Props) {
   return (
     <>
       {diariesList.map((day, idx) => (
-        <DiaryDay key={day.id} day={day} idx={idx} />
+        <DiaryDay
+          key={day.id}
+          day={day}
+          idx={idx}
+          length={diariesList.length}
+        />
       ))}
       {loading ? (
         <span className={buttonStyles.loader} />
       ) : (
-        <button className={buttonStyles.button} onClick={handleLoadMore}>
+        <button
+          className={buttonStyles.button}
+          style={{ zIndex: 11 }}
+          onClick={handleLoadMore}
+        >
           Afficher le précedent
         </button>
       )}

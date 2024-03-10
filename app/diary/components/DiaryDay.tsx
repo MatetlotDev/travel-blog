@@ -6,10 +6,11 @@ import styles from './style.module.scss';
 interface Props {
   day: DiaryDayType;
   idx: number;
+  length: number;
 }
 
 const DiaryDay = (props: Props) => {
-  const { day, idx } = props;
+  const { day, idx, length } = props;
 
   const date = new Date(day.date);
   const dateAsString = date.toLocaleDateString('fr-FR', { dateStyle: 'full' });
@@ -19,45 +20,58 @@ const DiaryDay = (props: Props) => {
   )}`;
 
   const pathRef = useRef<SVGPathElement | null>(null);
+  const wrapperRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (pathRef.current) {
-      const pathLength = pathRef.current.getTotalLength();
+    const totalHeight = document.documentElement.scrollHeight;
+    const pathLength = pathRef.current?.getTotalLength() || 0;
 
-      pathRef.current.style.strokeDasharray = `${pathLength} ${pathLength}`;
-      pathRef.current.style.strokeDashoffset = pathLength.toString();
-      pathRef.current.style.display = 'block';
+    const handleScroll = () => {
+      const scrollFromTop = document.documentElement.scrollTop;
 
-      window.addEventListener('scroll', function () {
-        if (pathRef.current) {
-          const scrollFromTop = document.documentElement.scrollTop;
+      if (pathRef.current) {
+        if (scrollFromTop < 10) {
+          pathRef.current.style.strokeDashoffset =
+            idx % 2 ? '0' : pathLength.toString();
+        } else {
+          const scrollPercentage = (scrollFromTop / totalHeight) * length;
+          const drawLength = pathLength * scrollPercentage + 900;
 
-          // set line at middle of the screen
-          if (scrollFromTop < 10) {
-            pathRef.current.style.strokeDashoffset = pathLength.toString();
+          if (idx % 2) {
+            pathRef.current.style.strokeDashoffset = drawLength.toString();
           } else {
-            // What % down is it?
-            const scrollPercentage =
-              ((document.documentElement.scrollTop + document.body.scrollTop) /
-                (document.documentElement.scrollHeight -
-                  document.documentElement.clientHeight)) *
-              2;
-
-            // Length to offset the dashes
-            const drawLength = pathLength * scrollPercentage + 900;
-
-            // Draw in reverse
             pathRef.current.style.strokeDashoffset = (
               pathLength - drawLength
             ).toString();
           }
         }
-      });
+      }
+    };
+
+    if (pathRef.current) {
+      const scrollFromTop = document.documentElement.scrollTop;
+
+      pathRef.current.style.strokeDasharray = `${pathLength} ${pathLength}`; // set the dashes as the height of the path
+
+      if (scrollFromTop > 10) {
+        handleScroll(); // run the function once before scroll event if page is already scrolled
+      } else {
+        pathRef.current.style.strokeDashoffset = pathLength.toString();
+      }
+
+      pathRef.current.style.display = 'block';
     }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <article className={styles.wrapper}>
+    <article className={styles.wrapper} ref={wrapperRef}>
       <div
         className={styles.content}
         style={{ flexDirection: idx % 2 ? 'row-reverse' : 'row' }}
@@ -89,6 +103,7 @@ const DiaryDay = (props: Props) => {
           transform:
             idx % 2 ? 'translateX(-50%) rotateX(180deg)' : 'translateX(-50%)',
         }}
+        className={styles.line}
         viewBox="0 0 1153 1055"
         fill="none"
         preserveAspectRatio="xMidYMax meet"
@@ -97,7 +112,7 @@ const DiaryDay = (props: Props) => {
           ref={pathRef}
           d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
           stroke="#182C25"
-          stroke-width="2"
+          stroke-width="4"
           style={{ display: 'none' }}
         />
       </svg>
@@ -106,6 +121,7 @@ const DiaryDay = (props: Props) => {
           transform:
             idx % 2 ? 'translateX(-50%) rotateX(180deg)' : 'translateX(-50%)',
         }}
+        className={styles.line}
         viewBox="0 0 1153 1055"
         fill="none"
         preserveAspectRatio="xMidYMax meet"
