@@ -8,7 +8,7 @@
 
   .content {
     display: flex;
-    z-index: 1;
+    z-index: 10;
     position: relative;
     justify-content: space-between;
 
@@ -29,7 +29,7 @@
       flex-wrap: wrap;
       width: 630px;
       position: relative;
-      z-index: 0;
+      z-index: 10;
 
       &::after {
         content: '';
@@ -226,6 +226,10 @@
     width: 60vw;
     height: 103%;
     z-index: 0;
+
+    path {
+      transition: all 0.5s;
+    }
 
     @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
       display: none;

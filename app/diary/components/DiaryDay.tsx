@@ -1,4 +1,5 @@
 import { DiaryDay as DiaryDayType } from '@/app/types';
+import { useEffect, useRef } from 'react';
 import Images from './Images';
 import styles from './style.module.scss';
 
@@ -16,6 +17,44 @@ const DiaryDay = (props: Props) => {
     1,
     dateAsString.length
   )}`;
+
+  const pathRef = useRef<SVGPathElement | null>(null);
+
+  useEffect(() => {
+    if (pathRef.current) {
+      const pathLength = pathRef.current.getTotalLength();
+
+      pathRef.current.style.strokeDasharray = `${pathLength} ${pathLength}`;
+      pathRef.current.style.strokeDashoffset = pathLength.toString();
+      pathRef.current.style.display = 'block';
+
+      window.addEventListener('scroll', function () {
+        if (pathRef.current) {
+          const scrollFromTop = document.documentElement.scrollTop;
+
+          // set line at middle of the screen
+          if (scrollFromTop < 10) {
+            pathRef.current.style.strokeDashoffset = pathLength.toString();
+          } else {
+            // What % down is it?
+            const scrollPercentage =
+              ((document.documentElement.scrollTop + document.body.scrollTop) /
+                (document.documentElement.scrollHeight -
+                  document.documentElement.clientHeight)) *
+              2;
+
+            // Length to offset the dashes
+            const drawLength = pathLength * scrollPercentage + 900;
+
+            // Draw in reverse
+            pathRef.current.style.strokeDashoffset = (
+              pathLength - drawLength
+            ).toString();
+          }
+        }
+      });
+    }
+  }, []);
 
   return (
     <article className={styles.wrapper}>
@@ -50,18 +89,32 @@ const DiaryDay = (props: Props) => {
           transform:
             idx % 2 ? 'translateX(-50%) rotateX(180deg)' : 'translateX(-50%)',
         }}
-        width="1153"
-        height="1055"
         viewBox="0 0 1153 1055"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMax meet"
+      >
+        <path
+          ref={pathRef}
+          d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
+          stroke="#182C25"
+          stroke-width="2"
+          style={{ display: 'none' }}
+        />
+      </svg>
+      <svg
+        style={{
+          transform:
+            idx % 2 ? 'translateX(-50%) rotateX(180deg)' : 'translateX(-50%)',
+        }}
+        viewBox="0 0 1153 1055"
+        fill="none"
+        preserveAspectRatio="xMidYMax meet"
       >
         <path
           d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
           stroke="#182C25"
           stroke-width="2"
           stroke-dasharray="8 8"
-          id={`svg_path_${idx}`}
         />
       </svg>
     </article>
