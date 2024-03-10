@@ -24,10 +24,18 @@ const DiaryDay = (props: Props) => {
         style={{ flexDirection: idx % 2 ? 'row-reverse' : 'row' }}
       >
         <div className={styles.flexGroup}>
-          <p className={styles.date}>{dateWithUppercase}</p>
+          <p
+            className={styles.date}
+            style={{ float: idx % 2 ? 'right' : 'left' }}
+          >
+            {dateWithUppercase}
+          </p>
           <Images pictures={day.pictures} />
         </div>
-        <div className={styles.text}>
+        <div
+          className={styles.text}
+          style={{ margin: idx % 2 ? '75px 100px 0 0' : '75px 0 0 100px' }}
+        >
           <h4>{day.title}</h4>
           <p>{day.text}</p>
           <div className={styles.dots}>
@@ -53,6 +61,7 @@ const DiaryDay = (props: Props) => {
           stroke="#182C25"
           stroke-width="2"
           stroke-dasharray="8 8"
+          id={`svg_path_${idx}`}
         />
       </svg>
     </article>

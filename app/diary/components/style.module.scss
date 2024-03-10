@@ -2,31 +2,31 @@
 
 .wrapper {
   position: relative;
+  height: 900px;
+  width: 85vw;
+  max-width: 1660px;
 
   .content {
     display: flex;
-    margin-bottom: 100px;
     z-index: 1;
     position: relative;
+    justify-content: space-between;
 
     .flexGroup {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
       .date {
         padding: 6px 20px;
         border: 1px solid map-get($theme, 'colors', 'secondary', 'main');
         border-radius: 40px;
         margin-bottom: 110px;
         background: map-get($theme, 'colors', 'primary', 'main');
+        width: fit-content;
+        margin: 0 6.5vw 110px 6.5vw;
       }
     }
 
     .pictures {
       display: flex;
       flex-wrap: wrap;
-      margin-right: 70px;
       width: 630px;
       position: relative;
       z-index: 0;
@@ -223,11 +223,11 @@
     position: absolute;
     top: 0;
     left: 50%;
-    width: 48vw;
-    height: 100%;
+    width: 60vw;
+    height: 103%;
     z-index: 0;
 
-    @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
+    @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
       display: none;
     }
   }
@@ -244,11 +244,20 @@
 
 @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
   .wrapper {
+    height: unset;
+    width: none;
+    max-width: unset;
+    margin-bottom: 100px;
+
     .content {
-      flex-direction: column;
+      flex-direction: column !important;
       align-items: center;
 
       .flexGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         .date {
           margin-bottom: 30px;
         }
