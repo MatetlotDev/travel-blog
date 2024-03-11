@@ -34,7 +34,7 @@ export default function DiaryAdminPage() {
 
   useEffect(() => {
     formRef.current?.reset();
-  }, [state.success]);
+  }, [state?.success]);
 
   return (
     <div className={styles.wrapper}>
