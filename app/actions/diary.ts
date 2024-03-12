@@ -1,6 +1,6 @@
 'use server';
 
-import { db, storage } from '@/app/firebase/config';
+import { db, storage } from '@/firebase/config';
 import exifr from 'exifr';
 import {
   collection,
@@ -89,7 +89,9 @@ export async function getPaginatedDiaries(params: string, lastId?: string) {
 
 export async function uploadImage(image: File) {
   try {
-    const filePath = `test/${uuid()}_${image.name}`;
+    const filePath = `${
+      process.env.NEXT_PUBLIC_FIREBASE_IMAGES_COLLECTION
+    }/${uuid()}_${image.name}`;
     const newImageRef = ref(storage, filePath);
 
     const imageBuffer = await image.arrayBuffer();
@@ -123,8 +125,10 @@ export async function createDiaryPost(
   const session = await getSession();
   if (!session) return { message: 'Not authenticated', success: false };
 
-  const IMAGES_DOC = 'images';
-  const DIARY_DOC = 'diary';
+  const IMAGES_DOC =
+    process.env.NEXT_PUBLIC_FIREBASE_IMAGES_COLLECTION || 'images_dev';
+  const DIARY_DOC =
+    process.env.NEXT_PUBLIC_FIREBASE_DIARY_COLLECTION || 'diary_dev';
 
   const files: File[] = formData.getAll('pictures') as File[];
 
