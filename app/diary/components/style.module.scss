@@ -227,10 +227,6 @@
     height: 103%;
     z-index: 0;
 
-    path {
-      transition: all 0.5s;
-    }
-
     @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
       display: none;
     }

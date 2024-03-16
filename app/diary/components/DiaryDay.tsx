@@ -31,6 +31,11 @@ const DiaryDay = (props: Props) => {
 
       if (pathRef.current) {
         if (scrollFromTop < 10) {
+          pathRef.current.style.transition = 'all 0.5s'; // when the scroll is at top to have the line appearing smoothly
+          setTimeout(() => {
+            if (pathRef.current) pathRef.current.style.transition = 'unset';
+          }, 500);
+
           pathRef.current.style.strokeDashoffset =
             idx % 2 ? '0' : pathLength.toString();
         } else {

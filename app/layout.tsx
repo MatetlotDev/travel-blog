@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
 import './styles/global.scss';
+import SmoothScroll from './ui/SmoothScroll';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout(props: Props) {
         {children}
         {/* <Footer /> */}
         <Analytics />
+        <SmoothScroll />
       </body>
     </html>
   );
