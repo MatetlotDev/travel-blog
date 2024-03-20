@@ -27,7 +27,7 @@ export type Picture = {
   diary_id: string;
   name: string;
   location: {
-    longitude: number;
-    latitude: number;
+    longitude: number | null;
+    latitude: number | null;
   };
 };

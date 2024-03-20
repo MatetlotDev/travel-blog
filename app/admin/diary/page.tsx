@@ -42,7 +42,13 @@ export default function DiaryAdminPage() {
       <form action={formAction} ref={formRef}>
         <div className={styles.formGroup}>
           <label htmlFor="title">Titre</label>
-          <input name="title" type="text" id="title" required />
+          <input
+            name="title"
+            type="text"
+            id="title"
+            required
+            accept="image/*"
+          />
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="date">Date</label>

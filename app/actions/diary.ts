@@ -1,7 +1,7 @@
 'use server';
 
 import { db, storage } from '@/firebase/config';
-import exifr from 'exifr';
+import exif from 'exif-reader';
 import {
   collection,
   doc,
@@ -22,6 +22,7 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { revalidatePath } from 'next/cache';
+import sharp from 'sharp';
 import { v4 as uuid } from 'uuid';
 import { DiaryDay, Picture } from '../types';
 import { getSession } from './authentication';
@@ -87,6 +88,18 @@ export async function getPaginatedDiaries(params: string, lastId?: string) {
   );
 }
 
+const compressImage = async (image: File) => {
+  const bytes = await image.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  const compressed = await sharp(buffer)
+    .toFormat('jpeg')
+    .jpeg({ quality: 60 })
+    .toBuffer();
+
+  return compressed;
+};
+
 export async function uploadImage(image: File) {
   try {
     const filePath = `${
@@ -94,8 +107,9 @@ export async function uploadImage(image: File) {
     }/${uuid()}_${image.name}`;
     const newImageRef = ref(storage, filePath);
 
-    const imageBuffer = await image.arrayBuffer();
-    await uploadBytes(newImageRef, imageBuffer);
+    const compressed = await compressImage(image);
+
+    await uploadBytes(newImageRef, compressed);
 
     const metadata = await getMetadata(newImageRef);
     const url = await getDownloadURL(newImageRef);
@@ -106,11 +120,23 @@ export async function uploadImage(image: File) {
   }
 }
 
-export async function getExifData(image: Blob, path: string) {
-  try {
-    const exif = await exifr.parse(image);
+function convertGeoToLoc(location?: number[]) {
+  if (!location || !location?.length) return null;
+  return location[0] + location[1] / 60 + location[2] / 3600;
+}
 
-    if (exif[path]) return exif[path];
+export async function getExifData(image: File) {
+  try {
+    const bytes = await image.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    const metadata = await sharp(buffer).metadata();
+
+    if (!metadata.exif) return null;
+
+    const exifData = exif(metadata.exif);
+
+    if (exifData) return exifData;
     return null;
   } catch (error) {
     console.error('Reading exif data ERROR : ', error);
@@ -145,9 +171,16 @@ export async function createDiaryPost(
         files.map(async (file) => {
           const imageId = uuid();
 
-          const image = await uploadImage(file as File);
+          const exifData = await getExifData(file);
 
-          const createDate = await getExifData(file as File, 'CreateDate');
+          const createDate = exifData?.Image?.DateTime;
+
+          const longitude =
+            convertGeoToLoc(exifData?.GPSInfo?.GPSLongitude) || null;
+          const latitude =
+            convertGeoToLoc(exifData?.GPSInfo?.GPSLatitude) || null;
+
+          const image = await uploadImage(file as File);
 
           if (!image.name || !image.url)
             throw new Error(
@@ -163,8 +196,8 @@ export async function createDiaryPost(
               : new Date(diaryDate).toISOString(),
             diary_id: docId,
             location: {
-              longitude: (await getExifData(file as File, 'longitude')) || null,
-              latitude: (await getExifData(file as File, 'latitude')) || null,
+              longitude,
+              latitude,
             },
           });
         })
