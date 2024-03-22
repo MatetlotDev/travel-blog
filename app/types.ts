@@ -30,4 +30,5 @@ export type Picture = {
     longitude: number | null;
     latitude: number | null;
   };
+  description?: string | null;
 };

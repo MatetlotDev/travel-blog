@@ -114,7 +114,7 @@ export async function uploadImage(image: File) {
     const metadata = await getMetadata(newImageRef);
     const url = await getDownloadURL(newImageRef);
 
-    return { url, name: metadata.name };
+    return { url, name: metadata.name, short_name: image.name };
   } catch (error) {
     return { error };
   }
@@ -160,6 +160,13 @@ export async function createDiaryPost(
 
   const diaryDate = new Date(String(formData.get('date'))).toISOString();
 
+  const descriptions = formData
+    .getAll('image_description')
+    .map((data) => JSON.parse(data as string)) as unknown as {
+    description: string;
+    img_name: string;
+  }[];
+
   const docId = uuid();
   const picturesPending: Picture[] = [];
   const imageIds: string[] = [];
@@ -199,6 +206,9 @@ export async function createDiaryPost(
               longitude,
               latitude,
             },
+            description:
+              descriptions.find((desc) => desc.img_name === image.short_name)
+                ?.description || null,
           });
         })
       );
@@ -216,6 +226,8 @@ export async function createDiaryPost(
     try {
       await Promise.all(
         picturesPending.map(async (image) => {
+          console.log('IMAGE : ', image);
+
           const imageId = image.id;
           const imageRef = doc(db, IMAGES_DOC, imageId);
           await setDoc(imageRef, image);
