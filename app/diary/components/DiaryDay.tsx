@@ -1,4 +1,4 @@
-import { DiaryDay as DiaryDayType } from '@/app/types';
+import { DiaryDay as DiaryDayType, Picture } from '@/app/types';
 import { useEffect, useRef } from 'react';
 import Images from './Images';
 import styles from './style.module.scss';
@@ -7,10 +7,12 @@ interface Props {
   day: DiaryDayType;
   idx: number;
   length: number;
+  // eslint-disable-next-line no-unused-vars
+  setCurrentImages: (param: { pictures: Picture[]; current: number }) => void;
 }
 
 const DiaryDay = (props: Props) => {
-  const { day, idx, length } = props;
+  const { day, idx, length, setCurrentImages } = props;
 
   const date = new Date(day.date);
   const dateAsString = date.toLocaleDateString('fr-FR', { dateStyle: 'full' });
@@ -88,7 +90,7 @@ const DiaryDay = (props: Props) => {
           >
             {dateWithUppercase}
           </p>
-          <Images pictures={day.pictures} />
+          <Images pictures={day.pictures} setCurrentImages={setCurrentImages} />
         </div>
         <div
           className={styles.text}
@@ -117,7 +119,7 @@ const DiaryDay = (props: Props) => {
           ref={pathRef}
           d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
           stroke="#182C25"
-          stroke-width="4"
+          strokeWidth="4"
           style={{ display: 'none' }}
         />
       </svg>
@@ -134,8 +136,8 @@ const DiaryDay = (props: Props) => {
         <path
           d="M1.5 0.5C1.5 310 267.5 418.5 547 418.5C826.5 418.5 1152 636 1152 1055"
           stroke="#182C25"
-          stroke-width="2"
-          stroke-dasharray="8 8"
+          strokeWidth="2"
+          strokeDasharray="8 8"
         />
       </svg>
     </article>
