@@ -1,7 +1,7 @@
 'use client';
 
 import { Picture } from '@/app/types';
-import { MouseEvent, TouchEvent, useRef, useState } from 'react';
+import { MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
 import ImageWrapper from './ImageWrapper';
 import styles from './style.module.scss';
 
@@ -18,6 +18,7 @@ export default function Images(props: Props) {
   const [pressed, setPressed] = useState(false);
   const [carouselXStart, setCarouselXStart] = useState<number>(0);
   const [clientXStart, setClientXStart] = useState<number>(0);
+  const [isMobileSize, setIsMobileSize] = useState(false);
 
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -117,45 +118,42 @@ export default function Images(props: Props) {
     }
   };
 
+  useEffect(() => {
+    if (window) {
+      setIsMobileSize(window.document.body.clientWidth <= 768);
+
+      window.addEventListener('resize', () => {
+        setIsMobileSize(window.document.body.clientWidth <= 768);
+      });
+    }
+  }, []);
+
   return (
     <>
-      <div
-        className={styles['pictures-sm']}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onTouchMove={handleTouchMove}
-        ref={containerRef}
-      >
-        <div className={styles.chip}>
-          {currentImgSm + 1} / {pictures.length}
-        </div>
-        <div className={styles.bubbles}>
-          {pictures.map((pic, idx) => (
-            <span
-              className={idx === currentImgSm ? styles.active : ''}
-              key={pic.id}
-            />
-          ))}
-        </div>
-        <div className={styles.carousel} ref={carouselRef}>
-          {pictures.map((pic, idx) => (
-            <ImageWrapper
-              key={pic.id}
-              pic={pic}
-              idx={idx}
-              picturesLength={pictures.length}
-              onClick={handleOpen}
-            />
-          ))}
-        </div>
-      </div>
-      <div className={styles.pictures}>
-        {pictures.map(
-          (pic, idx) =>
-            idx <= 8 && (
+      {isMobileSize ? (
+        <div
+          className={styles['pictures-sm']}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchMove={handleTouchMove}
+          ref={containerRef}
+        >
+          <div className={styles.chip}>
+            {currentImgSm + 1} / {pictures.length}
+          </div>
+          <div className={styles.bubbles}>
+            {pictures.map((pic, idx) => (
+              <span
+                className={idx === currentImgSm ? styles.active : ''}
+                key={pic.id}
+              />
+            ))}
+          </div>
+          <div className={styles.carousel} ref={carouselRef}>
+            {pictures.map((pic, idx) => (
               <ImageWrapper
                 key={pic.id}
                 pic={pic}
@@ -163,9 +161,25 @@ export default function Images(props: Props) {
                 picturesLength={pictures.length}
                 onClick={handleOpen}
               />
-            )
-        )}
-      </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className={styles.pictures}>
+          {pictures.map(
+            (pic, idx) =>
+              idx <= 8 && (
+                <ImageWrapper
+                  key={pic.id}
+                  pic={pic}
+                  idx={idx}
+                  picturesLength={pictures.length}
+                  onClick={handleOpen}
+                />
+              )
+          )}
+        </div>
+      )}
     </>
   );
 }

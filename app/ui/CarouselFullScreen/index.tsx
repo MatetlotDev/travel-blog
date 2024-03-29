@@ -2,8 +2,9 @@
 
 import { Picture } from '@/app/types';
 import { dateToSentence } from '@/utils/dateToSentence';
-import Image from 'next/image';
+import NextImage from 'next/image';
 // import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
 import styles from './style.module.scss';
@@ -21,6 +22,20 @@ export default function CarouselFullScreen(props: Props) {
   const { currentImage, onClose, onPrev, onNext, prevDisabled, nextDisabled } =
     props;
 
+  const [changing, setChanging] = useState(false);
+
+  const handlePrev = () => {
+    onPrev();
+    setChanging(true);
+    setTimeout(() => setChanging(false), 10);
+  };
+
+  const handleNext = () => {
+    onNext();
+    setChanging(true);
+    setTimeout(() => setChanging(false), 10);
+  };
+
   if (currentImage)
     return (
       <div className={styles.wrapper}>
@@ -29,13 +44,17 @@ export default function CarouselFullScreen(props: Props) {
         </p>
         <p className={styles.description}>{currentImage.description || ''}</p>
         <div className={styles.content}>
-          <Image
-            src={currentImage.url}
-            alt="Same image but bigger"
-            className={styles.image}
-            fill
-            sizes="100vw"
-          />
+          {!changing && (
+            <NextImage
+              src={currentImage.url}
+              alt="Same image but bigger"
+              className={styles.image}
+              fill
+              sizes="(min-width: 768px) 100vw"
+              placeholder="blur"
+              blurDataURL={currentImage.blur_url}
+            />
+          )}
         </div>
         <div className={styles.close} onClick={onClose}>
           <TfiClose />
@@ -48,7 +67,7 @@ export default function CarouselFullScreen(props: Props) {
             prevDisabled && styles.disabled
           }`}
         >
-          <button onClick={onPrev}>
+          <button onClick={handlePrev}>
             <SlArrowLeft />
           </button>
         </div>
@@ -57,7 +76,7 @@ export default function CarouselFullScreen(props: Props) {
             nextDisabled && styles.disabled
           }`}
         >
-          <button onClick={onNext}>
+          <button onClick={handleNext}>
             <SlArrowRight />
           </button>
         </div>

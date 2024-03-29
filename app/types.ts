@@ -31,4 +31,5 @@ export type Picture = {
     latitude: number | null;
   };
   description?: string | null;
+  blur_url?: string;
 };

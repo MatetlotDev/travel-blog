@@ -3,6 +3,7 @@
 import { db, storage } from '@/firebase/config';
 import exif from 'exif-reader';
 import {
+  QuerySnapshot,
   collection,
   doc,
   documentId,
@@ -22,6 +23,7 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { revalidatePath } from 'next/cache';
+import { getPlaiceholder } from 'plaiceholder';
 import sharp from 'sharp';
 import { v4 as uuid } from 'uuid';
 import { DiaryDay, Picture } from '../types';
@@ -43,6 +45,32 @@ export async function getDiaryImages(id: string) {
 
   return imagesData;
 }
+
+const createBlurUrl = async (url: string) => {
+  const buffer = await fetch(url, { cache: 'no-store' }).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { base64 } = await getPlaiceholder(buffer, { size: 10 });
+
+  return base64;
+};
+
+const processSnapshot = async (querySnapshot: QuerySnapshot) => {
+  const promises = querySnapshot.docs.map(async (doc) => {
+    const blurUrl = doc.data().blur_url;
+
+    const base64 = blurUrl || (await createBlurUrl(doc.data().url));
+
+    return {
+      ...doc.data(),
+      id: doc.id,
+      blur_url: base64,
+    } as Picture;
+  });
+
+  return Promise.all(promises);
+};
 
 export async function getPaginatedDiaries(params: string, lastId?: string) {
   // get all diaries documents from firestore
@@ -73,10 +101,7 @@ export async function getPaginatedDiaries(params: string, lastId?: string) {
       );
       const querySnapshot = await getDocs(q);
 
-      const images: Picture[] = [];
-      querySnapshot.forEach((doc) => {
-        images.push({ id: doc.id, ...doc.data() } as Picture);
-      });
+      const images: Picture[] = await processSnapshot(querySnapshot);
 
       const content = document.data();
 
@@ -87,6 +112,19 @@ export async function getPaginatedDiaries(params: string, lastId?: string) {
     })
   );
 }
+
+const imageToBase64 = async (image: File) => {
+  const bytes = await image.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  const imageCompressed = await sharp(buffer)
+    .resize(20, 20)
+    .toFormat('jpeg')
+    .jpeg({ quality: 20 })
+    .toBuffer();
+
+  return `data:image/jpeg;base64,${imageCompressed.toString('base64')}`;
+};
 
 const compressImage = async (image: File) => {
   const bytes = await image.arrayBuffer();
@@ -189,6 +227,8 @@ export async function createDiaryPost(
 
           const image = await uploadImage(file as File);
 
+          const blurUrl = await imageToBase64(file as File);
+
           if (!image.name || !image.url)
             throw new Error(
               'image name or url is missing. Error : ' + image.error
@@ -197,6 +237,7 @@ export async function createDiaryPost(
           picturesPending.push({
             id: imageId,
             url: image.url,
+            blur_url: blurUrl,
             name: image.name,
             create_date: createDate
               ? new Date(createDate).toISOString()
@@ -225,14 +266,18 @@ export async function createDiaryPost(
   if (files[0]?.name && files[0]?.size) {
     try {
       await Promise.all(
-        picturesPending.map(async (image) => {
-          console.log('IMAGE : ', image);
-
-          const imageId = image.id;
-          const imageRef = doc(db, IMAGES_DOC, imageId);
-          await setDoc(imageRef, image);
-          imageIds.push(imageId);
-        })
+        picturesPending
+          .sort((a, b) => {
+            const dateA = new Date(a.create_date).getTime();
+            const dateB = new Date(b.create_date).getTime();
+            return dateA - dateB;
+          })
+          .map(async (image) => {
+            const imageId = image.id;
+            const imageRef = doc(db, IMAGES_DOC, imageId);
+            await setDoc(imageRef, image);
+            imageIds.push(imageId);
+          })
       );
     } catch (err) {
       console.error(err);
