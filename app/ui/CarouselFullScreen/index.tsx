@@ -23,17 +23,24 @@ export default function CarouselFullScreen(props: Props) {
     props;
 
   const [changing, setChanging] = useState(false);
+  const [loadingCompleted, setLoadingCompleted] = useState(false);
 
   const handlePrev = () => {
-    onPrev();
-    setChanging(true);
-    setTimeout(() => setChanging(false), 10);
+    if (!prevDisabled) {
+      onPrev();
+      setChanging(true);
+      setLoadingCompleted(false);
+      setTimeout(() => setChanging(false), 10);
+    }
   };
 
   const handleNext = () => {
-    onNext();
-    setChanging(true);
-    setTimeout(() => setChanging(false), 10);
+    if (!nextDisabled) {
+      onNext();
+      setChanging(true);
+      setLoadingCompleted(false);
+      setTimeout(() => setChanging(false), 10);
+    }
   };
 
   if (currentImage)
@@ -53,8 +60,10 @@ export default function CarouselFullScreen(props: Props) {
               sizes="(min-width: 768px) 100vw"
               placeholder="blur"
               blurDataURL={currentImage.blur_url}
+              onLoad={() => setLoadingCompleted(true)}
             />
           )}
+          {!loadingCompleted && <span />}
         </div>
         <div className={styles.close} onClick={onClose}>
           <TfiClose />

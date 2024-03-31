@@ -23,7 +23,6 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { revalidatePath } from 'next/cache';
-import { getPlaiceholder } from 'plaiceholder';
 import sharp from 'sharp';
 import { v4 as uuid } from 'uuid';
 import { DiaryDay, Picture } from '../types';
@@ -46,26 +45,14 @@ export async function getDiaryImages(id: string) {
   return imagesData;
 }
 
-const createBlurUrl = async (url: string) => {
-  const buffer = await fetch(url, { cache: 'no-store' }).then(async (res) =>
-    Buffer.from(await res.arrayBuffer())
-  );
-
-  const { base64 } = await getPlaiceholder(buffer, { size: 10 });
-
-  return base64;
-};
-
 const processSnapshot = async (querySnapshot: QuerySnapshot) => {
   const promises = querySnapshot.docs.map(async (doc) => {
-    const blurUrl = doc.data().blur_url;
-
-    const base64 = blurUrl || (await createBlurUrl(doc.data().url));
+    const blurUrl = (await doc.data().blur_url) || 'data:image;base64';
 
     return {
       ...doc.data(),
       id: doc.id,
-      blur_url: base64,
+      blur_url: blurUrl,
     } as Picture;
   });
 
