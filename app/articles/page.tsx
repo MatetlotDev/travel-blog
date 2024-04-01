@@ -1,6 +1,6 @@
 'use client';
 
-import { categories, mockedArticles } from 'app/constants/global';
+import { categories, mockedArticles } from '@/constants/global';
 import { ArticleCarousel, FiltersWrapper, Header } from 'app/ui';
 import { useAutocomplete } from 'hooks/useAutoComplete';
 import Head from 'next/head';

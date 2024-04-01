@@ -1,4 +1,4 @@
-import { pictures } from 'app/constants/global';
+import { pictures } from '@/constants/global';
 import { FiltersWrapper, Header } from 'app/ui';
 import Head from 'next/head';
 import { dateToSentence } from 'utils/dateToSentence';

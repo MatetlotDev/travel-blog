@@ -1,5 +1,5 @@
 import { Category as CategoryType } from '@/app/types';
-import { mockedArticles } from 'app/constants/global';
+import { mockedArticles } from '@/constants/global';
 import { ArticleCarousel } from 'app/ui';
 import styles from '../../style.module.scss';
 interface Props {
