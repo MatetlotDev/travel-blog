@@ -90,11 +90,17 @@ export async function getPaginatedDiaries(params: string, lastId?: string) {
 
       const images: Picture[] = await processSnapshot(querySnapshot);
 
+      const sortedImages = images.sort((a, b) => {
+        const dateA = new Date(a.create_date).getTime();
+        const dateB = new Date(b.create_date).getTime();
+        return dateA - dateB;
+      });
+
       const content = document.data();
 
       return {
         ...content, // document data
-        pictures: images,
+        pictures: sortedImages,
       } as DiaryDay;
     })
   );
@@ -253,18 +259,12 @@ export async function createDiaryPost(
   if (files[0]?.name && files[0]?.size) {
     try {
       await Promise.all(
-        picturesPending
-          .sort((a, b) => {
-            const dateA = new Date(a.create_date).getTime();
-            const dateB = new Date(b.create_date).getTime();
-            return dateA - dateB;
-          })
-          .map(async (image) => {
-            const imageId = image.id;
-            const imageRef = doc(db, IMAGES_DOC, imageId);
-            await setDoc(imageRef, image);
-            imageIds.push(imageId);
-          })
+        picturesPending.map(async (image) => {
+          const imageId = image.id;
+          const imageRef = doc(db, IMAGES_DOC, imageId);
+          await setDoc(imageRef, image);
+          imageIds.push(imageId);
+        })
       );
     } catch (err) {
       console.error(err);
