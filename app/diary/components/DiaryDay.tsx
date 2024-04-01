@@ -78,7 +78,7 @@ const DiaryDay = (props: Props) => {
   }, []);
 
   return (
-    <article className={styles.wrapper} ref={wrapperRef}>
+    <article className={styles['diary-day-wrapper']} ref={wrapperRef}>
       <div
         className={styles.content}
         style={{ flexDirection: idx % 2 ? 'row-reverse' : 'row' }}

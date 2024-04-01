@@ -1,6 +1,6 @@
-import { DiaryDay as DiaryType } from '@/app/types';
 import { getPaginatedDiaries } from '@/app/(actions)/diary';
-import styles from '@/app/diary/style.module.scss';
+import styles from '@/app/diary/components/style.module.scss';
+import { DiaryDay as DiaryType } from '@/app/types';
 import Head from 'next/head';
 import Main from './diary/components/Main';
 
@@ -12,7 +12,7 @@ export default async function Diary() {
       <Head>
         <title>Journal</title>
       </Head>
-      <div className={styles.wrapper}>
+      <div className={styles['main-wrapper']}>
         <Main diaries={diaries} />
       </div>
     </>

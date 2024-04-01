@@ -1,6 +1,15 @@
 @import '/styles/theme.scss';
 
-.wrapper {
+.main-wrapper {
+  padding: 30px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 30px; // change
+}
+
+.diary-day-wrapper {
   position: relative;
   height: 900px;
   width: 85vw;
@@ -243,7 +252,7 @@
 }
 
 @media (max-width: map-get($theme, 'breakpoints', 'extraExtraLarge')) {
-  .wrapper {
+  .diary-day-wrapper {
     height: unset;
     width: none;
     max-width: unset;
@@ -276,7 +285,11 @@
 }
 
 @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
-  .wrapper {
+  .main-wrapper {
+    padding-left: 0; // change
+  }
+
+  .diary-day-wrapper {
     .content {
       .pictures {
         display: none;

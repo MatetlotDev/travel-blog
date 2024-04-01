@@ -2,7 +2,7 @@
 
 import { getPaginatedDiaries } from '@/app/(actions)/diary';
 import { DiaryDay as DiaryDayType, Picture } from '@/app/types';
-import { CarouselFullScreen } from '@/app/ui';
+import { CarouselFullScreen, FiltersWrapper } from '@/app/ui';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
 import DiaryDay from './DiaryDay';
@@ -90,6 +90,7 @@ export default function Main(props: Props) {
           Afficher le précedent
         </button>
       )}
+      <FiltersWrapper>yeah</FiltersWrapper>
       <CarouselFullScreen
         currentImage={
           currentImages.current !== null
