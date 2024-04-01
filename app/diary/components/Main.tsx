@@ -1,6 +1,6 @@
 'use client';
 
-import { getPaginatedDiaries } from '@/app/actions/diary';
+import { getPaginatedDiaries } from '@/app/(actions)/diary';
 import { DiaryDay as DiaryDayType, Picture } from '@/app/types';
 import { CarouselFullScreen } from '@/app/ui';
 import buttonStyles from '@/app/ui/Button/style.module.scss';

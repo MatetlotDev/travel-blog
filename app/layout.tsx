@@ -1,8 +1,7 @@
-// import { Footer, Menu } from 'app/ui';
 import { Analytics } from '@vercel/analytics/react';
 import { Montserrat } from 'next/font/google';
 import { ReactNode } from 'react';
-import './styles/global.scss';
+import '../styles/global.scss';
 import SmoothScroll from './ui/SmoothScroll';
 
 const montserrat = Montserrat({
@@ -20,9 +19,7 @@ export default function RootLayout(props: Props) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        {/* <Menu /> */}
         {children}
-        {/* <Footer /> */}
         <Analytics />
         <SmoothScroll />
       </body>

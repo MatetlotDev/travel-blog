@@ -1,4 +1,7 @@
-import { getSession, submitLoginPassword } from '@/app/actions/authentication';
+import {
+  getSession,
+  submitLoginPassword,
+} from '@/app/(actions)/authentication';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import styles from './style.module.scss';
 
