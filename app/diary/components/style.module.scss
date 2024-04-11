@@ -6,13 +6,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 30px; // change
 }
 
 .diary-day-wrapper {
   position: relative;
   height: 900px;
-  width: 85vw;
   max-width: 1660px;
 
   .content {
@@ -285,10 +283,6 @@
 }
 
 @media (max-width: map-get($theme, 'breakpoints', 'medium')) {
-  .main-wrapper {
-    padding-left: 0; // change
-  }
-
   .diary-day-wrapper {
     .content {
       .pictures {

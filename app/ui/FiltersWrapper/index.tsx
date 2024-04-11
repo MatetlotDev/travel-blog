@@ -23,34 +23,36 @@ export default function FiltersWrapper(props: Props) {
   };
 
   return (
-    <div
-      className={styles.wrapper}
-      style={{ display: open ? '100%' : 'fit-content' }}
-    >
+    <>
       <div
-        className={styles['filters-content']}
-        style={open ? { padding: '30px', width: 'fit-content' } : {}}
+        className={styles.wrapper}
+        style={{ width: open ? '100%' : 'fit-content' }}
       >
-        {open ? (
-          <div className={styles.content}>
-            <div className={styles.flex}>
-              <h2>Filtres actuels</h2>
-              <button onClick={handleClose}>
-                <TfiClose size={12} />
-              </button>
+        <div
+          className={styles['filters-content']}
+          style={open ? { padding: '30px', width: '200px' } : {}}
+        >
+          {open ? (
+            <div className={styles.content}>
+              <div className={styles.flex}>
+                <h2>Filtres actuels</h2>
+                <button onClick={handleClose}>
+                  <TfiClose size={12} />
+                </button>
+              </div>
+              {children}
             </div>
-            {children}
-          </div>
-        ) : (
-          <div className={styles['open-button_wrapper']} onClick={handleOpen}>
-            <div className={styles['open-button']}>
-              <p>Filtres</p>
-              <SlArrowDown size={11} />
+          ) : (
+            <div className={styles['open-button_wrapper']} onClick={handleOpen}>
+              <div className={styles['open-button']}>
+                <p>Filtres</p>
+                <SlArrowDown size={11} />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-      <div className={styles.blur} />
-    </div>
+      <div className={styles.blur} style={{ opacity: open ? 1 : 0 }} />
+    </>
   );
 }
