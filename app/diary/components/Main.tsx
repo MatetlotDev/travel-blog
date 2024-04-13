@@ -6,6 +6,7 @@ import { CarouselFullScreen, FiltersWrapper } from '@/app/ui';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
 import DiaryDay from './DiaryDay';
+import Ordering from './Filters/Ordering';
 
 interface Props {
   diaries: DiaryDayType[];
@@ -90,7 +91,9 @@ export default function Main(props: Props) {
           Afficher le précedent
         </button>
       )}
-      <FiltersWrapper>yeah</FiltersWrapper>
+      <FiltersWrapper>
+        <Ordering />
+      </FiltersWrapper>
       <CarouselFullScreen
         currentImage={
           currentImages.current !== null

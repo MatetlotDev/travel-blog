@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { SlArrowDown } from 'react-icons/sl';
 import { TfiClose } from 'react-icons/tfi';
 import styles from './style.module.scss';
@@ -14,23 +14,26 @@ export default function FiltersWrapper(props: Props) {
 
   const [open, setOpen] = useState(false);
 
+  const blurRef = useRef<HTMLDivElement | null>(null);
+
   const handleOpen = () => {
     setOpen(true);
+    if (blurRef.current) blurRef.current.style.bottom = '0';
   };
 
   const handleClose = () => {
     setOpen(false);
+    setTimeout(() => {
+      if (blurRef.current) blurRef.current.style.bottom = 'unset';
+    }, 400);
   };
 
   return (
     <>
-      <div
-        className={styles.wrapper}
-        style={{ width: open ? '100%' : 'fit-content' }}
-      >
+      <div className={styles.wrapper}>
         <div
           className={styles['filters-content']}
-          style={open ? { padding: '30px', width: '200px' } : {}}
+          style={open ? { padding: '30px', width: '400px' } : {}}
         >
           {open ? (
             <div className={styles.content}>
@@ -52,7 +55,11 @@ export default function FiltersWrapper(props: Props) {
           )}
         </div>
       </div>
-      <div className={styles.blur} style={{ opacity: open ? 1 : 0 }} />
+      <div
+        ref={blurRef}
+        className={styles.blur}
+        style={{ opacity: open ? 1 : 0 }}
+      />
     </>
   );
 }
