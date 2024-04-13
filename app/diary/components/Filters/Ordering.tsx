@@ -3,16 +3,9 @@
 import styles from './style.module.scss';
 
 export default function Ordering() {
-  /**
-   * Un titre
-   * deux radio button (asc & desc)
-   * à chaque changement on fait un getDiariesOrdered('asc' | 'desc')
-   *
-   */
-
   return (
     <div className={styles['filters-ordering']}>
-      <h3>Ordonner</h3>
+      <h4>Ordonner</h4>
       <div className={styles['input-wrapper']}>
         <input
           id="radio_button_desc"
@@ -21,10 +14,12 @@ export default function Ordering() {
           value="desc"
           defaultChecked
         />
+        <div className={styles['input-replacement']} />
         <label htmlFor="radio_button_desc">Décroissant</label>
       </div>
       <div className={styles['input-wrapper']}>
         <input id="radio_button_asc" type="radio" name="order" value="asc" />
+        <div className={styles['input-replacement']} />
         <label id="radio_button_desc">Croissant</label>
       </div>
     </div>
