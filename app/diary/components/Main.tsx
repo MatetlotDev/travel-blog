@@ -76,7 +76,7 @@ export default function Main(props: Props) {
   };
 
   const handleSetFilters = async (newFilters: Filters) => {
-    // TODO: kill all pending request
+    setLoading(true);
     setFilters(newFilters);
 
     const newDiaries = await getPaginatedDiaries(
@@ -86,6 +86,7 @@ export default function Main(props: Props) {
     );
 
     setDiariesList(newDiaries);
+    setLoading(false);
     // TODO: ajouter un feedback genre toaster "filtres appliqués !"
   };
 
@@ -111,7 +112,7 @@ export default function Main(props: Props) {
           Afficher le précedent
         </button>
       )}
-      <FiltersWrapper>
+      <FiltersWrapper fetching={loading}>
         <Ordering
           filters={filters.ordering}
           setFilters={(val) => handleSetFilters({ ordering: val })}

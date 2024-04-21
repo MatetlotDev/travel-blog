@@ -7,10 +7,11 @@ import styles from './style.module.scss';
 
 interface Props {
   children: ReactNode;
+  fetching: boolean;
 }
 
 export default function FiltersWrapper(props: Props) {
-  const { children } = props;
+  const { children, fetching } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -70,12 +71,10 @@ export default function FiltersWrapper(props: Props) {
           </div>
         </div>
       </div>
-      <div
-        ref={blurRef}
-        className={styles.blur}
-        style={{ opacity: open ? 1 : 0 }}
-        onClick={handleClose}
-      />
+      <div ref={blurRef} className={styles.blurWrapper} onClick={handleClose}>
+        {fetching && open && <span className={styles.loader} />}
+        <div className={styles.blur} style={{ opacity: open ? 1 : 0 }} />
+      </div>
     </>
   );
 }

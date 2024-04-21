@@ -70,7 +70,7 @@ export async function getPaginatedDiaries(
   const initQuery = query(
     diaryCollection,
     orderBy('date', order || 'desc'),
-    limit(3)
+    limit(1)
   );
 
   const lastElement = lastId ? await getDoc(doc(db, 'diary', lastId)) : null;
