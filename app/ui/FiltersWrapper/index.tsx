@@ -35,30 +35,46 @@ export default function FiltersWrapper(props: Props) {
           className={styles['filters-content']}
           style={open ? { padding: '30px', width: '400px' } : {}}
         >
-          {open ? (
-            <div className={styles.content}>
-              <div className={styles.flex}>
-                <h2>Filtres actuels</h2>
-                <button onClick={handleClose}>
-                  <TfiClose size={12} />
-                </button>
-              </div>
-              {children}
+          <div
+            className={styles.content}
+            style={
+              open
+                ? {
+                    opacity: 1,
+                    zIndex: 20,
+                    transform: 'translateX(0)',
+                  }
+                : {
+                    opacity: 0,
+                    zIndex: 0,
+                  }
+            }
+          >
+            <div className={styles.flex}>
+              <h2>Filtres actuels</h2>
+              <button onClick={handleClose}>
+                <TfiClose size={12} />
+              </button>
             </div>
-          ) : (
-            <div className={styles['open-button_wrapper']} onClick={handleOpen}>
-              <div className={styles['open-button']}>
-                <p>Filtres</p>
-                <SlArrowDown size={11} />
-              </div>
+            {children}
+          </div>
+          <div
+            className={styles['open-button_wrapper']}
+            onClick={handleOpen}
+            style={{ opacity: open ? 0 : 1, zIndex: open ? 0 : 20 }}
+          >
+            <div className={styles['open-button']}>
+              <p>Filtres</p>
+              <SlArrowDown size={11} />
             </div>
-          )}
+          </div>
         </div>
       </div>
       <div
         ref={blurRef}
         className={styles.blur}
         style={{ opacity: open ? 1 : 0 }}
+        onClick={handleClose}
       />
     </>
   );

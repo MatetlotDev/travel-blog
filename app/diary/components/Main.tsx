@@ -5,6 +5,7 @@ import { DiaryDay as DiaryDayType, Picture } from '@/app/types';
 import { CarouselFullScreen, FiltersWrapper } from '@/app/ui';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
+import { Filters } from '../types';
 import DiaryDay from './DiaryDay';
 import Ordering from './Filters/Ordering';
 
@@ -21,20 +22,25 @@ export default function Main(props: Props) {
     pictures: Picture[];
     current: number | null;
   }>({ pictures: [], current: null });
+  const [filters, setFilters] = useState<Filters>({
+    ordering: 'desc',
+  });
 
   const handleLoadMore = async () => {
     setLoading(true);
 
     const lastId = diariesList[diariesList.length - 1].id;
-
-    const newDiaries = await getPaginatedDiaries('next', lastId);
+    const newDiaries = await getPaginatedDiaries(
+      'next',
+      lastId,
+      filters.ordering
+    );
 
     setDiariesList((prev) => [...prev, newDiaries[0]]);
-
     setLoading(false);
   };
 
-  const handleNext = () => {
+  const handleNextImage = () => {
     if (
       currentImages.current !== null &&
       currentImages.current < currentImages.pictures.length - 1
@@ -50,7 +56,7 @@ export default function Main(props: Props) {
       });
   };
 
-  const handlePrev = () => {
+  const handlePrevImage = () => {
     if (currentImages.current)
       setCurrentImages((prev) => {
         if (currentImages.current !== null)
@@ -63,10 +69,24 @@ export default function Main(props: Props) {
       });
   };
 
-  const handleClose = () => {
+  const handleCloseImage = () => {
     const body = document.querySelector('body');
     body?.style.setProperty('overflow', 'unset');
     setCurrentImages({ pictures: [], current: null });
+  };
+
+  const handleSetFilters = async (newFilters: Filters) => {
+    // TODO: kill all pending request
+    setFilters(newFilters);
+
+    const newDiaries = await getPaginatedDiaries(
+      'init',
+      undefined,
+      newFilters.ordering
+    );
+
+    setDiariesList(newDiaries);
+    // TODO: ajouter un feedback genre toaster "filtres appliqués !"
   };
 
   return (
@@ -92,7 +112,10 @@ export default function Main(props: Props) {
         </button>
       )}
       <FiltersWrapper>
-        <Ordering />
+        <Ordering
+          filters={filters.ordering}
+          setFilters={(val) => handleSetFilters({ ordering: val })}
+        />
       </FiltersWrapper>
       <CarouselFullScreen
         currentImage={
@@ -100,9 +123,9 @@ export default function Main(props: Props) {
             ? currentImages.pictures[currentImages.current]
             : null
         }
-        onClose={handleClose}
-        onNext={handleNext}
-        onPrev={handlePrev}
+        onClose={handleCloseImage}
+        onNext={handleNextImage}
+        onPrev={handlePrevImage}
         prevDisabled={currentImages.current === 0}
         nextDisabled={
           currentImages.current === currentImages.pictures.length - 1

@@ -59,21 +59,31 @@ const processSnapshot = async (querySnapshot: QuerySnapshot) => {
   return Promise.all(promises);
 };
 
-export async function getPaginatedDiaries(params: string, lastId?: string) {
+export async function getPaginatedDiaries(
+  params: string,
+  lastId?: string,
+  order?: 'asc' | 'desc'
+) {
   // get all diaries documents from firestore
   const diaryCollection = collection(db, 'diary');
 
-  const first = query(diaryCollection, orderBy('date', 'desc'), limit(3));
+  const initQuery = query(
+    diaryCollection,
+    orderBy('date', order || 'desc'),
+    limit(3)
+  );
 
   const lastElement = lastId ? await getDoc(doc(db, 'diary', lastId)) : null;
-  const after = query(
+  const loadMoreQuery = query(
     diaryCollection,
-    orderBy('date', 'desc'),
+    orderBy('date', order || 'desc'),
     startAfter(lastElement),
     limit(1)
   );
 
-  const querySnapshot = await getDocs(params === 'init' ? first : after);
+  const querySnapshot = await getDocs(
+    params === 'init' ? initQuery : loadMoreQuery
+  );
 
   // then get all images documents that match pictures field in diary document
   return Promise.all(

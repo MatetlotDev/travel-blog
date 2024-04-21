@@ -37,10 +37,14 @@
       margin-right: 20px;
     }
 
+    h4 {
+      font-weight: 300;
+    }
+
     label {
       cursor: pointer;
       font-size: 2rem;
-      font-weight: 300;
+      font-weight: 200;
     }
 
     input[type='radio']:checked ~ .input-replacement {
