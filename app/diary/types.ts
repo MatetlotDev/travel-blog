@@ -1,3 +1,3 @@
 export type Filters = {
-  ordering: 'asc' | 'desc';
+  first_date: string;
 };

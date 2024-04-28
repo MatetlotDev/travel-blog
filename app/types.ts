@@ -14,7 +14,7 @@ export type Category = {
 
 export type DiaryDay = {
   id: string;
-  date: Date;
+  date: string;
   title: string;
   text: string;
   pictures: Picture[];

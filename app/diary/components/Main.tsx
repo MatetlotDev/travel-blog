@@ -7,7 +7,7 @@ import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
 import { Filters } from '../types';
 import DiaryDay from './DiaryDay';
-import Ordering from './Filters/Ordering';
+import FirstDate from './Filters/FirstDate';
 
 interface Props {
   diaries: DiaryDayType[];
@@ -23,18 +23,14 @@ export default function Main(props: Props) {
     current: number | null;
   }>({ pictures: [], current: null });
   const [filters, setFilters] = useState<Filters>({
-    ordering: 'desc',
+    first_date: diaries[0].date,
   });
 
   const handleLoadMore = async () => {
     setLoading(true);
 
     const lastId = diariesList[diariesList.length - 1].id;
-    const newDiaries = await getPaginatedDiaries(
-      'next',
-      lastId,
-      filters.ordering
-    );
+    const newDiaries = await getPaginatedDiaries('next', lastId, filters);
 
     setDiariesList((prev) => [...prev, newDiaries[0]]);
     setLoading(false);
@@ -79,11 +75,7 @@ export default function Main(props: Props) {
     setLoading(true);
     setFilters(newFilters);
 
-    const newDiaries = await getPaginatedDiaries(
-      'init',
-      undefined,
-      newFilters.ordering
-    );
+    const newDiaries = await getPaginatedDiaries('init', undefined, newFilters);
 
     setDiariesList(newDiaries);
     setLoading(false);
@@ -113,9 +105,9 @@ export default function Main(props: Props) {
         </button>
       )}
       <FiltersWrapper fetching={loading}>
-        <Ordering
-          filters={filters.ordering}
-          setFilters={(val) => handleSetFilters({ ordering: val })}
+        <FirstDate
+          filters={filters}
+          setFilters={(val) => handleSetFilters(val)}
         />
       </FiltersWrapper>
       <CarouselFullScreen

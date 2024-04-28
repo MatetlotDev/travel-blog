@@ -1,7 +1,7 @@
 'use client';
 
 import { categories, mockedArticles } from '@/constants/global';
-import { ArticleCarousel, FiltersWrapper, Header } from 'app/ui';
+import { ArticleCarousel } from 'app/ui';
 import { useAutocomplete } from 'hooks/useAutoComplete';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -19,10 +19,6 @@ export default function Articles() {
         <title>Articles</title>
       </Head>
       <div className={styles.content}>
-        <Header withSearchbar />
-        <FiltersWrapper>
-          <div>{/* les filtres de la page viennes ici */}</div>
-        </FiltersWrapper>
         {!searchValue ? (
           categories.map((category) => (
             <Category key={category.id} category={category} />

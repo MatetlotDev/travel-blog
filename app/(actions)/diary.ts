@@ -25,6 +25,7 @@ import {
 import { revalidatePath } from 'next/cache';
 import sharp from 'sharp';
 import { v4 as uuid } from 'uuid';
+import { Filters } from '../diary/types';
 import { DiaryDay, Picture } from '../types';
 import { getSession } from './authentication';
 
@@ -62,24 +63,37 @@ const processSnapshot = async (querySnapshot: QuerySnapshot) => {
 export async function getPaginatedDiaries(
   params: string,
   lastId?: string,
-  order?: 'asc' | 'desc'
+  filters?: Filters
 ) {
   // get all diaries documents from firestore
   const diaryCollection = collection(db, 'diary');
 
   const initQuery = query(
     diaryCollection,
-    orderBy('date', order || 'desc'),
+    orderBy('date', 'desc'),
+    where(
+      'date',
+      '<=',
+      filters?.first_date
+        ? new Date(filters.first_date).toISOString()
+        : new Date().toISOString()
+    ),
     limit(1)
   );
 
   const lastElement = lastId ? await getDoc(doc(db, 'diary', lastId)) : null;
-  const loadMoreQuery = query(
-    diaryCollection,
-    orderBy('date', order || 'desc'),
-    startAfter(lastElement),
-    limit(1)
-  );
+  let loadMoreQuery;
+
+  if (lastElement) {
+    loadMoreQuery = query(
+      diaryCollection,
+      orderBy('date', 'desc'),
+      startAfter(lastElement),
+      limit(1)
+    );
+  } else {
+    loadMoreQuery = query(diaryCollection, orderBy('date', 'desc'), limit(1));
+  }
 
   const querySnapshot = await getDocs(
     params === 'init' ? initQuery : loadMoreQuery
