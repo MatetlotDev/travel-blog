@@ -1,5 +1,5 @@
-import { pictures } from 'app/constants/global';
-import { FiltersWrapper, Header } from 'app/ui';
+import { pictures } from '@/constants/global';
+import { Header } from 'app/ui';
 import Head from 'next/head';
 import { dateToSentence } from 'utils/dateToSentence';
 import { sortPicturesByCreateDate } from 'utils/sortPictures';
@@ -15,9 +15,6 @@ export default async function Images() {
         <title>Images</title>
       </Head>
       <div className={styles.wrapper}>
-        <FiltersWrapper>
-          <div>{/* les filtres de la page viennes ici */}</div>
-        </FiltersWrapper>
         <Header withSearchbar />
         {picturesFiltered.map((group) => (
           <div

@@ -1,11 +1,13 @@
 'use client';
 
-import { getPaginatedDiaries } from '@/app/actions/diary';
+import { getPaginatedDiaries } from '@/app/(actions)/diary';
 import { DiaryDay as DiaryDayType, Picture } from '@/app/types';
-import { CarouselFullScreen } from '@/app/ui';
+import { CarouselFullScreen, FiltersWrapper } from '@/app/ui';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import { useState } from 'react';
+import { Filters } from '../types';
 import DiaryDay from './DiaryDay';
+import FirstDate from './Filters/FirstDate';
 
 interface Props {
   diaries: DiaryDayType[];
@@ -20,20 +22,21 @@ export default function Main(props: Props) {
     pictures: Picture[];
     current: number | null;
   }>({ pictures: [], current: null });
+  const [filters, setFilters] = useState<Filters>({
+    first_date: diaries[0].date,
+  });
 
   const handleLoadMore = async () => {
     setLoading(true);
 
     const lastId = diariesList[diariesList.length - 1].id;
-
-    const newDiaries = await getPaginatedDiaries('next', lastId);
+    const newDiaries = await getPaginatedDiaries('next', lastId, filters);
 
     setDiariesList((prev) => [...prev, newDiaries[0]]);
-
     setLoading(false);
   };
 
-  const handleNext = () => {
+  const handleNextImage = () => {
     if (
       currentImages.current !== null &&
       currentImages.current < currentImages.pictures.length - 1
@@ -49,7 +52,7 @@ export default function Main(props: Props) {
       });
   };
 
-  const handlePrev = () => {
+  const handlePrevImage = () => {
     if (currentImages.current)
       setCurrentImages((prev) => {
         if (currentImages.current !== null)
@@ -62,10 +65,21 @@ export default function Main(props: Props) {
       });
   };
 
-  const handleClose = () => {
+  const handleCloseImage = () => {
     const body = document.querySelector('body');
     body?.style.setProperty('overflow', 'unset');
     setCurrentImages({ pictures: [], current: null });
+  };
+
+  const handleSetFilters = async (newFilters: Filters) => {
+    setLoading(true);
+    setFilters(newFilters);
+
+    const newDiaries = await getPaginatedDiaries('init', undefined, newFilters);
+
+    setDiariesList(newDiaries);
+    setLoading(false);
+    // TODO: ajouter un feedback genre toaster "filtres appliqués !"
   };
 
   return (
@@ -90,15 +104,21 @@ export default function Main(props: Props) {
           Afficher le précedent
         </button>
       )}
+      <FiltersWrapper fetching={loading}>
+        <FirstDate
+          filters={filters}
+          setFilters={(val) => handleSetFilters(val)}
+        />
+      </FiltersWrapper>
       <CarouselFullScreen
         currentImage={
           currentImages.current !== null
             ? currentImages.pictures[currentImages.current]
             : null
         }
-        onClose={handleClose}
-        onNext={handleNext}
-        onPrev={handlePrev}
+        onClose={handleCloseImage}
+        onNext={handleNextImage}
+        onPrev={handlePrevImage}
         prevDisabled={currentImages.current === 0}
         nextDisabled={
           currentImages.current === currentImages.pictures.length - 1

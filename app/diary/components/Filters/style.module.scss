@@ -1,0 +1,46 @@
+@import '/styles/theme.scss';
+
+.filters_first_date {
+  margin-top: 40px;
+  margin-left: 10px;
+
+  h4 {
+    font-weight: 300;
+  }
+
+  input[type='date'] {
+    appearance: none;
+    -webkit-appearance: none;
+    color: map-get($theme, 'colors', 'primary', 'main');
+    font-size: 18px;
+    border: 1px solid map-get($theme, 'colors', 'primary', 'main');
+    padding: 5px;
+    background: none;
+    display: inline-block !important;
+    visibility: visible !important;
+    border-radius: 40px;
+    padding: 10px 20px;
+    margin-top: 20px;
+  }
+
+  input[type='date']:focus {
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+
+  input[type='date']::-webkit-clear-button {
+    display: none;
+  }
+
+  /* Removes the spin button */
+  input[type='date']::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  /* Always display the drop down caret */
+  input[type='date']::-webkit-calendar-picker-indicator {
+    color: map-get($theme, 'colors', 'primary', 'main');
+  }
+}

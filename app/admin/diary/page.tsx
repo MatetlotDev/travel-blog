@@ -1,6 +1,6 @@
 'use client';
 
-import { createDiaryPost } from '@/app/actions/diary';
+import { createDiaryPost } from '@/app/(actions)/diary';
 import buttonStyles from '@/app/ui/Button/style.module.scss';
 import Image from 'next/image';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';

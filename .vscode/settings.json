@@ -4,5 +4,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
-  }
+  },
+  "editor.autoIndent": "full",
+  "editor.language.brackets": [
+    ["[", "]"],
+    ["(", ")"],
+    ["{", "}"]
+  ]
 }
